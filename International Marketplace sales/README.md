@@ -1445,14 +1445,14 @@ Table/View: z_Sales
 
 **5-3  Populate Sales staging table with APAC Superstore**
 
-* **5-3-1  Extract Sales from APAC Superstore**
+ * **5-3-1  Extract Sales from APAC Superstore**
 Flat file connection manager: APAC Superstore.txt
 
 * **5-3-2  Convert to Unicode**
- - *Customer*, *Country*, *State*, *City*, *Supplier*, *Product*, *Ship Mode* convert to Data Type: Unicode string DT_WSTR
- - *Ship Mode*, *Order Date* convert to Data Type: database date DT_DBDATE
- - *Profit (bin)*, *Profit*, *Sales* convert to Data Type: decimal DT_DECIMAL, scale 2
- - *Quantity* convert to Data Type: single-byte signed integer DT_I1
+  - *Customer*, *Country*, *State*, *City*, *Supplier*, *Product*, *Ship Mode* convert to Data Type: Unicode string DT_WSTR
+  - *Ship Mode*, *Order Date* convert to Data Type: database date DT_DBDATE
+  - *Profit (bin)*, *Profit*, *Sales* convert to Data Type: decimal DT_DECIMAL, scale 2
+  - *Quantity* convert to Data Type: single-byte signed integer DT_I1
 
 * **5-3-3  Remove double quotes and percentage character from Discount**
  - REPLACE([5-3-2  Convert to Unicode].Customer,"\"","")
