@@ -1771,7 +1771,7 @@ create view v_Dim_Customer as
 ```
 
 **7-3  DimCity for Power BI**
-- Connection: International Marketplace
+ - Connection: International Marketplace
 ```
 drop view if exists v_Dim_City;
 go
