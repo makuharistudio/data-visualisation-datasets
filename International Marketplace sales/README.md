@@ -1374,7 +1374,7 @@ from   Sales.Customers c
 ```
 
 * **5-2-2  Remove double quotes 1**
- - REPLACE(Product,"\"","")
+  - REPLACE(Product,"\"","")
 
 * **5-2-3  Load to Sales staging table 1**
 Connection: International Marketplace
@@ -1437,7 +1437,7 @@ group by
 ```
 
 * **5-2-5  Remove double quotes 2**
- - REPLACE(Product,"\"","")
+  - REPLACE(Product,"\"","")
 
 * **5-2-6  Load to Sales staging table 2**
 Connection: International Marketplace
@@ -1771,7 +1771,7 @@ create view v_Dim_Customer as
 ```
 
 **7-3  DimCity for Power BI**
-Connection: International Marketplace
+  - Connection: International Marketplace
 ```
 drop view if exists v_Dim_City;
 go
