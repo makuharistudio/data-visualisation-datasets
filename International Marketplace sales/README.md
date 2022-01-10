@@ -726,6 +726,8 @@ Table/View: Customer
 
 ### 4  Supplier, Category and Product combine and remap all 3 sources**
 
+![Supplier, Category and Product combine and remap all 3 sources](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/11.png?raw=true)
+
 **4-1  Create Supplier, Category, and Product main and staging tables**
 Connection: International Marketplace
 ```
@@ -810,6 +812,9 @@ create table zx_product_remap (
 ```
 
 **4-2  Populate Supplier, Category, and Product staging and remapping tables**
+
+This data flow has the largest number of elements of the SSIS package. In hindsight, a lot of them may be unnecessary, such as the sorts, so feel free to exclude those.
+![Supplier, Category and Product combine and remap all 3 sources](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/12.png?raw=true)
 
 * **4-2-1  Extract Category and Subcategory from Contoso**
 Connection: Wide World Importers Database
@@ -1275,6 +1280,8 @@ from z_product zp
 
 ### 5  Create Sales fact table and combine all 3 sources
 
+![Create Sales fact table and combine all 3 sources](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/13.png?raw=true)
+
 **5-1  Create Sales main and staging tables**
 Connection: International Marketplace
 ```
@@ -1696,6 +1703,8 @@ insert into ShipMode (ShipMode)
 ```
 
 ### 7  Create denormalised view for Tableau and normalised views for Power BI
+
+![Create denormalised view for Tableau and normalised views for Power BI](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/14.png?raw=true)
 
 **7-1  Sales for Tableau**
 Connection: International Marketplace
