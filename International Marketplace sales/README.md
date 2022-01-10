@@ -1771,7 +1771,7 @@ create view v_Dim_Customer as
 ```
 
 **7-3  DimCity for Power BI**
-  - Connection: International Marketplace
+- Connection: International Marketplace
 ```
 drop view if exists v_Dim_City;
 go
@@ -1788,7 +1788,7 @@ create view v_Dim_City as
       on sta.CountryID = cny.CountryID;
 ```
 **7-4  DimProduct for Power BI**
-Connection: International Marketplace
+ - Connection: International Marketplace
 ```
 drop view if exists v_Dim_Product;
 go
@@ -1808,7 +1808,7 @@ create view v_Dim_Product as
       on sc.CategoryID = cat.CategoryID;
 ```
 **7-5  FactSales for Power BI**
-Connection: International Marketplace
+ - Connection: International Marketplace
 ```
 drop view if exists v_Fact_Sales;
 go
