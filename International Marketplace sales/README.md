@@ -204,7 +204,7 @@ create table z_country (
 **1-2  Populate Country staging table**
 
 * **1-2-1  Extract countries from World Wide Importers**
- - Connection: Wide World Importers Database
+  - Connection: Wide World Importers Database
 ```
 select
    region "Region",
@@ -219,8 +219,8 @@ group by
 ```
 
 * **1-2-2  Load to Country staging table**
- - Connection: International Marketplace
- - Table/View: z_country
+  - Connection: International Marketplace
+  - Table/View: z_country
 
 **1-3  Insert and updates to clean records**
  - Connection: International Marketplace
@@ -240,15 +240,15 @@ values (N'Asia',N'Eastern Asia',N'Taiwan');
 **1-4  Load from Country staging to main table**
 
 * **1-4-1  Extract countries from staging**
- - Connection: International Marketplace
- - Table/View: z_country
+  - Connection: International Marketplace
+  - Table/View: z_country
 
 * **1-4-2  Sort by Country name ascending**
-*Country* ascending, *Subregion* ascending, *Region* ascending
+  - *Country* ascending, *Subregion* ascending, *Region* ascending
 
 * **1-4-3  Load to Country main table**
- - Connection: International Marketplace
- - Table/View: Country
+  - Connection: International Marketplace
+  - Table/View: Country
 
 ### 2  State and City combine and remap all 3 data sources
 
@@ -295,7 +295,7 @@ create table zx_statecity_remap (
 **2-2  Populate StateCity staging and remapping tables**
 
 * **2-2-1  Extract states and cities from Wide World Importers**
- - Connection: Wide World Importers Database
+  - Connection: Wide World Importers Database
 ```
 select
    N'World Wide Importers' "Data Source",
@@ -311,7 +311,7 @@ from
 ```
 
 * **2-2-2  Extract states and cities from Contoso**
- - Connection: Contoso Retail Data Warehouse
+  - Connection: Contoso Retail Data Warehouse
 ```
 select
    N'Contoso' as "Data Source",
@@ -347,34 +347,34 @@ group by
 ```
 
 * **2-2-3  Union All**
-*Data Source*, *From Country*, *From State*, *From City*
+  - *Data Source*, *From Country*, *From State*, *From City*
 
 * **2-2-4  Sort**
-*Data Source* ascending, *From Country* ascending, *From State* ascending, *From City* ascending
+  - *Data Source* ascending, *From Country* ascending, *From State* ascending, *From City* ascending
 
 * **2-2-5  Load to StateCity staging table 1**
- - Connection: International Marketplace
- - Table/View: z_statecity
+  - Connection: International Marketplace
+  - Table/View: z_statecity
 
 * **2-2-6  Extract state and cities from APAC Superstore**
-Flat file connection manager: APAC Superstore.txt
+  - Flat file connection manager: APAC Superstore.txt
 
 * **2-2-7  Sort 1**
-*Country Region* ascending, *State* ascending, *City* ascending
+  - *Country Region* ascending, *State* ascending, *City* ascending
 
 * **2-2-8  Group By all fields**
-*From Country* Group by, *From State* Group by, *From City* Group by
+  - *From Country* Group by, *From State* Group by, *From City* Group by
 
 * **2-2-9  Load to StateCity staging table 2**
- - Connection: International Marketplace
- - Table/View: z_statecity
+  - Connection: International Marketplace
+  - Table/View: z_statecity
 
 * **2-2-10  Extract State and City remapping**
-Flat file connection manager: SSIS Remapping for APAC Superstore and Contoso geography.txt
+  - Flat file connection manager: SSIS Remapping for APAC Superstore and Contoso geography.txt
 
 * **2-2-11  Load to StateCity remapping table**
- - Connection: International Marketplace
- - Table/View: zx_statecity_remap
+  - Connection: International Marketplace
+  - Table/View: zx_statecity_remap
 
 **2-3  Replace Data Source field NULLs with APAC Superstore**
  - Connection: International Marketplace
@@ -430,7 +430,7 @@ from   z_statecity;
 **2-6  Populate State main table from remapped view**
 
 * **2-6-1  Extract StateCity remapped view with Group By 1**
- - Connection: International Marketplace
+  - Connection: International Marketplace
 ```
 select
    c.CountryID "CountryID",
@@ -448,13 +448,13 @@ order by
 ```
 
 * **2-6-2  Load to State main table**
- - Connection: International Marketplace
- - Table/View: State
+  - Connection: International Marketplace
+  - Table/View: State
 
 **2-7  Populate City main table from remapped view**
 
 * **2-7-1  Extract StateCity remapped view with Group By 2**
- - Connection: International Marketplace
+  - Connection: International Marketplace
 ```
 select
    s.StateID,
@@ -472,11 +472,11 @@ order by 1, 2;
 ```
 
 * **2-7-2  Load to City main table  (OLE DB Destination)**
- - Connection: International Marketplace
- - Table/View: City
+  - Connection: International Marketplace
+  - Table/View: City
 
 **2-8  Update StateCity staging table with main table CityID**
- - Connection: International Marketplace
+- Connection: International Marketplace
 ```
 update   zsc
 set
@@ -502,7 +502,7 @@ on zvsc.DataSource = zsc.DataSource and zvsc.FromCountry = zsc.FromCountry and z
 ![Customer combine and remap all 3 sources](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/10.png?raw=true)
 
 **3-1  Create Customer main and staging tables**
- - Connection: International Marketplace
+  - Connection: International Marketplace
 ```
 drop table if exists Customer;
 create table Customer (
@@ -534,7 +534,7 @@ create table zx_customer_remap (
 **3-2  Populate Customer staging and remapping tables**
 
 * **3-2-1  Extract Customer from Wide World Importers**
- - Connection: Wide World Importers Database
+  - Connection: Wide World Importers Database
 ```
 select
    N'Wide World Importers' "Data Source",
@@ -564,7 +564,7 @@ order by 1, 2, 3, 4;
 ```
 
 * **3-2-2  Extract Customer from Contoso**
- - Connection: Contoso Retail Data Warehouse
+  - Connection: Contoso Retail Data Warehouse
 ```
 select
    N'Contoso' "Data Source",
@@ -604,37 +604,37 @@ group by
 ```
 
 * **3-2-3  Union All**
-*Data Source*, *Country*, *State*, *City*, *Customer*, *Segment*
+  - *Data Source*, *Country*, *State*, *City*, *Customer*, *Segment*
 
 * **3-2-4  Sort 1**
-*Data Source* ascending, *From Country* ascending, *From State* ascending, *From City* ascending
+  - *Data Source* ascending, *From Country* ascending, *From State* ascending, *From City* ascending
 
 * **3-2-5  Load to Customer staging table 1**
- - Connection: International Marketplace
- - Table/View: z_customer
+  - Connection: International Marketplace
+  - Table/View: z_customer
 
 * **3-2-6  Extract Customer from APAC Superstore**
 Flat file connection manager: APAC Superstore.txt
 
 * **3-2-7  Data Conversion**
-*Customer*, *Segment*, *Country*, *State*, *City* convert to Data Type: Unicode string DT_WSTR
+  - *Customer*, *Segment*, *Country*, *State*, *City* convert to Data Type: Unicode string DT_WSTR
 
 * **3-2-8  Sort 2**
-*Customer* ascending, *From Country* ascending, *From State* ascending, *From City* ascending, *Segment* ascending
+  - *Customer* ascending, *From Country* ascending, *From State* ascending, *From City* ascending, *Segment* ascending
 
 * **3-2-9  Aggregate**
-*Customer*, *Segment*, *Country*, *State*, *City*
+  - *Customer*, *Segment*, *Country*, *State*, *City*
 
 * **3-2-10  Load to Customer staging table 2**
- - Connection: International Marketplace
- - Table/View: z_customer
+  - Connection: International Marketplace
+  - Table/View: z_customer
 
 * **3-2-11  Extract Customer remapping**
-Flat file connection manager: SSIS Remapping for APAC Superstore and Contoso names.txt
+  - Flat file connection manager: SSIS Remapping for APAC Superstore and Contoso names.txt
 
 * **3-2-12  Load to Customer remapping table**
- - Connection: International Marketplace
- - Table/View: zx_customer_remap
+  - Connection: International Marketplace
+  - Table/View: zx_customer_remap
 
 **3-3  Replace Data Source field NULLs with APAC Superstore**
  - Connection: International Marketplace
@@ -717,19 +717,19 @@ group by
 **3-6  Populate Customer main table from remapped view**
 
 * **3-6-1  Extract Customer remapped view**
- - Connection: International Marketplace
- - Table/View: zv_customercity_remapped
+  - Connection: International Marketplace
+  - Table/View: zv_customercity_remapped
 
 * **3-6-2  Load to Customer main table**
- - Connection: International Marketplace
- - Table/View: Customer
+  - Connection: International Marketplace
+  - Table/View: Customer
 
 ### 4  Supplier, Category and Product combine and remap all 3 sources**
 
 ![Supplier, Category and Product combine and remap all 3 sources](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/11.png?raw=true)
 
 **4-1  Create Supplier, Category, and Product main and staging tables**
- - Connection: International Marketplace
+  - Connection: International Marketplace
 ```
 drop table if exists Supplier;
 create table Supplier (
@@ -817,7 +817,7 @@ This data flow has the largest number of elements of the SSIS package. In hindsi
 ![Supplier, Category and Product combine and remap all 3 sources](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/12.png?raw=true)
 
 * **4-2-1  Extract Category and Subcategory from Contoso**
- - Connection: Wide World Importers Database
+  - Connection: Wide World Importers Database
 ```
 select
    N'Contoso' "Data Source",
@@ -848,11 +848,11 @@ group by
 ```
 
 * **4-2-2  Load to CategorySubcategory staging table 1**
- - Connection: International Marketplace
- - Table/View: z_categorysubcategory
+  - Connection: International Marketplace
+  - Table/View: z_categorysubcategory
 
 * **4-2-3  Extract Supplier from Contoso**
- - Connection: Contoso Retail Data Warehouse
+  - Connection: Contoso Retail Data Warehouse
 ```
 select
    N'Contoso' "Data Source",
@@ -881,7 +881,7 @@ group by
 ```
 
 * **4-2-4  Extract Supplier from World Wide Importers**
- - Connection: Wide World Importers Database
+  - Connection: Wide World Importers Database
 ```
 select
    N'Wide World Importers' "Data Source",
@@ -891,14 +891,14 @@ group by SupplierName;
 ```
 
 * **4-2-5  Union All 1**
-*Data Source*, *Supplier*
+  - *Data Source*, *Supplier*
 
 * **4-2-6  Load to Supplier staging table 1**
- - Connection: International Marketplace
- - Table/View: z_supplier
+  - Connection: International Marketplace
+  - Table/View: z_supplier
 
 * **4-2-7  Extract Product from Wide World Importers**
- - Connection: Wide World Importers Database
+  - Connection: Wide World Importers Database
 ```
 select
    N'Wide World Importers' "Data Source",
@@ -917,7 +917,7 @@ group by
 ```
 
 * **4-2-8  Extract Product from Contoso**
- - Connection: Contoso Retail Data Warehouse
+  - Connection: Contoso Retail Data Warehouse
 ```
 select
    N'Contoso' "Data Source",
@@ -952,69 +952,69 @@ group by
 ```
 
 * **4-2-9  Union All 2**
-*Data Source*, *Category*, *Subcategory*, *Supplier*, *Product*
+  - *Data Source*, *Category*, *Subcategory*, *Supplier*, *Product*
 
 * **4-2-10  Remove double quotes 6**
 Derived Column Expressions:
- - REPLACE(Category,"\"","")
- - REPLACE(Subcategory,"\"","")
- - REPLACE(Supplier,"\"","")
- - REPLACE(Product,"\"","")
+  - REPLACE(Category,"\"","")
+  - REPLACE(Subcategory,"\"","")
+  - REPLACE(Supplier,"\"","")
+  - REPLACE(Product,"\"","")
 
 * **4-2-11  Load to Product staging table 1**
- - Connection: International Marketplace
- - Table/View: z_product
+  - Connection: International Marketplace
+  - Table/View: z_product
 
 * **4-2-12  Extract Category and Subcategory from APAC Superstore**
-Flat file connection manager: APAC Superstore.txt
+  - Flat file connection manager: APAC Superstore.txt
 
 * **4-2-13  Data Conversion 1**
-*Category*, *Subcategory* convert to Data Type: Unicode string DT_WSTR
+  - *Category*, *Subcategory* convert to Data Type: Unicode string DT_WSTR
 
 * **4-2-14  Sort 1**
-*Category* ascending, *Subcategory* ascending
+  - *Category* ascending, *Subcategory* ascending
 
 * **4-2-15  Aggregate 1**
-*Category* Group by, *Subcategory* Group by
+  - *Category* Group by, *Subcategory* Group by
 
 * **4-2-16  Load to CategorySubcategory staging table 2**
- - Connection: International Marketplace
- - Table/View: z_categorysubcategory
+  - Connection: International Marketplace
+  - Table/View: z_categorysubcategory
 
 * **4-2-17  Extract Supplier from APAC Superstore**
-Flat file connection manager: APAC Superstore.txt
+  - Flat file connection manager: APAC Superstore.txt
 
 * **4-2-18  Data Conversion 2**
-*Supplier* convert to Data Type: Unicode string DT_WSTR
+  - *Supplier* convert to Data Type: Unicode string DT_WSTR
 
 * **4-2-19  Sort 2**
-*Supplier* ascending
+  - *Supplier* ascending
 
 * **4-2-20  Aggregate 2**
-*Supplier* Group by
+  - *Supplier* Group by
 
 * **4-2-21  Load to Supplier staging table 2**
- - Connection: International Marketplace
- - Table/View: z_supplier
+  - Connection: International Marketplace
+  - Table/View: z_supplier
 
 * **4-2-22  Extract Product remapping APAC Superstore**
-Flat file connection manager: SSIS Remapping for APAC Superstore products.txt
+  - Flat file connection manager: SSIS Remapping for APAC Superstore products.txt
 
 * **4-2-23  Remove double quotes 4**
 Derived Column Expressions:
- - REPLACE([From Product],"\"","")
- - REPLACE([From Supplier],"\"","")
- - REPLACE([From Category],"\"","")
- - REPLACE([From Subcategory],"\"","")
- - REPLACE([To Subcategory],"\"","")
- - REPLACE([To Category],"\"","")
+  - REPLACE([From Product],"\"","")
+  - REPLACE([From Supplier],"\"","")
+  - REPLACE([From Category],"\"","")
+  - REPLACE([From Subcategory],"\"","")
+  - REPLACE([To Subcategory],"\"","")
+  - REPLACE([To Category],"\"","")
 
 * **4-2-24  Sort 6**
-*Data Source* ascending, *From Supplier* ascending, *From Category* ascending, *From Subcategory* ascending, *From Product* ascending, *To Category* ascending, *To Subcategory* ascending
+  - *Data Source* ascending, *From Supplier* ascending, *From Category* ascending, *From Subcategory* ascending, *From Product* ascending, *To Category* ascending, *To Subcategory* ascending
 
 * **4-2-25  Load to Product remapping table 1**
- - Connection: International Marketplace
- - Table/View: zx_product_remap
+  - Connection: International Marketplace
+  - Table/View: zx_product_remap
 
 * **4-2-26  Extract Product from APAC Superstore**
 Flat file connection manager: APAC Superstore.txt
@@ -1023,32 +1023,32 @@ Flat file connection manager: APAC Superstore.txt
 *Category*, *Product*, *Subcategory*, *Supplier* convert to Data Type: Unicode string DT_WSTR
 
 * **4-2-28  Remove double quotes 1**
- - REPLACE([4-2-27  Data Conversion 3].Product,"\"","")
- - REPLACE([4-2-27  Data Conversion 3].Category,"\"","")
- - REPLACE([4-2-27  Data Conversion 3].Subcategory,"\"","")
- - REPLACE([4-2-27  Data Conversion 3].Supplier,"\"","")
+  - REPLACE([4-2-27  Data Conversion 3].Product,"\"","")
+  - REPLACE([4-2-27  Data Conversion 3].Category,"\"","")
+  - REPLACE([4-2-27  Data Conversion 3].Subcategory,"\"","")
+  - REPLACE([4-2-27  Data Conversion 3].Supplier,"\"","")
 
 * **4-2-29  Sort 3**
-*Supplier* ascending, *Category* ascending, *Subcategory* ascending, *Product* ascending
+  - *Supplier* ascending, *Category* ascending, *Subcategory* ascending, *Product* ascending
 
 * **4-2-30  Aggregate 3**
-*Supplier*, *Category*, *Subcategory*, *Product*,  Group by
+  - *Supplier*, *Category*, *Subcategory*, *Product*,  Group by
 
 * **4-2-31  Load to Product staging table 2**
- - Connection: International Marketplace
- - Table/View: z_product
+  - Connection: International Marketplace
+  - Table/View: z_product
 
 * **4-2-32  Extract CategorySubcategory remapping**
-Flat file connection manager: SSIS Remapping for APAC Superstore and Contoso categories.txt
+  - Flat file connection manager: SSIS Remapping for APAC Superstore and Contoso categories.txt
 
 * **4-2-33  Remove double quotes 2**
- - REPLACE([From Category],"\"","")
- - REPLACE([From Subcategory],"\"","")
- - REPLACE([To Category],"\"","")
- - REPLACE([To Subcategory],"\"","")
+  - REPLACE([From Category],"\"","")
+  - REPLACE([From Subcategory],"\"","")
+  - REPLACE([To Category],"\"","")
+  - REPLACE([To Subcategory],"\"","")
 
 * **4-2-34  Sort 4**
-*Data Source* ascending, *From Category* ascending, *From Subcategory* ascending, *To Category* ascending, *To Subcategory* ascending
+  - *Data Source* ascending, *From Category* ascending, *From Subcategory* ascending, *To Category* ascending, *To Subcategory* ascending
 
 * **4-2-35  Load to CategorySubcategory remapping table**
  - Connection: International Marketplace
@@ -1065,24 +1065,24 @@ Flat file connection manager: SSIS Remapping for all suppliers.txt
 *Data Source* ascending, *From Supplier* ascending, *To Supplier* ascending
 
 * **4-2-39  Load to Supplier remapping table**
- - Connection: International Marketplace
- - Table/View: zx_supplier_remap
+  - Connection: International Marketplace
+  - Table/View: zx_supplier_remap
 
 * **4-2-40  Extract Product remapping WWI**
 Flat file connection manager: SSIS Remapping for Wide World Importers products.txt
 
 * **4-2-41  Remove double quotes 5**
- - REPLACE([From Product],"\"","")
- - REPLACE([To Category],"\"","")
- - REPLACE([To Subcategory],"\"","")
- - REPLACE([From Supplier],"\"","")
+  - REPLACE([From Product],"\"","")
+  - REPLACE([To Category],"\"","")
+  - REPLACE([To Subcategory],"\"","")
+  - REPLACE([From Supplier],"\"","")
 
 * **4-2-42  Sort 7**
-*Data Source* ascending, *From Supplier* ascending, *From Product* ascending, *To Category* ascending, *To Subcategory* ascending
+  - *Data Source* ascending, *From Supplier* ascending, *From Product* ascending, *To Category* ascending, *To Subcategory* ascending
 
 * **4-2-43  Load to Product remapping 2**
- - Connection: International Marketplace
- - Table/View: zx_product_remap
+  - Connection: International Marketplace
+  - Table/View: zx_product_remap
 
 **4-3  Replace Data Source field NULLs with APAC Superstore**
  - Connection: International Marketplace
@@ -1193,7 +1193,7 @@ update zs2
 **4-7  Populate Supplier and Category main tables from staging tables**
 
 * **4-7-1  Extract Supplier staging table**
- - Connection: International Marketplace
+  - Connection: International Marketplace
 ```
 select tosupplier
 from z_supplier
@@ -1202,11 +1202,11 @@ order by 1;
 ```
 
 * **4-7-2  Load to Supplier main table**
- - Connection: International Marketplace
- - Table/View: Supplier
+  - Connection: International Marketplace
+  - Table/View: Supplier
 
 * **4-7-3  Extract Category staging table**
- - Connection: International Marketplace
+  - Connection: International Marketplace
 ```
 select tocategory
 from z_categorysubcategory
@@ -1215,13 +1215,13 @@ order by 1;
 ```
 
 * **4-7-4  Load to Category main table**
- - Connection: International Marketplace
- - Table/View: Category
+  - Connection: International Marketplace
+  - Table/View: Category
 
 **4-8  Populate Subcategory main table from staging table**
 
 * **4-8-1  Extract Subcategory staging table**
- - Connection: International Marketplace
+  - Connection: International Marketplace
 ```
 select
    c.categoryid,
@@ -1236,8 +1236,8 @@ order by 1, 2;
 ```
 
 * **4-8-2  Load to Subcategory main table**
- - Connection: International Marketplace
- - Table/View: Subcategory
+  - Connection: International Marketplace
+  - Table/View: Subcategory
 
 **4-9  Update Product staging with IDs from other main tables**
  - Connection: International Marketplace
@@ -1258,15 +1258,15 @@ from z_product zp
 **4-10  Populate Product main table from staging table**
 
 * **4-10-1  Extract Product staging table**
- - Connection: International Marketplace
- - Table/View: z_product
+  - Connection: International Marketplace
+  - Table/View: z_product
 
 * **4-10-2  Sort**
-*FromProduct* ascending, *ToSupplierID* ascending, *ToCategoryID* ascending, *ToSubcategoryID* ascending
+  - *FromProduct* ascending, *ToSupplierID* ascending, *ToCategoryID* ascending, *ToSubcategoryID* ascending
 
 * **4-10-3  Load to Product main table**
- - Connection: International Marketplace
- - Table/View: Product
+  - Connection: International Marketplace
+  - Table/View: Product
 
 **4-11  Update Product staging with Product IDs from main table**
  - Connection: International Marketplace
@@ -1332,7 +1332,7 @@ create table z_sales (
 **5-2  Populate Sales staging table with Contoso and WWI**
 
 * **5-2-1  Extract Sales from World Wide Importers**
- - Connection: Wide World Importers Database
+  - Connection: Wide World Importers Database
 ```
 select
    N'Wide World Importers' "Data Source",
@@ -1377,11 +1377,11 @@ from   Sales.Customers c
   - REPLACE(Product,"\"","")
 
 * **5-2-3  Load to Sales staging table 1**
- - Connection: International Marketplace
- - Table/View: z_Sales
+  - Connection: International Marketplace
+  - Table/View: z_Sales
 
 * **5-2-4  Extract Sales from Contoso**
- - Connection: Contoso Retail Data Warehouse
+  - Connection: Contoso Retail Data Warehouse
 ```
 select
    N'Contoso' as "Data Source",
@@ -1440,8 +1440,8 @@ group by
   - REPLACE(Product,"\"","")
 
 * **5-2-6  Load to Sales staging table 2**
- - Connection: International Marketplace
- - Table/View: z_Sales
+  - Connection: International Marketplace
+  - Table/View: z_Sales
 
 **5-3  Populate Sales staging table with APAC Superstore**
 
@@ -1471,8 +1471,8 @@ Flat file connection manager: APAC Superstore.txt
   - [5-3-4  Convert Discount to decimal data type].Discount / 100
 
 * **5-3-6  Load to Sales staging table**
- - Connection: International Marketplace
- - Table/View: z_sales
+  - Connection: International Marketplace
+  - Table/View: z_sales
 
 **5-4  Replace Data Source field NULLs with APAC Superstore populate outstanding values**
  - Connection: International Marketplace
@@ -1627,15 +1627,15 @@ inner join
 **5-6  Populate Sales main table from staging table**
 
 * **5-6-1  Extract Sales from staging table**
- - Connection: International Marketplace
- - Table/View: z_sales
+  - Connection: International Marketplace
+  - Table/View: z_sales
 
 * **5-6-2  Sort by Order Date, Ship Date, then other random columns**
-*ToOrderDate* ascending, *ToShipDate* ascending, *ToCustomerID* ascending, *ToShipModeID* ascending, *ToProductID* ascending
+  - *ToOrderDate* ascending, *ToShipDate* ascending, *ToCustomerID* ascending, *ToShipModeID* ascending, *ToProductID* ascending
 
 * **5-6-3  Load to Sales main table**
- - Connection: International Marketplace
- - Table/View: Sales
+  - Connection: International Marketplace
+  - Table/View: Sales
 
 **5-7  Create temp table to populate Sales main table with Order ID**
  - Connection: International Marketplace
