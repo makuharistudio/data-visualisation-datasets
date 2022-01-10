@@ -1455,20 +1455,20 @@ Flat file connection manager: APAC Superstore.txt
   - *Quantity* convert to Data Type: single-byte signed integer DT_I1
 
 * **5-3-3  Remove double quotes and percentage character from Discount**
- - REPLACE([5-3-2  Convert to Unicode].Customer,"\"","")
- - REPLACE([5-3-2  Convert to Unicode].Country,"\"","")
- - REPLACE([5-3-2  Convert to Unicode].State,"\"","")
- - REPLACE([5-3-2  Convert to Unicode].City,"\"","")
- - REPLACE([5-3-2  Convert to Unicode].Supplier,"\"","")
- - REPLACE([5-3-2  Convert to Unicode].Product,"\"","")
- - REPLACE([5-3-2  Convert to Unicode].[Ship Mode],"\"","")
- - REPLACE(Discount,"%","")
+  - REPLACE([5-3-2  Convert to Unicode].Customer,"\"","")
+  - REPLACE([5-3-2  Convert to Unicode].Country,"\"","")
+  - REPLACE([5-3-2  Convert to Unicode].State,"\"","")
+  - REPLACE([5-3-2  Convert to Unicode].City,"\"","")
+  - REPLACE([5-3-2  Convert to Unicode].Supplier,"\"","")
+  - REPLACE([5-3-2  Convert to Unicode].Product,"\"","")
+  - REPLACE([5-3-2  Convert to Unicode].[Ship Mode],"\"","")
+  - REPLACE(Discount,"%","")
 
 * **5-3-4  Convert Discount to decimal data type**
- - *Discount* convert to Data Type: decimal DT_DECIMAL, scale 2
+  - *Discount* convert to Data Type: decimal DT_DECIMAL, scale 2
 
 * **5-3-5  Convert Discount to decimal value**
- - [5-3-4  Convert Discount to decimal data type].Discount / 100
+  - [5-3-4  Convert Discount to decimal data type].Discount / 100
 
 * **5-3-6  Load to Sales staging table**
 Connection: International Marketplace
