@@ -252,7 +252,7 @@ Table/View: Country
 
 ### 2  State and City combine and remap all 3 data sources
 
-![Country using World Wide Importers as the base](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/09.png?raw=true)
+![State and City combine and remap all 3 data sources](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/09.png?raw=true)
 
 **2-1  Create State & City main and staging tables, and views**
 Connection: International Marketplace
@@ -498,6 +498,8 @@ on zvsc.DataSource = zsc.DataSource and zvsc.FromCountry = zsc.FromCountry and z
 ```
 
 ### 3  Customer combine and remap all 3 sources
+
+![Customer combine and remap all 3 sources](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/10.png?raw=true)
 
 **3-1  Create Customer main and staging tables**
 Connection: International Marketplace
