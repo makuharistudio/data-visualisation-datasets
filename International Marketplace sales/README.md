@@ -471,7 +471,7 @@ group by
 order by 1, 2;
 ```
 
-* **2-7-2  Load to City main table  (OLE DB Destination)**
+* **2-7-2  Load to City main table**
   - Connection: International Marketplace
   - Table/View: City
 
@@ -614,7 +614,7 @@ group by
   - Table/View: z_customer
 
 * **3-2-6  Extract Customer from APAC Superstore**
-Flat file connection manager: APAC Superstore.txt
+  - Flat file connection manager: APAC Superstore.txt
 
 * **3-2-7  Data Conversion**
   - *Customer*, *Segment*, *Country*, *State*, *City* convert to Data Type: Unicode string DT_WSTR
@@ -1055,21 +1055,21 @@ Flat file connection manager: APAC Superstore.txt
  - Table/View: zx_categorysubcategory_remap
 
 * **4-2-36  Extract Supplier remapping**
-Flat file connection manager: SSIS Remapping for all suppliers.txt
+  - Flat file connection manager: SSIS Remapping for all suppliers.txt
 
 * **4-2-37  Remove double quotes 3**
  - REPLACE([From Supplier],"\"","")
  - REPLACE([To Supplier],"\"","")
 
 * **4-2-38  Sort 5**
-*Data Source* ascending, *From Supplier* ascending, *To Supplier* ascending
+  - *Data Source* ascending, *From Supplier* ascending, *To Supplier* ascending
 
 * **4-2-39  Load to Supplier remapping table**
   - Connection: International Marketplace
   - Table/View: zx_supplier_remap
 
 * **4-2-40  Extract Product remapping WWI**
-Flat file connection manager: SSIS Remapping for Wide World Importers products.txt
+  - Flat file connection manager: SSIS Remapping for Wide World Importers products.txt
 
 * **4-2-41  Remove double quotes 5**
   - REPLACE([From Product],"\"","")
@@ -1446,7 +1446,7 @@ group by
 **5-3  Populate Sales staging table with APAC Superstore**
 
  * **5-3-1  Extract Sales from APAC Superstore**
-Flat file connection manager: APAC Superstore.txt
+  - Flat file connection manager: APAC Superstore.txt
 
 * **5-3-2  Convert to Unicode**
   - *Customer*, *Country*, *State*, *City*, *Supplier*, *Product*, *Ship Mode* convert to Data Type: Unicode string DT_WSTR
