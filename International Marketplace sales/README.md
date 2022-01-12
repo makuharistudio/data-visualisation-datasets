@@ -1,6 +1,11 @@
 # International Marketplace sales
-* [Normalised dataset for Power BI](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx)
-* [Denormalised dataset for Tableau](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Denormalised%20for%20Tableau.xlsx)
+
+To get some hands-on experience with SQL Server Integration Services (SSIS), I created this fictional sales dataset, which is a merge and transformation/alteration of the 3 Original Data Sources listed below. This included changing the dates to cover specific years, remapping some United States sales to new countries, and renaming customers to more realistically reflect their country of origin using a **[name randomiser](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates)**.
+
+Download Options
+* [Database backup .bak file for SQL Server](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/InternationalMarketplace.bak.zip)
+* [Normalised dataset for Power BI in Excel format](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx)
+* [Denormalised dataset for Tableau in Excel format](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Denormalised%20for%20Tableau.xlsx)
 
 ![Excel files](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/01.png?raw=true)
 
@@ -12,9 +17,7 @@ Original Data Sources
 Remapping files used in SSIS ETL
 * [Unicode text files that remap original data source values to new values](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/Text%20files%20for%20value%20remapping%20in%20SSIS)
 
-To get some hands-on experience with SQL Server Integration Services (SSIS), I created this fictional sales dataset, which is a merge and transformation/alteration of the 3 original data sources bullet pointed above. This included changing the dates to cover specific years, remapping some United States sales to new countries, and renaming customers to more realistically reflect their country of origin using a **[name randomiser](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates)**.
-
-This is a collapsed view of the project from Visual Studio.
+This is a collapsed view of the SSIS project from Visual Studio.
 ![Visual Studio of SSIS project](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/02.png?raw=true)
 
 Once deployed to SQL Server, the main tables and views created are as below.
