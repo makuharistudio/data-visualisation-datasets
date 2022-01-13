@@ -1720,6 +1720,8 @@ create view v_Denormalised_Sales as
       s.SalesID as "OrderLineID",
       c.Customer,
       seg.Segment,
+      cny.Region,
+      cny.Subregion,
       cny.Country,
       sta.State,
       cty.City,
@@ -1783,7 +1785,9 @@ create view v_Dim_City as
       cty.CityID,
       cty.City,
       sta.State,
-      cny.Country
+      cny.Country,
+      cny.Subregion,
+      cny.Region
    from City cty
    inner join State sta
       on cty.StateID = sta.StateID
