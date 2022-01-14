@@ -1843,3 +1843,139 @@ create view v_Fact_Sales as
    inner join ShipMode shp
       on s.ShipModeID = shp.ShipModeID;
 ```
+
+
+### 8 Redistribute US sales to other countries (added 14/01/2022)
+
+Despite the remapping of Contoso U.S.-based sales to other countries, there is still an enormous skew in sales toward the United States (due to the Wide World Importers data).
+
+![Too many sales records in United States](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/15.png?raw=true)
+
+I have added optional Steps 8 and 9 which involve remapping some customer IDs for U.S. sales to other non-U.S. based customers.
+
+![Added Steps 8 and 9 to SSIS package](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/16.png?raw=true)
+
+**Note:** This is a very long running script, and can trigger the _"Arithmetic overflow error converting expression to data type int"_ error.
+
+This script retrieves about 70% of random sales by U.S.-based customers, then using a cross join assigns a random number from a range between 0 and the total number of non-U.S.-based customers. Then it assigns a new Customer ID from non U.S.-based customers by joining on the previous range, and a row_number surrogate ID.
+
+![Comparing new and old Customer IDs on sales records](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/17.png?raw=true)
+
+```
+if object_id(N'tempdb..#USSalesToGlobalCustomer') is not null
+begin
+drop table #USSalesToGlobalCustomer
+end
+go
+create table #USSalesToGlobalCustomer
+   ( NewCustomerTempID int,
+     SalesID int
+   )
+insert into #USSalesToGlobalCustomer
+   select
+        cast((ABS(CHECKSUM(NewId()))% (nus.TotalNonUSCustomers+1)) as bigint) "NewCustomerTempID",
+        s2.SalesID
+     from Sales s2
+     inner join
+        ( select
+             cast((ABS(CHECKSUM(NewId()))%10) as bigint) as "random",
+             s1.SalesID
+          from Sales s1
+          inner join Customer c1
+             on s1.CustomerID = c1.CustomerID
+          inner join City cty1
+             on c1.CityID = cty1.CityID
+          inner join State sta1
+             on cty1.StateID = sta1.StateID
+          inner join Country cny1
+             on sta1.CountryID = cny1.CountryID
+          where
+             cny1.Country = 'United States') as rnd
+        on s2.SalesID = rnd.SalesID and rnd.random < 7
+     cross join
+        ( select count(*) as "TotalNonUSCustomers"
+          from Customer c2
+          inner join City cty3
+             on c2.CityID = cty3.CityID
+          inner join State sta3
+             on cty3.StateID = sta3.StateID
+          inner join Country cny3
+             on sta3.CountryID = cny3.CountryID
+          where
+          cny3.Country <> 'United States') nus;
+update s2
+   set s2.CustomerID = glc.CustomerID
+from Sales s2
+inner join #USSalesToGlobalCustomer usc
+on s2.SalesID = usc.SalesID
+inner join
+   ( select
+        row_number() over (order by c3.CustomerID asc) "NonUSCustomerID",
+        c3.CustomerID
+     from Customer c3
+     inner join City cty3
+        on c3.CityID = cty3.CityID
+     inner join State sta3
+        on cty3.StateID = sta3.StateID
+     inner join Country cny3
+        on sta3.CountryID = cny3.CountryID
+     where
+        cny3.Country <> 'United States'
+     group by
+        c3.CustomerID
+   ) as glc
+on usc.NewCustomerTempID = glc.NonUSCustomerID and usc.NewCustomerTempID > 0;
+```
+
+
+### 9 Re-apply Step 5-7 to realign the Orderline IDs (added 14/01/2022)
+
+The orderline ID assignment in an earlier Step 5-7 needs to be re-run as it had a depedency on the Customer ID, and Step 8 has shuffled them.
+
+```
+if object_id(N'tempdb..#SalesOrderID') is not null
+begin
+drop table #SalesOrderID
+end
+go
+create table #SalesOrderID
+   ( OrderID int identity(1,1) not null,
+     CustomerID int,
+	 OrderDate date,
+	 ShipDate date,
+	 ShipModeID int )
+insert into #SalesOrderID
+select
+   s.CustomerID,
+   s.OrderDate,
+   s.ShipDate,
+   s.ShipModeID
+from sales s
+inner join customer c
+on s.CustomerID = c.CustomerID
+group by
+   s.CustomerID,
+   s.OrderDate,
+   s.ShipDate,
+   s.ShipModeID
+order by 
+   s.OrderDate asc,
+   s.ShipDate asc,
+   s.ShipModeID desc,
+   s.CustomerID asc;
+update s
+   set s.OrderID = tmp.OrderID
+from sales s
+inner join #SalesOrderID tmp
+   on s.CustomerID = tmp.CustomerID
+      and s.OrderDate = tmp.OrderDate
+      and s.ShipDate = tmp.ShipDate
+      and s.ShipModeID = tmp.ShipModeID;
+begin
+drop table if exists #SalesOrderID
+end;
+```
+
+With the extra steps of 8 and 9 added, the sales for United States become distributed out to other markets.
+
+![Sales records transfered to other states](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/18.png?raw=true)
