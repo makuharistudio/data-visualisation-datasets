@@ -1861,6 +1861,8 @@ This script retrieves about 70% of random sales by U.S.-based customers, then us
 
 ![Comparing new and old Customer IDs on sales records](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/17.png?raw=true)
 
+ - Connection: International Marketplace
+
 ```
 if object_id(N'tempdb..#USSalesToGlobalCustomer') is not null
 begin
@@ -1925,12 +1927,17 @@ inner join
         c3.CustomerID
    ) as glc
 on usc.NewCustomerTempID = glc.NonUSCustomerID and usc.NewCustomerTempID > 0;
+begin
+drop table if exists #USSalesToGlobalCustomer
+end;
 ```
 
 
 ### 9 Re-apply Step 5-7 to realign the Orderline IDs (added 14/01/2022)
 
 The orderline ID assignment in an earlier Step 5-7 needs to be re-run as it had a depedency on the Customer ID, and Step 8 has shuffled them.
+
+ - Connection: International Marketplace
 
 ```
 if object_id(N'tempdb..#SalesOrderID') is not null
