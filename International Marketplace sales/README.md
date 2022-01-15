@@ -1769,7 +1769,8 @@ create view v_Dim_Customer as
    select
       c.CustomerID,
       c.Customer,
-      seg.Segment
+      seg.Segment,
+      c.CityID
    from Customer c
    inner join Segment seg
       on c.SegmentID = seg.SegmentID;
