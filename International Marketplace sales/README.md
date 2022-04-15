@@ -1625,6 +1625,10 @@ inner join
       and zs.FromState = rmp.FromState
       and zs.FromCity = rmp.FromCity
       and zs2.FromCustomer = rmp.FromCustomer;
+update zs
+   set zs.ToShipDate = DATEADD(year, 1, zs.ToShipDate)
+from z_sales zs 
+where DATEDIFF(day, zs.ToOrderDate, zs.ToShipDate) < 0;
 ```
 
 **5-6  Populate Sales main table from staging table**
