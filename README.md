@@ -2,7 +2,8 @@
 A bucket repository for the datasets I use in data visualisations
 
 ## International Marketplace sales
-**[No visualisation available yet](https://github.com/datamesse/data-visualisation-datasets)**
+**[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550#M7154)**
+* [Power Query code](????)
 * [Data source files and description](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales)
 
 Original Data Sources
