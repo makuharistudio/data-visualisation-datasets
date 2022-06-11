@@ -7,6 +7,34 @@ The dataset I used was the normalised version of the International Marketplace d
 
 **[https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx](https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx)**
 
+### Python code for monthly predicted profit values
+
+See my blog post on how to set this up:
+
+* **[Add forecasts from Python using Visual Studio Code to Power BI](https://datamesse.github.io/#/post/1650117600)**
+
+```
+import pandas as pd
+import numpy as np
+df = pd.DataFrame(dataset, columns = ['OrderDate','Profit'])
+
+df['OrderDate'] = pd.to_datetime(df['OrderDate'], errors = 'ignore')
+
+df.set_index('OrderDate')
+df['YearMonth'] = df['OrderDate'].dt.to_period("M")
+groupby = df.groupby(['YearMonth'])
+df['MonthlyProfit'] = groupby['Profit'].transform(np.sum)
+df = df.drop(columns=['OrderDate','Profit'])
+df.drop_duplicates(keep='first', inplace = True)
+df.set_index('YearMonth')
+df.index.freq = 'MS'
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+model = ExponentialSmoothing(df['MonthlyProfit'],trend='mul',seasonal='mul',seasonal_periods=12).fit()
+range = pd.date_range('01-01-2024', periods=12, freq='MS')
+predictions = model.forecast(12)
+predictions_range = pd.DataFrame({'MonthlyProfit':predictions,'YearMonth':range})
+```
+
 ### Power Query code for the Python predicted monthly profit table
 
 ```
