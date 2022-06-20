@@ -500,8 +500,197 @@ in
     #"add column Ticket type"
 ```
 
-## Report Model
+## Power BI Report Model
 
 The data model for the report appears as below. The reason why the Updates table is referenced as a separate Replies table is because the Replies table is catered specifically for public messages and replies, and involves a self-merge, whereas the Updates table is retained as-is for other potential analysis such as non-public internal updates. In a similar vein the Assignee table is referenced from the Agent table to allow filtering and visualisation of Assignee fields (e.g. country, city), and avoid the need to have non-performant merges with the Replies table.
 
 ![Report data model](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/08.png?raw=true)
+
+
+
+# Excel report code
+
+The Excel dashboard created for this dashboard is significantly smaller and simpler than the Power BI one above, hence the data model and its code are much smaller and streamlined.
+
+* [Customer support agent performance dashboard](https://datamesse.github.io/#/project/ExcelCustomerSupportAgentPerformance)
+
+### Power Query for People
+
+```
+let
+    Source = Excel.Workbook(Web.Contents(#"File location"), null, true),
+    Clients_Table = Source{[Item="Clients",Kind="Table"]}[Data],
+    #"change type" = Table.TransformColumnTypes(Clients_Table,{{"Full Name", type text}, {"Region", type text}, {"Country", type text}, {"State", type text}, {"City", type text}, {"Timezone", type text}}),
+    #"remove other columns" = Table.SelectColumns(#"change type",{"Full Name", "Country"}),
+    #"add column Role" = Table.AddColumn(#"remove other columns", "Role", each "Client", type text),
+    #"append Agents" = Table.Combine({#"add column Role", Agents})
+in
+    #"append Agents"
+```
+
+### Power Query for Agents
+
+```
+let
+    Source = Excel.Workbook(Web.Contents(#"File location"), null, true),
+    Agents_Table = Source{[Item="Agents",Kind="Table"]}[Data],
+    #"change type" = Table.TransformColumnTypes(Agents_Table,{{"Full Name", type text}, {"Region", type text}, {"Country", type text}, {"State", type text}, {"City", type text}, {"Timezone", type text}, {"Photo ID", Int64.Type}, {"Photo URL", type text}}),
+    #"rename columns" = Table.RenameColumns(#"change type",{{"Photo URL", "Original Image URL"}}),
+    #"add column Photo URL" = Table.AddColumn(#"rename columns", "Photo URL", each "https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/agents/" & Text.From([Photo ID]) & ".png", type text),
+    #"add column Photo code" = Table.AddColumn(#"add column Photo URL", "Photo code", each "photo_" & Text.From([Photo ID]), type text),
+    #"remove other columns" = Table.SelectColumns(#"add column Photo code",{"Full Name", "Country", "Photo code"}),
+    #"add column Role" = Table.AddColumn(#"remove other columns", "Role", each "Staff", type text),
+    #"reorder columns" = Table.ReorderColumns(#"add column Role",{"Full Name", "Country", "Role", "Photo code"})
+in
+    #"reorder columns"
+```
+
+### Power Query for Ticket Assignments
+
+```
+let
+    Source = Excel.Workbook(Web.Contents(#"File location"), null, true),
+    Assignment_Table = Source{[Item="Assignment",Kind="Table"]}[Data],
+    #"Changed Type" = Table.TransformColumnTypes(Assignment_Table,{{"Ticket ID", Int64.Type}, {"Assignee name", type text}, {"Created timestamp", type datetime}, {"Assignment timestamp", type datetime}, {"Solved timestamp", type datetime}, {"Priority", type text}, {"Requester", type text}, {"Development ID", type text}, {"Reporter", type text}, {"Development timestamp", type datetime}, {"Survey good", Int64.Type}, {"Survey bad", Int64.Type}, {"SDR", Int64.Type}}),
+    #"add column Escalated?" = Table.AddColumn(#"Changed Type", "Escalated?", each if [Development ID] <> ""
+then "Yes"
+else "No", type text),
+    #"remove other columns" = Table.SelectColumns(#"add column Escalated?",{"Ticket ID", "Assignee name", "Created timestamp", "Assignment timestamp", "Solved timestamp", "Priority", "Requester", "Escalated?", "Survey good", "Survey bad", "SDR"}),
+    #"merge query: assignee country" = Table.NestedJoin(#"remove other columns", {"Assignee name"}, Agents, {"Full Name"}, "People", JoinKind.Inner),
+    #"expand assignee country" = Table.ExpandTableColumn(#"merge query: assignee country", "People", {"Country"}, {"Assignee country"}),
+    #"merge query: requester country" = Table.NestedJoin(#"expand assignee country", {"Requester"}, People, {"Full Name"}, "People", JoinKind.Inner),
+    #"expand requester country" = Table.ExpandTableColumn(#"merge query: requester country", "People", {"Country"}, {"Requester country"})
+in
+    #"expand requester country"
+```
+
+### Power Query for Ticket Updates
+
+The calculation for reply times needed to be moved from DAX back into Power Query, as other subsequent DAX calculations used in the Power BI report did not work for the Excel version.
+
+```
+let
+    Source = Excel.Workbook(Web.Contents(#"File location"), null, true),
+    Updates_Table = Source{[Item="Updates",Kind="Table"]}[Data],
+    #"change data type" = Table.TransformColumnTypes(Updates_Table,{{"Ticket ID", Int64.Type}, {"Update timestamp", type datetime}, {"Update ticket status", type text}, {"Updater name", type text}, {"Public comments", Int64.Type}, {"Internal comments", Int64.Type}}),
+    #"remove column Internal comments" = Table.SelectColumns(#"change data type",{"Ticket ID", "Update timestamp", "Update ticket status", "Updater name", "Public comments"}),
+    #"filter out non-public responses" = Table.SelectRows(#"remove column Internal comments", each ([Public comments] = 1)),
+    #"sort by Update timestamp then Ticket ID asc" = Table.Sort(#"filter out non-public responses",{{"Ticket ID", Order.Ascending},{"Update timestamp", Order.Ascending}}),
+    #"add column Index 0" = Table.AddIndexColumn(#"sort by Update timestamp then Ticket ID asc", "Index 0", 0, 1, Int64.Type),
+    #"add column Index 1" = Table.AddIndexColumn(#"add column Index 0", "Index 1", 1, 1, Int64.Type),
+    #"merge query: self-join" = Table.NestedJoin(#"add column Index 1", {"Index 1"}, #"add column Index 1", {"Index 0"}, "add column Index 1", JoinKind.Inner),
+    #"expand self-join" = Table.ExpandTableColumn(#"merge query: self-join", "add column Index 1", {"Ticket ID", "Update timestamp", "Update ticket status", "Updater name"}, {"Reply ticket ID", "Reply timestamp", "Reply ticket status", "Replier name"}),
+    #"add column Same ticket?" = Table.AddColumn(#"expand self-join", "Same ticket?", each if [Ticket ID] = [Reply ticket ID]
+then "Yes"
+else "No", type text),
+    #"filter out different tickets" = Table.SelectRows(#"add column Same ticket?", each ([#"Same ticket?"] = "Yes")),
+    #"remove unneeded columns 1" = Table.SelectColumns(#"filter out different tickets",{"Ticket ID", "Update timestamp", "Update ticket status", "Updater name", "Reply timestamp", "Reply ticket status", "Replier name"}),
+    #"merge query: updater role" = Table.NestedJoin(#"remove unneeded columns 1", {"Updater name"}, People, {"Full Name"}, "People", JoinKind.Inner),
+    #"expand updater role" = Table.ExpandTableColumn(#"merge query: updater role", "People", {"Role"}, {"Updater role"}),
+    #"merge query: replier role" = Table.NestedJoin(#"expand updater role", {"Replier name"}, People, {"Full Name"}, "People", JoinKind.Inner),
+    #"expand replier role" = Table.ExpandTableColumn(#"merge query: replier role", "People", {"Role"}, {"Replier role"}),
+    #"merge query: assignments" = Table.NestedJoin(#"expand replier role", {"Ticket ID"}, #"Ticket Assignments", {"Ticket ID"}, "Ticket Assignments", JoinKind.Inner),
+    #"expand assignments" = Table.ExpandTableColumn(#"merge query: assignments", "Ticket Assignments", {"Assignee name"}, {"Assignee name"}),
+    #"add column Reply type" = Table.AddColumn(#"expand assignments", "Reply type", each if [Updater role] = "Client" and [Replier role] = "Staff" and [Replier name] = [Assignee name]
+then "Assignee reply to client"
+else if [Updater role] = "Client" and [Replier role] = "Staff" and [Replier name] <> [Assignee name]
+then "Colleague reply to client"
+else if [Updater role] = "Staff" and [Replier role] = "Client"
+then "Client reply to staff"
+else if [Updater role] = "Client" and [Replier role] = "Client"
+then "Client follow up"
+else if [Updater role] = "Staff" and [Replier role] = "Staff" and [Replier name] = [Assignee name]
+then "Assignee follow up"
+else if [Updater role] = "Staff" and [Replier role] = "Staff" and [Replier name] <> [Assignee name]
+then "Colleague follow up"
+else null, type text),
+    #"remove unneeded columns 2" = Table.SelectColumns(#"add column Reply type",{"Ticket ID", "Update timestamp", "Updater name", "Reply timestamp", "Replier name", "Replier role", "Reply type"}),
+    #"merge query: 1st reply timestamp" = Table.NestedJoin(#"remove unneeded columns 2", 
+                                       {"Ticket ID"},
+                                       Table.Group(
+                                           Table.SelectRows(#"remove unneeded columns 2", each ([Replier role] = "Staff")),
+                                                   {"Ticket ID"},
+                                                   {{"1st reply timestamp",
+                                                   each List.Min([#"Reply timestamp"]), type nullable datetime}}),
+                                       {"Ticket ID"},
+                                       "Merged group by table",
+                                       JoinKind.Inner),
+    #"expand 1st reply timestamp" = Table.ExpandTableColumn(#"merge query: 1st reply timestamp", "Merged group by table", {"1st reply timestamp"}, {"1st reply timestamp"}),
+    #"add column 1st reply?" = Table.AddColumn(#"expand 1st reply timestamp", "1st reply?", each if [Reply timestamp] = [1st reply timestamp] and [Replier role] = "Staff"
+then "Yes"
+else "No", type text),
+    #"remove column 1st reply timestamp" = Table.RemoveColumns(#"add column 1st reply?",{"1st reply timestamp"}),
+    #"add column Reply time (seconds)" = Table.AddColumn(#"remove column 1st reply timestamp", "Reply time (seconds)", each Duration.TotalSeconds([Reply timestamp] - [Update timestamp]), Int64.Type),
+    #"add column Reply time within SLA?" = Table.AddColumn(#"add column Reply time (seconds)", "Reply time within SLA?", each if ([#"Reply time (seconds)"] <= #"Filter SLA reply time (seconds)" and [#"1st reply?"] = "Yes")
+then "Yes"
+else if ([#"Reply time (seconds)"] > #"Filter SLA reply time (seconds)" and [#"1st reply?"] = "Yes")
+then "No"
+else null, type text)
+in
+    #"add column Reply time within SLA?"
+```
+
+### Power Query for SLA reply time filter applied from a worksheet cell
+
+```
+let
+    Source = Excel.CurrentWorkbook(){[Name="prm_SLA"]}[Content],
+    #"Changed Type" = Table.TransformColumnTypes(Source,{{"SLA time", Int64.Type}}),
+    #"SLA time" = #"Changed Type"{0}[SLA time]
+in
+    #"SLA time"
+```
+
+### DAX measures for Agents table
+
+Only key DAX measures are listed. See Excel file for the full list.
+
+Median 1st reply time (secs)
+
+```
+=CALCULATE([Median reply time (secs)],'Ticket Updates'[1st reply?]="Yes",USERELATIONSHIP(Agents[Full Name],'Ticket Updates'[Replier name]))
+```
+
+Median 1st reply time
+
+```
+=VAR Duration = [Median 1st reply time (secs)]
+VAR Hours = INT ( Duration / 3600)
+VAR Minutes = INT ( MOD( Duration - ( Hours * 3600 ),3600 ) / 60)
+VAR Seconds = ROUNDUP(MOD ( MOD( Duration - ( Hours * 3600 ),3600 ), 60 ),0)
+VAR H = IF ( LEN ( Hours ) = 1, "0" & Hours, Hours )
+VAR M = IF ( LEN ( Minutes ) = 1, "0" & Minutes, Minutes )
+VAR S = IF ( LEN ( Seconds ) = 1, "0" & Seconds, Seconds )
+VAR OUTPUT = IF ( AND(H = "", M = ""), "", H & ":" & M & ":" & S )
+RETURN OUTPUT
+```
+
+"# SLA met (agent's tickets)"
+
+```
+=CALCULATE(DISTINCTCOUNT('Ticket Updates'[Ticket ID]),'Ticket Updates'[Reply time within SLA?]="Yes", USERELATIONSHIP(Agents[Full Name], 'Ticket Assignments'[Assignee name]))
+```
+
+"# SLA breached (agent's tickets)"
+
+```
+=CALCULATE(DISTINCTCOUNT('Ticket Updates'[Ticket ID]),'Ticket Updates'[Reply time within SLA?]="No", USERELATIONSHIP(Agents[Full Name], 'Ticket Assignments'[Assignee name]))
+```
+
+% SLA
+
+```
+=CALCULATE(DIVIDE([#  SLA met (agent's tickets)],([#  SLA met (agent's tickets)]+[#  SLA breached (agent's tickets)]),0),USERELATIONSHIP(Agents[Full Name],'Ticket Assignments'[Assignee name]))
+```
+
+"# SDR"
+
+```
+=CALCULATE(SUM('Ticket Assignments'[SDR]),USERELATIONSHIP(Agents[Full Name],'Ticket Assignments'[Assignee name]))
+```
+
+% SDR
+
+```
+=CALCULATE(DIVIDE('Agents'[#  SDR],'Agents'[#  Tickets],1),USERELATIONSHIP(Agents[Full Name],'Ticket Assignments'[Assignee name]))
+```
