@@ -21,8 +21,8 @@ Original Data Sources
 * [Exchange rates](https://www.ofx.com/en-us/forex-news/historical-exchange-rates/)
 
 ## Support ticket updates
-**[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)**
-**[My Excel dashboard](https://datamesse.github.io/#/project/ExcelCustomerSupportAgentPerformance)**
+* **[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)**
+* **[My Excel dashboard](https://datamesse.github.io/#/project/ExcelCustomerSupportAgentPerformance)**
 * [Data source files and description](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates)
 
 ## Wide World Importers (Microsoft) normalised dataset
