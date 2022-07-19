@@ -77,8 +77,7 @@ else null, type text),
     #"add Distance (km) column" = Table.AddColumn(#"add Launch date column", "Distance (km)", each Number.RoundUp(Value.Divide(([#"Perigee (km)"] + [#"Apogee (km)"]), 2)), Int64.Type),
     #"remove redundant columns 2" = Table.SelectColumns(#"add Distance (km) column",{"NORAD Number", "COSPAR Number", "Name of Satellite, Alternate Names", "Launch Site", "Launch Vehicle", "Distance (km)", "Class of Orbit", "Purpose", "Users", "Country of Contractor", "Reference"}),
     #"trim COSPAR Number" = Table.TransformColumns(#"remove redundant columns 2",{{"COSPAR Number", Text.Trim, type text}}),
-    #"add n2yo remapped NORAD column" = Table.AddColumn(#"trim COSPAR Number", "n2yo remapped NORAD", 
-        each if ([NORAD Number] =  22491 and [COSPAR Number] = "1993-009B") then 22490
+    #"add n2yo remapped NORAD column" = Table.AddColumn(#"trim COSPAR Number", "n2yo remapped NORAD", each if ([NORAD Number] =  22491 and [COSPAR Number] = "1993-009B") then 22490
         else if ([NORAD Number] =  28541 and [COSPAR Number] = "2005-004B") then 28538
         else if ([NORAD Number] =  28908 and [COSPAR Number] = "2005-048B") then 28909
         else if ([NORAD Number] =  28945 and [COSPAR Number] = "2006-007B") then 28946
@@ -134,8 +133,7 @@ else null, type text),
         else if ([NORAD Number] =  54940 and [COSPAR Number] = "2020-051B") then 45940
         else if ([NORAD Number] =  57759 and [COSPAR Number] = "2021-017AP") then 47759
         else [NORAD Number], Int64.Type),
-    #"add n2yo remapped COSPAR column" = Table.AddColumn(#"add n2yo remapped NORAD column", "n2yo remapped COSPAR",
-        each if ([NORAD Number] =  22491 and [COSPAR Number] = "1993-009B") then "1993-009B"
+    #"add n2yo remapped COSPAR column" = Table.AddColumn(#"add n2yo remapped NORAD column", "n2yo remapped COSPAR", each if ([NORAD Number] =  22491 and [COSPAR Number] = "1993-009B") then "1993-009B"
         else if ([NORAD Number] =  28541 and [COSPAR Number] = "2005-004B") then "2005-004B"
         else if ([NORAD Number] =  28908 and [COSPAR Number] = "2005-048B") then "2005-048B"
         else if ([NORAD Number] =  28945 and [COSPAR Number] = "2006-007B") then "2006-007B"
@@ -193,7 +191,7 @@ else null, type text),
         else [COSPAR Number], type text),
     #"rename columns" = Table.RenameColumns(#"add n2yo remapped COSPAR column",{{"n2yo remapped NORAD", "Satellite catalog number (NORAD)"}, {"n2yo remapped COSPAR", "International designator (COSPAR)"}, {"Name of Satellite, Alternate Names", "Alternate names"}, {"Launch Site", "Launch site"}, {"Launch Vehicle", "Launch vehicle"}, {"Class of Orbit", "Orbit class"}, {"Country of Contractor", "Contractor country"}}),
     #"remove redundant columns 3" = Table.SelectColumns(#"rename columns",{"Satellite catalog number (NORAD)", "International designator (COSPAR)", "Alternate names", "Launch site", "Launch vehicle", "Distance (km)", "Orbit class", "Purpose", "Users", "Contractor country", "Reference"}),
-    #"AllReplace" = [ #"ESA" = "Intergovernmental: ESA",
+    #"AllReplace1" = [ #"ESA" = "Intergovernmental: ESA",
                       #"France/Belgium/Spain/Italy" = "Multinational: Thales Alenia Space",
                       #"France/Italy" = "Multinational: Thales Alenia Space",
                       #"France/UK/Germany/Spain/Italy" = "Multinational: Thales Alenia Space",
@@ -202,13 +200,13 @@ else null, type text),
                       #"Turkmenistan/Monaco" = "Turkey",
                       #"UK/Finland/Belgium" = "Belgium",
                       #"USA" = "United States"],
-    #"replace various Contractor countries" = Table.TransformColumns(#"remove redundant columns 3",{{"Contractor country", each Record.FieldOrDefault(AllReplace,_,_)}}),
+    #"replace various Contractor countries" = Table.TransformColumns(#"remove redundant columns 3",{{"Contractor country", each Record.FieldOrDefault(AllReplace1,_,_)}}),
     #"change type 2" = Table.TransformColumnTypes(#"replace various Contractor countries",{{"Contractor country", type text}}),
     #"AllReplace2" = [ #"Elliptical" = "Geostationary Transfer Orbit",
                        #"GEO" = "Geosynchronous Equatorial Orbit",
                        #"LEO" = "Low Earth Orbit",
                        #"MEO" = "Medium Earth Orbit"],
-    #"replace Orbit classes" = Table.TransformColumns(#"remove redundant columns 3",{{"Orbit class", each Record.FieldOrDefault(AllReplace2,_,_)}}),
+    #"replace Orbit classes" = Table.TransformColumns(#"change type 2",{{"Orbit class", each Record.FieldOrDefault(AllReplace2,_,_)}}),
     #"replace null Orbit class with Unknown" = Table.ReplaceValue(#"replace Orbit classes","","Unknown",Replacer.ReplaceValue,{"Orbit class"}),
     #"change type 3" = Table.TransformColumnTypes(#"replace null Orbit class with Unknown",{{"Orbit class", type text}})
 in
