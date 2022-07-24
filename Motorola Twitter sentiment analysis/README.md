@@ -18,6 +18,8 @@ pip install configparser
 pip install pandas
 ```
 
+## Data Dictionary
+* **[https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/overview](https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/overview)**
 
 [Search Tweets](https://developer.twitter.com/en/docs/twitter-api/v1/tweets/search/api-reference/get-search-tweets)
 
