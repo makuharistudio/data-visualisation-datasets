@@ -13,7 +13,7 @@ auth = tweepy.OAuthHandler(api_key,api_key_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-keywords = ['#Motorola']
+keywords = ['Motorola']
 
 # used for tweepy.Cursor(grocode = ) attribute, but doesn't seem to work?
 # location_sydney = '-33.873096543580196,151.20617788258537,100km'
@@ -25,7 +25,7 @@ keywords = ['#Motorola']
 # location_canberra = "-35.30675753401795, 149.12496928371215, 100 km"
 # limit=450
 
-limit=10
+limit=900
 tweets = tweepy.Cursor(api.search_tweets, q=keywords, lang='en', result_type='recent').items(limit)
 
 columns = ['TweetDateTime', 
@@ -44,14 +44,14 @@ data = []
 for tweet in tweets:
     data.append([tweet.created_at,
                  tweet.user.id, 
-                 tweet.user.name,
-                 tweet.user.screen_name,
-                 tweet.user.description.replace('\n', ' '),
+                 tweet.user.name.replace('\n', ' ').replace(',',' '),
+                 tweet.user.screen_name.replace('\n', ' ').replace(',',' '),
+                 tweet.user.description.replace('\n', ' ').replace(',',' '),
                  tweet.user.created_at,
                  tweet.user.verified,
-                 tweet.user.location,
+                 tweet.user.location.replace('\n', ' ').replace(',',' '),
                  tweet.user.followers_count,
-                 tweet.text.replace('\n', ' '),
+                 tweet.text.replace('\n', ' ').replace(',',' '),
                  tweet.favorite_count,
                  tweet.retweet_count])
 df = pd.DataFrame(data, columns=columns)
