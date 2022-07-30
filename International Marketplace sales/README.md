@@ -12,20 +12,19 @@ The merging involves changing the dates to cover specific years, remapping some 
 * [Contoso Data Warehouse](https://www.microsoft.com/en-us/download/details.aspx?id=18279)
 * [Wide World Importers](https://github.com/Microsoft/sql-server-samples/releases/tag/wide-world-importers-v1.0)
 
-### Remapping files used in SSIS ETL
+### Data remapping files used in SSIS ETL
 * [Unicode text files that remap original data source values to new values](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/text%20files%20for%20value%20remapping%20in%20SSIS/)
 
 
 ## Download Options
 You can download the final merged output below:
+
 * [Database backup .bak file for SQL Server](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/InternationalMarketplace.bak.zip)
+
+![SQL Server of views to export dataset to Excel](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/03.png?raw=true)
+
+
 * [Normalised dataset for Power BI in Excel format](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx)
-* [Denormalised dataset for Tableau in Excel format](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Denormalised%20for%20Tableau.xlsx)
-
-![Excel files](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/01.png?raw=true)
-
-
-Once deployed to SQL Server, the main tables and views created are as below.
 
 The Power BI dataset is ews:
  - v_Dim_City
@@ -33,10 +32,12 @@ The Power BI dataset is ews:
  - v_Dim_Product
  - v_Fact_Sales
 
+* [Denormalised dataset for Tableau in Excel format](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Denormalised%20for%20Tableau.xlsx)
+
 The Tableau dataset is from this view:
  - v_Denormalised_Sales
 
-![SQL Server of views to export dataset to Excel](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/03.png?raw=true)
+![Excel files](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/01.png?raw=true)
 
 
 # SQL Server Integration Services Project code
