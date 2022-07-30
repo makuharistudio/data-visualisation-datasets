@@ -1,27 +1,36 @@
-## Excel Random Name and Support Ticket Update Generators
+# Support ticket updates ()
 
-To create a dashboard that analyses the performance of customer support/service agents across timezones, including the degree to which each global office provides follow-the-sun (FTS) support, I first generated a fictional people data set.
 
-This involves creating a random business and person name generator in Excel, based on lists of popular given and surnames from a few major countries, and common words used in business names.
+**Goal:** Create a report on the performance of customer support/service agents across timezones, including the degree to which each global office provides follow-the-sun (FTS) support.
+
+**Approach:** Create a fictional dataset by using an Excel-based random person and support ticket generator, ensuring the data includes realistic patterns and outliers. THen build a Power BI report that summarises patterns and highlights outlers to prompt action.
+
+
+# INSTRUCTIONS ON CREATING FICTIONAL DATASET & POWER BI REPORT
+
+## Fictional dataset
 
 ### Random business and people's name generator
+
 * [https://github.com/datamesse/data-visualisation-datasets/blob/main/Support ticket updates/Random name and business generator.xlsx](https://github.com/datamesse/data-visualisation-datasets/raw/main/Support%20ticket%20updates/Random%20name%20and%20business%20generator.xlsx?raw=true)
 
-By default it creates 3000 random names across 500 random businesses.
+By default this creates 3000 random names across 500 random businesses.
 
 ![Random name generator](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/01.png?raw=true)
 
 ![Random business generator](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/02.png?raw=true)
 
-It's recommended to revise the output for duplicates or other unrealistic or undesirable data. Once the output is cleaned up, you just need the Full Name and Location details to populate the Support Ticket Update Generator.
+Revise your output for duplicates or other such data. Once your output is cleaned up, use the Full Name and Location details to populate the Support Ticket Update Generator below.
+
 
 ### Random support ticket update generator
+
 * [https://github.com/datamesse/data-visualisation-datasets/blob/main/Support ticket updates/Support ticket updates generator.xlsx](https://github.com/datamesse/data-visualisation-datasets/raw/main/Support%20ticket%20updates/Support%20ticket%20updates%20generator.xlsx?raw=true)
 
 Sample output can be downloaded here:
 * [https://github.com/datamesse/data-visualisation-datasets/blob/main/Support ticket updates/Support ticket updates.xlsx](https://github.com/datamesse/data-visualisation-datasets/raw/main/Support%20ticket%20updates/Support%20ticket%20updates.xlsx?raw=true)
 
-Because Excel's randomisation appears to create a discrete uniform distribution of values, I created the **Main** worksheet to define deliberate trends.
+Because Excel's randomisation appears to create a discrete uniform distribution, the **Main** worksheet is used to define deliberate trends.
 
 In this case, there are 2 areas:
 * *Ticket criticality ranges by country*: The probability range of an End-user raising the ticket as Critical, High, Medium, or Low based on their *Country*.
@@ -37,7 +46,7 @@ How *Ticket criticality ranges by country* works:
 
 ![Main tab of ticket update generator](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/03.png?raw=true)
 
-**Note:** The current data in this worksheet is setup based on the locations for the randomised people I extracted using the first generator. If you have additional clients based in other countries which are not provided here, you will need to add them in manually.
+**Note:** The current data in this worksheet is based on the randomised people I extracted using the first generator. If you have additional clients for other countries which are not provided here, you will need to add them in manually.
 
 
 After deciding on the names to be used for the support agents, populate the relevant columns under the **Staff** worksheet (indicated in red). The columns which are autopopulated using vlookups should be left alone (e.g. *Timezone* and *Randomiser helper*). 
@@ -114,7 +123,7 @@ You can find details on how this dataset was created using Power BI in this blog
 **[https://datamesse.github.io/#/post/1633183200](https://datamesse.github.io/#/post/1633183200)**
 
 
-# Power BI report code
+## Power BI report code
 
 Because agents and users are based in different time zones, and date/times cover different daylight saving offsets, the Power Query code below implements a combination of concepts from a couple of my blog posts:
 
