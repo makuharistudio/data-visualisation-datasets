@@ -48,6 +48,7 @@ The Excel file for Tableau is based on:
 Listed below are the 2 key scripts used to match as close as possible, the Microsoft Wide World Importers and Contoso DW datasets, with the Tableau APAC Superstore dataset's schema. If you would like to learn more details about the planning behind this SSIS project, visit this blog post.
 
 ### Wide World Importers (Database)
+
 ```
 select
    N'Wide World Importers' "Data Source",
@@ -89,7 +90,9 @@ from   Sales.Customers c
 ```
 
 ### Contoso BI Demo Dataset for Retail Industry (Data Warehouse)
+
 **Important:** The max(SalesOrderNumber) inner join is used to significantly reduce the number of Contoso records that will be used, otherwise the final dataset may be too large to upload to Power BI or Tableau's community galleries.
+
 ```
 select
    N'Contoso' as "Data Source",
@@ -195,6 +198,7 @@ Below are screenshots of expanded views of the package package with each element
 
 **1-1  Create Country main & staging tables**
  - Connection: International Marketplace
+
 ```
 drop table if exists Country;
 create table Country (
@@ -215,6 +219,7 @@ create table z_country (
 
 * **1-2-1  Extract countries from World Wide Importers**
   - Connection: Wide World Importers Database
+
 ```
 select
    region "Region",
@@ -234,6 +239,7 @@ group by
 
 **1-3  Insert and updates to clean records**
  - Connection: International Marketplace
+
 ```
 update z_country set country = N'England'
 where country = N'United Kingdom';
@@ -266,6 +272,7 @@ values (N'Asia',N'Eastern Asia',N'Taiwan');
 
 **2-1  Create State & City main and staging tables, and views**
  - Connection: International Marketplace
+
 ```
 drop table if exists State;
 create table State (
@@ -306,6 +313,7 @@ create table zx_statecity_remap (
 
 * **2-2-1  Extract states and cities from Wide World Importers**
   - Connection: Wide World Importers Database
+
 ```
 select
    N'World Wide Importers' "Data Source",
@@ -322,6 +330,7 @@ from
 
 * **2-2-2  Extract states and cities from Contoso**
   - Connection: Contoso Retail Data Warehouse
+
 ```
 select
    N'Contoso' as "Data Source",
@@ -394,6 +403,7 @@ update z_statecity set datasource = N'APAC Superstore' where datasource is null;
 
 **2-4  Update StateCity staging using the StateCity remappng table**
  - Connection: International Marketplace
+
 ```
 update   zsc
 set
@@ -410,6 +420,7 @@ on   zsc.DataSource = zxsc.DataSource
 
 **2-5  Create StateCity remapped view**
  - Connection: International Marketplace
+
 ```
 drop view if exists zv_statecity_remapped;
 go
@@ -441,6 +452,7 @@ from   z_statecity;
 
 * **2-6-1  Extract StateCity remapped view with Group By 1**
   - Connection: International Marketplace
+
 ```
 select
    c.CountryID "CountryID",
@@ -465,6 +477,7 @@ order by
 
 * **2-7-1  Extract StateCity remapped view with Group By 2**
   - Connection: International Marketplace
+
 ```
 select
    s.StateID,
@@ -487,6 +500,7 @@ order by 1, 2;
 
 **2-8  Update StateCity staging table with main table CityID**
 - Connection: International Marketplace
+
 ```
 update   zsc
 set
@@ -513,6 +527,7 @@ on zvsc.DataSource = zsc.DataSource and zvsc.FromCountry = zsc.FromCountry and z
 
 **3-1  Create Customer main and staging tables**
   - Connection: International Marketplace
+
 ```
 drop table if exists Customer;
 create table Customer (
@@ -545,6 +560,7 @@ create table zx_customer_remap (
 
 * **3-2-1  Extract Customer from Wide World Importers**
   - Connection: Wide World Importers Database
+
 ```
 select
    N'Wide World Importers' "Data Source",
@@ -575,6 +591,7 @@ order by 1, 2, 3, 4;
 
 * **3-2-2  Extract Customer from Contoso**
   - Connection: Contoso Retail Data Warehouse
+
 ```
 select
    N'Contoso' "Data Source",
@@ -648,12 +665,14 @@ group by
 
 **3-3  Replace Data Source field NULLs with APAC Superstore**
  - Connection: International Marketplace
+
 ```
 update z_customer set datasource = N'APAC Superstore' where datasource is null;
 ```
 
 **3-4  Update Customer staging using the Customer remapping table**
  - Connection: International Marketplace
+
 ```
 update zc
 set
@@ -681,6 +700,7 @@ where zc.ToCustomer is null;
 
 **3-5  Create Customer remapped CityID view**
  - Connection: International Marketplace
+
 ```
 drop view if exists zv_customercity_remapped;
 go
@@ -740,6 +760,7 @@ group by
 
 **4-1  Create Supplier, Category, and Product main and staging tables**
   - Connection: International Marketplace
+
 ```
 drop table if exists Supplier;
 create table Supplier (
@@ -828,6 +849,7 @@ This data flow has the largest number of elements of the SSIS package. In hindsi
 
 * **4-2-1  Extract Category and Subcategory from Contoso**
   - Connection: Wide World Importers Database
+
 ```
 select
    N'Contoso' "Data Source",
@@ -863,6 +885,7 @@ group by
 
 * **4-2-3  Extract Supplier from Contoso**
   - Connection: Contoso Retail Data Warehouse
+
 ```
 select
    N'Contoso' "Data Source",
@@ -892,6 +915,7 @@ group by
 
 * **4-2-4  Extract Supplier from World Wide Importers**
   - Connection: Wide World Importers Database
+
 ```
 select
    N'Wide World Importers' "Data Source",
@@ -909,6 +933,7 @@ group by SupplierName;
 
 * **4-2-7  Extract Product from Wide World Importers**
   - Connection: Wide World Importers Database
+
 ```
 select
    N'Wide World Importers' "Data Source",
@@ -928,6 +953,7 @@ group by
 
 * **4-2-8  Extract Product from Contoso**
   - Connection: Contoso Retail Data Warehouse
+
 ```
 select
    N'Contoso' "Data Source",
@@ -1096,6 +1122,7 @@ Flat file connection manager: APAC Superstore.txt
 
 **4-3  Replace Data Source field NULLs with APAC Superstore**
  - Connection: International Marketplace
+
 ```
 update z_supplier set datasource = N'APAC Superstore' where datasource is null;
 update z_categorysubcategory set datasource = N'APAC Superstore' where datasource is null;
@@ -1104,6 +1131,7 @@ update z_product set datasource = N'APAC Superstore' where datasource is null;
 
 **4-4  Update Supplier and Category staging tables with remapping tables**
  - Connection: International Marketplace
+
 ```
 update zs
    set zs.ToSupplier = zxs.ToSupplier
@@ -1135,6 +1163,7 @@ update zcs
 
 **4-5  Insert new records for CategorySubcategory staging table**
  - Connection: International Marketplace
+
 ```
 insert into z_categorysubcategory(datasource,tocategory,tosubcategory)
    values
@@ -1154,6 +1183,7 @@ insert into z_categorysubcategory(datasource,tocategory,tosubcategory)
 
 **4-6  Update Product staging with remapping tables**
  - Connection: International Marketplace
+
 ```
 update zp
    set zp.ToSupplier = zs.ToSupplier
@@ -1204,6 +1234,7 @@ update zs2
 
 * **4-7-1  Extract Supplier staging table**
   - Connection: International Marketplace
+
 ```
 select tosupplier
 from z_supplier
@@ -1217,6 +1248,7 @@ order by 1;
 
 * **4-7-3  Extract Category staging table**
   - Connection: International Marketplace
+
 ```
 select tocategory
 from z_categorysubcategory
@@ -1232,6 +1264,7 @@ order by 1;
 
 * **4-8-1  Extract Subcategory staging table**
   - Connection: International Marketplace
+
 ```
 select
    c.categoryid,
@@ -1251,6 +1284,7 @@ order by 1, 2;
 
 **4-9  Update Product staging with IDs from other main tables**
  - Connection: International Marketplace
+
 ```
 update zp
    set zp.ToSupplierID = s.SupplierID,
@@ -1280,6 +1314,7 @@ from z_product zp
 
 **4-11  Update Product staging with Product IDs from main table**
  - Connection: International Marketplace
+
 ```
 update zp
    set zp.ToProductID = p.ProductID
@@ -1294,6 +1329,7 @@ from z_product zp
 
 **5-1  Create Sales main and staging tables**
  - Connection: International Marketplace
+
 ```
 drop table if exists Sales;
 create table Sales (
@@ -1343,6 +1379,7 @@ create table z_sales (
 
 * **5-2-1  Extract Sales from World Wide Importers**
   - Connection: Wide World Importers Database
+
 ```
 select
    N'Wide World Importers' "Data Source",
@@ -1392,6 +1429,7 @@ from   Sales.Customers c
 
 * **5-2-4  Extract Sales from Contoso**
   - Connection: Contoso Retail Data Warehouse
+
 ```
 select
    N'Contoso' as "Data Source",
@@ -1486,6 +1524,7 @@ group by
 
 **5-4  Replace Data Source field NULLs with APAC Superstore populate outstanding values**
  - Connection: International Marketplace
+
 ```
 update z_sales set datasource = N'APAC Superstore' where datasource is null;
 update zs
@@ -1536,6 +1575,7 @@ update zs
 
 **5-5  Populate Sales staging table with Customer, Product, and ShipMode IDs from main tables**
  - Connection: International Marketplace
+
 ```
 update zs
    set zs.ToProductID = p.ProductID
@@ -1653,6 +1693,7 @@ where DATEDIFF(day, zs.ToOrderDate, zs.ToShipDate) < 0;
 
 **5-7  Create temp table to populate Sales main table with Order ID**
  - Connection: International Marketplace
+
 ```
 if object_id(N'tempdb..#SalesOrderID') is not null
 begin
@@ -1699,6 +1740,7 @@ end;
 
 ### 6  Add Ship Mode and Segment tables
  - Connection: International Marketplace
+
 ```
 drop table if exists Segment;
 create table Segment (
@@ -1722,6 +1764,7 @@ insert into ShipMode (ShipMode)
 
 **7-1  Sales for Tableau**
  - Connection: International Marketplace
+
 ```
 drop view if exists v_Denormalised_Sales;
 go
@@ -1773,6 +1816,7 @@ create view v_Denormalised_Sales as
 ```
 **7-2  DimCustomer for Power BI**
  - Connection: International Marketplace
+
 ```
 drop view if exists v_Dim_Customer;
 go
@@ -1789,6 +1833,7 @@ create view v_Dim_Customer as
 
 **7-3  DimCity for Power BI**
  - Connection: International Marketplace
+
 ```
 drop view if exists v_Dim_City;
 go
@@ -1808,6 +1853,7 @@ create view v_Dim_City as
 ```
 **7-4  DimProduct for Power BI**
  - Connection: International Marketplace
+
 ```
 drop view if exists v_Dim_Product;
 go
@@ -1828,6 +1874,7 @@ create view v_Dim_Product as
 ```
 **7-5  FactSales for Power BI**
  - Connection: International Marketplace
+
 ```
 drop view if exists v_Fact_Sales;
 go
