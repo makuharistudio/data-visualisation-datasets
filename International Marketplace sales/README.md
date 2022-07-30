@@ -1,28 +1,33 @@
 # International Marketplace sales
 
-To get some hands-on experience with SQL Server Integration Services (SSIS), I created this fictional sales dataset, which is a merge and transformation/alteration of the 3 Original Data Sources listed below. This included changing the dates to cover specific years, remapping some United States sales to new countries, and renaming customers to more realistically reflect their country of origin using a **[name randomiser](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates)**.
+This is a fictional sales dataset created by merging the 3 Original Data Sources listed below using SQL Server Integration Services (SSIS).
 
-Download Options
+The merging involves changing the dates to cover specific years, remapping some United States sales to new countries, and renaming customers to more realistically reflect their country of origin using a **[name randomiser](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates)**.
+
+## Original Data Sources
+* APAC Superstore dataset can be found and extracted from Tableau Desktop's *Saved Data Sources*.
+* [Contoso Data Warehouse](https://www.microsoft.com/en-us/download/details.aspx?id=18279)
+* [Wide World Importers](https://github.com/Microsoft/sql-server-samples/releases/tag/wide-world-importers-v1.0)
+
+### Remapping files used in SSIS ETL
+* [Unicode text files that remap original data source values to new values](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/text%20files%20for%20value%20remapping%20in%20SSIS/)
+
+
+## Download Options
+You can download the final merged output below:
 * [Database backup .bak file for SQL Server](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/InternationalMarketplace.bak.zip)
 * [Normalised dataset for Power BI in Excel format](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx)
 * [Denormalised dataset for Tableau in Excel format](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Denormalised%20for%20Tableau.xlsx)
 
 ![Excel files](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/01.png?raw=true)
 
-Original Data Sources
-* APAC Superstore dataset can be found and extracted from Tableau Desktop's *Saved Data Sources*.
-* [Contoso Data Warehouse](https://www.microsoft.com/en-us/download/details.aspx?id=18279)
-* [Wide World Importers](https://github.com/Microsoft/sql-server-samples/releases/tag/wide-world-importers-v1.0)
-
-Remapping files used in SSIS ETL
-* [Unicode text files that remap original data source values to new values](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/text%20files%20for%20value%20remapping%20in%20SSIS/)
 
 This is a collapsed view of the SSIS project from Visual Studio.
 ![Visual Studio of SSIS project](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/02.png?raw=true)
 
 Once deployed to SQL Server, the main tables and views created are as below.
 
-The Power BI dataset is from the following views:
+The Power BI dataset is ews:
  - v_Dim_City
  - v_Dim_Customer
  - v_Dim_Product
@@ -1997,36 +2002,14 @@ Using partition by to display the number of order lines per Order ID, whilst sti
 
 ```
 select
+   v.CustomerID,
    v.OrderID,
    v.OrderLineID,
-   count(v.OrderLineID) over (partition by v.OrderLineID) as NumberOfOrderLinesPerOrderID,
+   count(v.OrderLineID) over (partition by v.CustomerID) as NumberOfOrderLinesPerCustomerID,
    sum(v.Sales) over (partition by v.OrderID) as TotalSalesForOrder,
+   sum(v.Sales) over () as TotalSales
 from v_Fact_Sales v
-```
-
-create view v_Fact_Sales as
-   select
-      s.OrderID,
-      s.SalesID as "OrderLineID",
-      s.CustomerID,
-      c.CityID,
-      s.ProductID,      
-      shp.ShipMode,
-      s.Quantity,
-      s.DiscountPercentage,
-      s.DiscountAmount,
-      s.Sales,
-      s.Profit,
-      s.ProfitBin,
-      s.OrderDate,
-      s.ShipDate
-   from Sales s
-   inner join Customer c
-      on s.CustomerID = c.CustomerID
-   inner join City cty
-      on c.CityID = cty.CityID
-   inner join ShipMode shp
-      on s.ShipModeID = shp.ShipModeID;
+order by v.CustomerID asc, v.OrderID asc;
 ```
 
 
