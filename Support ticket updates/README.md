@@ -6,7 +6,7 @@
 **Approach:** Create a fictional dataset by using an Excel-based random person and support ticket generator, ensuring the data includes realistic patterns and outliers. THen build a Power BI report that summarises patterns and highlights outlers to prompt action.
 
 
-# INSTRUCTIONS ON CREATING FICTIONAL DATASET & POWER BI REPORT
+# INSTRUCTIONS FOR DATASET & POWER BI REPORT
 
 ## Fictional dataset
 
