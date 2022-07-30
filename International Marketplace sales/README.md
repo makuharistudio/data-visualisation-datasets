@@ -15,7 +15,7 @@ Original Data Sources
 * [Wide World Importers](https://github.com/Microsoft/sql-server-samples/releases/tag/wide-world-importers-v1.0)
 
 Remapping files used in SSIS ETL
-* [Unicode text files that remap original data source values to new values](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/Text%20files%20for%20value%20remapping%20in%20SSIS)
+* [Unicode text files that remap original data source values to new values](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/text%20files%20for%20value%20remapping%20in%20SSIS)
 
 This is a collapsed view of the SSIS project from Visual Studio.
 ![Visual Studio of SSIS project](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/02.png?raw=true)
@@ -1989,5 +1989,47 @@ end;
 ```
 
 With the extra steps of 8 and 9 added, the sales for United States become distributed out to other markets.
+
+
+### Extra SQL queries for practice
+
+Using partition by to display the number of order lines per Order ID, whilst still showing the individual Order Line IDs. This sort of aggregation could be done with the group by clause, but you wouldn't be able to include the column being grouped by outside the aggregation like this.
+
+```
+select
+   v.OrderID,
+   v.OrderLineID,
+   count(v.OrderLineID) over (partition by v.OrderLineID) as NumberOfOrderLinesPerOrderID,
+   sum(v.Sales) over (partition by v.OrderID) as TotalSalesForOrder,
+from v_Fact_Sales v
+```
+
+create view v_Fact_Sales as
+   select
+      s.OrderID,
+      s.SalesID as "OrderLineID",
+      s.CustomerID,
+      c.CityID,
+      s.ProductID,      
+      shp.ShipMode,
+      s.Quantity,
+      s.DiscountPercentage,
+      s.DiscountAmount,
+      s.Sales,
+      s.Profit,
+      s.ProfitBin,
+      s.OrderDate,
+      s.ShipDate
+   from Sales s
+   inner join Customer c
+      on s.CustomerID = c.CustomerID
+   inner join City cty
+      on c.CityID = cty.CityID
+   inner join ShipMode shp
+      on s.ShipModeID = shp.ShipModeID;
+```
+
+
+
 
 ![Sales records transfered to other states](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/18.png?raw=true)
