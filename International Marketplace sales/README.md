@@ -15,7 +15,7 @@ Original Data Sources
 * [Wide World Importers](https://github.com/Microsoft/sql-server-samples/releases/tag/wide-world-importers-v1.0)
 
 Remapping files used in SSIS ETL
-* [Unicode text files that remap original data source values to new values](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/text%20files%20for%20value%20remapping%20in%20SSIS)
+* [Unicode text files that remap original data source values to new values](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/text%20files%20for%20value%20remapping%20in%20SSIS/)
 
 This is a collapsed view of the SSIS project from Visual Studio.
 ![Visual Studio of SSIS project](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/02.png?raw=true)
@@ -168,7 +168,7 @@ Open a new Excel worksheet, paste the data, then Save As a Unicode .txt file. Th
 **Step 4.** Download all the following data remapping files.
 
 Download all the Unicode files from this folder
-https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/Text%20files%20for%20value%20remapping%20in%20SSIS
+[https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/Text%20files%20for%20value%20remapping%20in%20SSIS/](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/Text%20files%20for%20value%20remapping%20in%20SSIS/)
 
 **Step 5.** Create a new SSIS project and connections.
 
