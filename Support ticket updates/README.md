@@ -6,9 +6,9 @@
 **Approach:** Create a fictional dataset by using an Excel-based random person and support ticket generator, ensuring the data includes realistic patterns and outliers. THen build a Power BI report that summarises patterns and highlights outlers to prompt action.
 
 
-# INSTRUCTIONS FOR DATASET & POWER BI REPORT
 
-## Fictional dataset
+
+## INSTRUCTIONS TO CREATE RANDOMISED DATASET
 
 ### Random business and people's name generator
 
@@ -123,7 +123,7 @@ You can find details on how this dataset was created using Power BI in this blog
 **[https://datamesse.github.io/#/post/1633183200](https://datamesse.github.io/#/post/1633183200)**
 
 
-## Power BI report code
+## POWER BI REPORT CODE
 
 Because agents and users are based in different time zones, and date/times cover different daylight saving offsets, the Power Query code below implements a combination of concepts from a couple of my blog posts:
 
