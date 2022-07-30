@@ -1997,10 +1997,14 @@ end;
 
 With the extra steps of 8 and 9 added, the sales for United States become distributed out to other markets.
 
+![Sales records transfered to other states](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/18.png?raw=true)
+
 
 ### Extra SQL queries for practice
 
 Using partition by to display the number of order lines per Order ID, whilst still showing the individual Order Line IDs. This sort of aggregation could be done with the group by clause, but you wouldn't be able to include the column being grouped by outside the aggregation like this.
+
+* Window aggregation
 
 ```
 select
@@ -2013,8 +2017,3 @@ select
 from v_Fact_Sales v
 order by v.CustomerID asc, v.OrderID asc;
 ```
-
-
-
-
-![Sales records transfered to other states](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/18.png?raw=true)
