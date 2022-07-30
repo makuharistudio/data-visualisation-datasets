@@ -21,7 +21,7 @@ You can download the final merged output below:
 
 * [Database backup .bak file for SQL Server](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/InternationalMarketplace.bak.zip)
 
-![SQL Server of views to export dataset to Excel](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/03.png?raw=true)
+![SQL Server of views to export dataset to Excel](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/01.png?raw=true)
 
 
 * [Normalised dataset for Power BI in Excel format](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx)
@@ -37,7 +37,7 @@ The Power BI dataset is ews:
 The Tableau dataset is from this view:
  - v_Denormalised_Sales
 
-![Excel files](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/01.png?raw=true)
+![Excel files](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/03.png?raw=true)
 
 
 # SQL Server Integration Services Project code
