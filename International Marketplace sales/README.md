@@ -26,15 +26,16 @@ You can download the final merged output below:
 
 * [Normalised dataset for Power BI in Excel format](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx)
 
-The Power BI dataset is ews:
+* [Denormalised dataset for Tableau in Excel format](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Denormalised%20for%20Tableau.xlsx)
+
+
+The Excel file for Power BI is based on:
  - v_Dim_City
  - v_Dim_Customer
  - v_Dim_Product
  - v_Fact_Sales
 
-* [Denormalised dataset for Tableau in Excel format](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Denormalised%20for%20Tableau.xlsx)
-
-The Tableau dataset is from this view:
+The Excel file for Tableau is based on:
  - v_Denormalised_Sales
 
 ![Excel files](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/01.png?raw=true)
