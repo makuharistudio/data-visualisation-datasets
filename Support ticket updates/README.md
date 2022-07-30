@@ -1,4 +1,4 @@
-# Support ticket updates ()
+# Support ticket updates (global / follow-the-sun customer service)
 
 
 **Goal:** Create a report on the performance of customer support/service agents across timezones, including the degree to which each global office provides follow-the-sun (FTS) support.
