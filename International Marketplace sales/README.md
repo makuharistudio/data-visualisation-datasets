@@ -4,6 +4,9 @@ This is a fictional sales dataset created by merging the 3 Original Data Sources
 
 The merging involves changing the dates to cover specific years, remapping some United States sales to new countries, and renaming customers to more realistically reflect their country of origin using a **[name randomiser](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates)**.
 
+![Visual Studio of SSIS project](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/02.png?raw=true)
+
+
 ## Original Data Sources
 * APAC Superstore dataset can be found and extracted from Tableau Desktop's *Saved Data Sources*.
 * [Contoso Data Warehouse](https://www.microsoft.com/en-us/download/details.aspx?id=18279)
@@ -21,9 +24,6 @@ You can download the final merged output below:
 
 ![Excel files](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/01.png?raw=true)
 
-
-This is a collapsed view of the SSIS project from Visual Studio.
-![Visual Studio of SSIS project](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/02.png?raw=true)
 
 Once deployed to SQL Server, the main tables and views created are as below.
 
