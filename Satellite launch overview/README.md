@@ -6,6 +6,8 @@ Original Data Sources
 * [??????](https://github.com/datamesse/data-visualisation-datasets/tree/main/Satellite%20launch%20overview)
 * [??????](https://github.com/datamesse/data-visualisation-datasets/tree/main/Satellite%20launch%20overview)
 
+https://www.browserling.com/tools/image-to-base64
+
 **Note:** Data wrangling and cleaning takes place within the Power Query code below without reference to an external re-mapping data source.
 
 ### Power Query for Larger Dataset
