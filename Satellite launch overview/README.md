@@ -245,9 +245,28 @@ else null, type text),
     #"replace Purposes" = Table.TransformColumns(#"change type 3",{{"Purpose", each Record.FieldOrDefault(AllReplace3,_,_)}}),
     #"replace null Purpose with Unknown" = Table.ReplaceValue(#"replace Purposes","","Unknown",Replacer.ReplaceValue,{"Purpose"}),
     #"change type 4" = Table.TransformColumnTypes(#"replace null Purpose with Unknown",{{"Purpose", type text}}),
-    #"Filtered Rows" = Table.SelectRows(#"change type 4", each ([Purpose] = "Earth Observation "))
+    #"trim Users" = Table.TransformColumns(#"change type 4",{{"Users", Text.Trim, type text}}),
+    #"AllReplace4" = [ #"Civil" = "Commercial and civil",
+                       #"Commercial" = "Commercial and civil",
+                       #"Civil/Government" = "Government / Commercial and civil",
+                       #"Civil/Military" = "Military / Commercial and civil",
+                       #"Commercial/Civil" = "Commercial and civil",
+                       #"Commercial/Government" = "Government / Commercial and civil",
+                       #"Commercial/Military" = "Military / Commercial and civil",
+                       #"Earth Observation" = "Military",
+                       #"Government/Civil" = "Government / Commercial and civil",
+                       #"Government/Commercial" = "Government / Commercial and civil",
+                       #"Government/Commercial/Military" = "Government / Commercial and civil",
+                       #"Government/Military" = "Government / military",
+                       #"Military" = "Military",
+                       #"Military/Civil" = "Military / Commercial and civil",
+                       #"Military/Commercial" = "Military / Commercial and civil",
+                       #"Military/Government" = "Government / military"],
+    #"replace Users" = Table.TransformColumns(#"trim Users",{{"Users", each Record.FieldOrDefault(AllReplace4,_,_)}}),
+    #"replace null Users with Unknown" = Table.ReplaceValue(#"replace Users","","Unknown",Replacer.ReplaceValue,{"Users"}),
+    #"change type 5" = Table.TransformColumnTypes(#"replace null Users with Unknown",{{"Users", type text}})
 in
-    #"Filtered Rows"
+    #"change type 5"
 ```
 
 ### Power Query for Merged Dataset
