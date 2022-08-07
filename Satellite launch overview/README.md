@@ -23,7 +23,7 @@ let
     #"AllReplace" = [#"Arab Satellite Communications Organization" = "Intergovernmental: ARABSAT",
                      #"Asia Broadcast Satellite" = "Intergovernmental: ABS",
                      #"Asia Satellite Telecommunications Company (ASIASAT)" = "Intergovernmental: AsiaSat",
-                     #"China/Brazil" = "Intergovernmental: CNSA &INPE",
+                     #"China/Brazil" = "Intergovernmental: CNSA & INPE",
                      #"Commonwealth of Independent States (former USSR)" = "Russia",
                      #"Czech Republic (former Czechoslovakia)" = "Czech Republic",
                      #"Democratic People's Republic of Korea" = "North Korea",
