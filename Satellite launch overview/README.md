@@ -276,11 +276,11 @@ let
     Source = Table.NestedJoin(#"Satellite launches (n2yo)", {"Satellite catalog number (NORAD)", "International designator (COSPAR)"}, #"Satellites in orbit (ucsusa)", {"Satellite catalog number (NORAD)", "International designator (COSPAR)"}, "Satellites in orbit (ucsusa)", JoinKind.LeftOuter),
     #"expand ucsusa dataset" = Table.ExpandTableColumn(Source, "Satellites in orbit (ucsusa)", {"Satellite catalog number (NORAD)", "International designator (COSPAR)", "Alternate names", "Launch site", "Launch vehicle", "Distance (km)", "Orbit class", "Purpose", "Users", "Contractor country", "Reference"}, {"(ucsusa).Satellite catalog number (NORAD)", "(ucsusa).International designator (COSPAR)", "Alternate names", "Launch site", "Launch vehicle", "Distance (km)", "Orbit class", "Purpose", "Users", "Contractor country", "Reference"}),
     #"add Record type" = Table.AddColumn(#"expand ucsusa dataset", "Record type", each if [#"Satellite catalog number (NORAD)"] <> null and [#"(ucsusa).Satellite catalog number (NORAD)"] = null
-then "n2yo unmatched"
+then "n2yo.com historic observation"
 else if [#"Satellite catalog number (NORAD)"] = null and [#"(ucsusa).Satellite catalog number (NORAD)"] <> null 
 then "ucsusa unmatched"
 else if [#"Satellite catalog number (NORAD)"] <> null and [#"(ucsusa).Satellite catalog number (NORAD)"] <> null 
-then "matched"
+then "UCSUSA active observation"
 else "N/A", type text),
     #"add Flight life (days)" = Table.AddColumn(#"add Record type", "Flight life (days)", each if ([Launch date] <> null and [Flight end date] <> null) then Duration.Days([Flight end date] - [Launch date])
 else null, Int64.Type),
@@ -303,7 +303,10 @@ then [Owner]
 else if ([Owner] = "" and [#"Contractor country"] <> null)
 then [#"Contractor country"]
 else "N/A", type text),
-    #"remove redundant columns" = Table.SelectColumns(#"add Country column",{"Record type", "Satellite catalog number (NORAD)", "International designator (COSPAR)", "Name", "Alternate names", "Country", "Purpose", "Users", "Launch date", "Launch site", "Launch vehicle", "Orbit class", "Distance (km)", "Status", "Flight end date", "Flight life (days)", "Reference", "Flight end date?"})
+    #"remove redundant columns" = Table.SelectColumns(#"add Country column",{"Record type", "Satellite catalog number (NORAD)", "International designator (COSPAR)", "Name", "Alternate names", "Country", "Purpose", "Users", "Launch date", "Launch site", "Launch vehicle", "Orbit class", "Distance (km)", "Status", "Flight end date", "Flight life (days)", "Reference", "Flight end date?"}),
+    #"replace null Users with Unknown" = Table.ReplaceValue(#"remove redundant columns",null,"Unknown",Replacer.ReplaceValue,{"Users"}),
+    #"replace null Purpose with Unknown" = Table.ReplaceValue(#"replace null Users with Unknown",null,"Unknown",Replacer.ReplaceValue,{"Purpose"}),
+    #"Replaced Value" = Table.ReplaceValue(#"replace null Purpose with Unknown",null,"Unknown",Replacer.ReplaceValue,{"Orbit class"})
 in
-    #"remove redundant columns"
+    #"Replaced Value"
 ```
