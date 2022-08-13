@@ -325,7 +325,8 @@ else "N/A", type text),
     #"replace null Purposes with Unknown" = Table.ReplaceValue(#"replace null Users with Unknown",null,"Unknown",Replacer.ReplaceValue,{"Purpose"}),
     #"replace null Orbit classes with Unknown" = Table.ReplaceValue(#"replace null Purposes with Unknown",null,"Unknown",Replacer.ReplaceValue,{"Orbit class"}),
     #"replace null Launch sites with Unknown" = Table.ReplaceValue(#"replace null Orbit classes with Unknown",null,"Unknown",Replacer.ReplaceValue,{"Launch site"}),
-    #"replace blank Launch sites with Unknown" = Table.ReplaceValue(#"replace null Launch sites with Unknown","","Unknown",Replacer.ReplaceValue,{"Launch site"})
+    #"replace blank Launch sites with Unknown" = Table.ReplaceValue(#"replace null Launch sites with Unknown","","Unknown",Replacer.ReplaceValue,{"Launch site"}),
+    #"replace null Launch vehicles with Unknown" = Table.ReplaceValue(#"replace blank Launch sites with Unknown",null,"Unknown",Replacer.ReplaceValue,{"Launch vehicle"})
 in
-    #"replace blank Launch sites with Unknown"
+    #"replace null Launch vehicles with Unknown"
 ```
