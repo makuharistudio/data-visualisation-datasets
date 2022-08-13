@@ -264,9 +264,26 @@ else null, type text),
                        #"Military/Government" = "Government / military"],
     #"replace Users" = Table.TransformColumns(#"trim Users",{{"Users", each Record.FieldOrDefault(AllReplace4,_,_)}}),
     #"replace null Users with Unknown" = Table.ReplaceValue(#"replace Users","","Unknown",Replacer.ReplaceValue,{"Users"}),
-    #"change type 5" = Table.TransformColumnTypes(#"replace null Users with Unknown",{{"Users", type text}})
+    #"change type 5" = Table.TransformColumnTypes(#"replace null Users with Unknown",{{"Users", type text}}),
+    #"AllReplace5" = [ #"Antares" = "Wallops Island Flight Facility",
+                       #"Cygnus" = "Wallops Island Flight Facility",
+                       #"Dragon CRS-17" = "Tyuratam Missile and Space Complex",
+                       #"FANTM-RAiL (Xtenti)" = "Vandenberg Space Force Base",
+                       #"FANTM-RAiL [Xtenti]" = "Vandenberg Space Force Base",
+                       #"International Space Station" = "Tyuratam Missile and Space Complex",
+                       #"International Space Station - Antares" = "Tyuratam Missile and Space Complex",
+                       #"International Space Station - Cygnus" = "Unknown",
+                       #"Orbital ATK L-1011" = "Eastern Range Air Space",
+                       #"Satish Dhawan" = "Satish Dhawan Space Centre",
+                       #"Stargazer L-1011" = "Eastern Range Air Space",
+                       #"Vandenberg AFB" = "Vandenberg Space Force Base",
+                       #"Virgin Orbit" = "Vandenberg Space Force Base",
+                       #"Wenchang Satellite Launch Center" = "Wenchang Space Launch Site",
+                       #"Xichang Satellite Launch Center" = "Wenchang Space Launch Site" ],
+    #"replace Launch sites" = Table.TransformColumns(#"change type 5",{{"Launch site", each Record.FieldOrDefault(AllReplace5,_,_)}}),
+    #"change type 6" = Table.TransformColumnTypes(#"replace Launch sites",{{"Launch site", type text}})
 in
-    #"change type 5"
+    #"change type 6"
 ```
 
 ### Power Query for Merged Dataset
@@ -305,8 +322,10 @@ then [#"Contractor country"]
 else "N/A", type text),
     #"remove redundant columns" = Table.SelectColumns(#"add Country column",{"Record type", "Satellite catalog number (NORAD)", "International designator (COSPAR)", "Name", "Alternate names", "Country", "Purpose", "Users", "Launch date", "Launch site", "Launch vehicle", "Orbit class", "Distance (km)", "Status", "Flight end date", "Flight life (days)", "Reference", "Flight end date?"}),
     #"replace null Users with Unknown" = Table.ReplaceValue(#"remove redundant columns",null,"Unknown",Replacer.ReplaceValue,{"Users"}),
-    #"replace null Purpose with Unknown" = Table.ReplaceValue(#"replace null Users with Unknown",null,"Unknown",Replacer.ReplaceValue,{"Purpose"}),
-    #"Replaced Value" = Table.ReplaceValue(#"replace null Purpose with Unknown",null,"Unknown",Replacer.ReplaceValue,{"Orbit class"})
+    #"replace null Purposes with Unknown" = Table.ReplaceValue(#"replace null Users with Unknown",null,"Unknown",Replacer.ReplaceValue,{"Purpose"}),
+    #"replace null Orbit classes with Unknown" = Table.ReplaceValue(#"replace null Purposes with Unknown",null,"Unknown",Replacer.ReplaceValue,{"Orbit class"}),
+    #"replace null Launch sites with Unknown" = Table.ReplaceValue(#"replace null Orbit classes with Unknown",null,"Unknown",Replacer.ReplaceValue,{"Launch site"}),
+    #"replace blank Launch sites with Unknown" = Table.ReplaceValue(#"replace null Launch sites with Unknown","","Unknown",Replacer.ReplaceValue,{"Launch site"})
 in
-    #"Replaced Value"
+    #"replace blank Launch sites with Unknown"
 ```
