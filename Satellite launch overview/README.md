@@ -330,7 +330,22 @@ else "N/A", type text),
     #"replace null Launch vehicles with Unknown" = Table.ReplaceValue(#"replace blank Launch sites with Unknown",null,"Unknown",Replacer.ReplaceValue,{"Launch vehicle"}),
     #"add Flight life (years) column" = Table.AddColumn(#"replace null Launch vehicles with Unknown", "Flight life (years)", each if [#"Flight end date?"] = "Satellite has end date"
 then Number.IntegerDivide([#"Flight life (days)"],365)
-else null, Int64.Type)
+else null, Int64.Type),
+    #"Added Custom" = Table.AddColumn(#"add Flight life (years) column", "Launch decade", each if Date.Year([Launch date]) >= 2010 and Date.Year([Launch date]) <= 2022
+then "2010 - 2022"
+else if Date.Year([Launch date]) >= 2000 and Date.Year([Launch date]) <= 2009
+then "2000 - 2009"
+else if Date.Year([Launch date]) >= 1990 and Date.Year([Launch date]) <= 1999
+then "1990 - 1999"
+else if Date.Year([Launch date]) >= 1980 and Date.Year([Launch date]) <= 1989
+then "1980 - 1989"
+else if Date.Year([Launch date]) >= 1970 and Date.Year([Launch date]) <= 1979
+then "1970 - 1979"
+else if Date.Year([Launch date]) >= 1960 and Date.Year([Launch date]) <= 1969
+then "1960 - 1969"
+else if Date.Year([Launch date]) >= 1950 and Date.Year([Launch date]) <= 1959
+then "1950 - 1959"
+else null, type text)
 in
-    #"add Flight life (years) column"
+    #"Added Custom"
 ```
