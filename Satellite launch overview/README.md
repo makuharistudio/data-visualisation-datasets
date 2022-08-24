@@ -1,4 +1,4 @@
-# Satellite overview
+# Satellite launch overview
 
 **[My Power BI visualisation](?????)**
 
@@ -10,7 +10,12 @@ https://www.browserling.com/tools/image-to-base64
 
 **Note:** Data wrangling and cleaning takes place within the Power Query code below without reference to an external re-mapping data source.
 
-### Power Query for Larger Dataset
+
+## POWER BI REPORT CODE
+
+### Power Query to clean n2yo.com historic satellite data
+
+* [Satellite Data (1957-2022) by Robin (scraped from n2yo.com) via Kaggle](https://www.kaggle.com/datasets/heyrobin/satellite-data-19572022)
 
 ```
 let
@@ -56,7 +61,9 @@ in
     #"change type 2"
 ```
 
-### Power Query for Smaller Dataset
+### Power Query to clean UCSUSA actively monitored satellite data
+
+* [Union of Concerned Scientists' (UCSUSA) satellite database](https://www.ucsusa.org/resources/satellite-database)
 
 ```
 let
@@ -78,7 +85,7 @@ let
 else null, type text),
     #"add Launch date column" = Table.AddColumn(#"add Reference column", "Launch date", each Date.From([Date of Launch],"en-US"), type date),
     #"add Distance (km) column" = Table.AddColumn(#"add Launch date column", "Distance (km)", each Number.RoundUp(Value.Divide(([#"Perigee (km)"] + [#"Apogee (km)"]), 2)), Int64.Type),
-    #"remove redundant columns 2" = Table.SelectColumns(#"add Distance (km) column",{"NORAD Number", "COSPAR Number", "Name of Satellite, Alternate Names", "Launch Site", "Launch Vehicle", "Distance (km)", "Class of Orbit", "Purpose", "Users", "Country of Contractor", "Reference"}),
+    #"remove redundant columns 2" = Table.SelectColumns(#"add Distance (km) column",{"NORAD Number", "COSPAR Number", "Name of Satellite, Alternate Names", "Launch Site", "Launch Vehicle", "Perigee (km)", "Apogee (km)", "Distance (km)", "Class of Orbit", "Purpose", "Users", "Country of Contractor", "Reference"}),
     #"trim COSPAR Number" = Table.TransformColumns(#"remove redundant columns 2",{{"COSPAR Number", Text.Trim, type text}}),
     #"add n2yo remapped NORAD column" = Table.AddColumn(#"trim COSPAR Number", "n2yo remapped NORAD", each if ([NORAD Number] =  22491 and [COSPAR Number] = "1993-009B") then 22490
         else if ([NORAD Number] =  28541 and [COSPAR Number] = "2005-004B") then 28538
@@ -193,7 +200,7 @@ else null, type text),
         else if ([NORAD Number] =  57759 and [COSPAR Number] = "2021-017AP") then "2021-017AP"
         else [COSPAR Number], type text),
     #"rename columns" = Table.RenameColumns(#"add n2yo remapped COSPAR column",{{"n2yo remapped NORAD", "Satellite catalog number (NORAD)"}, {"n2yo remapped COSPAR", "International designator (COSPAR)"}, {"Name of Satellite, Alternate Names", "Alternate names"}, {"Launch Site", "Launch site"}, {"Launch Vehicle", "Launch vehicle"}, {"Class of Orbit", "Orbit class"}, {"Country of Contractor", "Contractor country"}}),
-    #"remove redundant columns 3" = Table.SelectColumns(#"rename columns",{"Satellite catalog number (NORAD)", "International designator (COSPAR)", "Alternate names", "Launch site", "Launch vehicle", "Distance (km)", "Orbit class", "Purpose", "Users", "Contractor country", "Reference"}),
+    #"remove redundant columns 3" = Table.SelectColumns(#"rename columns",{"Satellite catalog number (NORAD)", "International designator (COSPAR)", "Alternate names", "Launch site", "Launch vehicle", "Perigee (km)", "Apogee (km)", "Distance (km)", "Orbit class", "Purpose", "Users", "Contractor country", "Reference"}),
     #"AllReplace1" = [ #"ESA" = "Intergovernmental: ESA",
                        #"France/Belgium/Spain/Italy" = "Multinational: Thales Alenia Space",
                        #"France/Italy" = "Multinational: Thales Alenia Space",
@@ -287,7 +294,7 @@ in
     #"change type 6"
 ```
 
-### Power Query for Merged Dataset
+### Power Query to merge n2yo.com historic and UCSUSA actively monitored satellite data
 
 ```
 let
@@ -331,21 +338,60 @@ else "N/A", type text),
     #"add Flight life (years) column" = Table.AddColumn(#"replace null Launch vehicles with Unknown", "Flight life (years)", each if [#"Flight end date?"] = "Satellite has end date"
 then Number.IntegerDivide([#"Flight life (days)"],365)
 else null, Int64.Type),
-    #"Added Custom" = Table.AddColumn(#"add Flight life (years) column", "Launch decade", each if Date.Year([Launch date]) >= 2010 and Date.Year([Launch date]) <= 2022
-then "2010 - 2022"
-else if Date.Year([Launch date]) >= 2000 and Date.Year([Launch date]) <= 2009
-then "2000 - 2009"
-else if Date.Year([Launch date]) >= 1990 and Date.Year([Launch date]) <= 1999
-then "1990 - 1999"
-else if Date.Year([Launch date]) >= 1980 and Date.Year([Launch date]) <= 1989
-then "1980 - 1989"
-else if Date.Year([Launch date]) >= 1970 and Date.Year([Launch date]) <= 1979
-then "1970 - 1979"
-else if Date.Year([Launch date]) >= 1960 and Date.Year([Launch date]) <= 1969
-then "1960 - 1969"
-else if Date.Year([Launch date]) >= 1950 and Date.Year([Launch date]) <= 1959
-then "1950 - 1959"
-else null, type text)
+    #"add Launch site latitude column" = Table.AddColumn(#"add Flight life (years) column", "Launch site latitude", each if [Launch site] = "Cape Canaveral" then 28.4926884
+else if [Launch site] = "Baikonur Cosmodrome" then 45.96494307
+else if [Launch site] = "Guiana Space Center" then 5.16776515
+else if [Launch site] = "Vandenberg Space Force Base" then 34.74226912
+else if [Launch site] = "Vostochny Cosmodrome" then 51.85023838
+else if [Launch site] = "Satish Dhawan Space Centre" then 13.72612064
+else if [Launch site] = "Jiuquan Satellite Launch Center" then 40.958056
+else if [Launch site] = "Taiyuan Launch Center" then 38.84879055
+else if [Launch site] = "Xichang Satellite Launch Center" then 28.24696212
+else if [Launch site] = "Plesetsk Cosmodrome" then 62.92795254
+else if [Launch site] = "Rocket Lab Launch Complex 1" then -39.26021649
+else if [Launch site] = "Wallops Island Flight Facility" then 37.93403169
+else if [Launch site] = "Tanegashima Space Center" then 30.3750677
+else if [Launch site] = "Dombarovsky Air Base" then 51.0994718
+else if [Launch site] = "Sea Launch Odyssey" then 6.34419062823554
+else if [Launch site] = "Tyuratam Missile and Space Complex" then 44.1385718192634
+else if [Launch site] = "Uchinoura Space Center" then 31.25199903
+else if [Launch site] = "Yellow Sea Launch Platform" then 35.3327650833263
+else if [Launch site] = "Wenchang Space Launch Site" then 19.61861916
+else if [Launch site] = "Eastern Range Air Space" then 28.23672
+else if [Launch site] = "Palmachim Launch Complex" then 31.89992763
+else if [Launch site] = "Kodiak Launch Complex" then 57.4357406
+else if [Launch site] = "Kwajalein Island" then 8.716667
+else if [Launch site] = "Svobodny Cosmodrome" then 51.7186549
+else if [Launch site] = "Naro Space Center" then 34.44194243
+else if [Launch site] = "Shahroud Missile Base" then 36.2061063
+else null, type number),
+    #"add Launch site longitude column" = Table.AddColumn(#"add Launch site latitude column", "Launch site longitude", each if [Launch site] = "Cape Canaveral" then -80.57279338
+else if [Launch site] = "Baikonur Cosmodrome" then 63.30528572
+else if [Launch site] = "Guiana Space Center" then -52.68324688
+else if [Launch site] = "Vandenberg Space Force Base" then -120.5724297
+else if [Launch site] = "Vostochny Cosmodrome" then 128.3553151
+else if [Launch site] = "Satish Dhawan Space Centre" then 80.22656523
+else if [Launch site] = "Jiuquan Satellite Launch Center" then 100.291111
+else if [Launch site] = "Taiyuan Launch Center" then 111.6080259
+else if [Launch site] = "Xichang Satellite Launch Center" then 102.0267277
+else if [Launch site] = "Plesetsk Cosmodrome" then 40.57486226
+else if [Launch site] = "Rocket Lab Launch Complex 1" then 177.8662063
+else if [Launch site] = "Wallops Island Flight Facility" then -75.4795783
+else if [Launch site] = "Tanegashima Space Center" then 130.9576342
+else if [Launch site] = "Dombarovsky Air Base" then 59.84147987
+else if [Launch site] = "Sea Launch Odyssey" then -10.8012012676391
+else if [Launch site] = "Tyuratam Missile and Space Complex" then 60.1237156206004
+else if [Launch site] = "Uchinoura Space Center" then 131.0761933
+else if [Launch site] = "Yellow Sea Launch Platform" then 123.201025386553
+else if [Launch site] = "Wenchang Space Launch Site" then 110.951529
+else if [Launch site] = "Eastern Range Air Space" then -80.609528
+else if [Launch site] = "Palmachim Launch Complex" then 34.690556
+else if [Launch site] = "Kodiak Launch Complex" then -152.3394517
+else if [Launch site] = "Kwajalein Island" then 167.733333
+else if [Launch site] = "Svobodny Cosmodrome" then 128.0031326
+else if [Launch site] = "Naro Space Center" then 127.5341107
+else if [Launch site] = "Shahroud Missile Base" then 55.33477795
+else null, type number)
 in
-    #"Added Custom"
+    #"add Launch site longitude column"
 ```
