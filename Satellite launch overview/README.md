@@ -8,7 +8,9 @@ Original Data Sources
 
 https://www.browserling.com/tools/image-to-base64
 
-**Note:** Data wrangling and cleaning takes place within the Power Query code below without reference to an external re-mapping data source.
+**Note:** Data wrangling and cleaning takes place within the Power Query code below without reference to an external re-mapping data source, but a summary the remaps for each data source is available here:
+* [Remapping n2yo.com to match UCSUSA](https://github.com/datamesse/data-visualisation-datasets/blob/main/Satellite%20launch%20overview/Excel%20files%20for%20value%20remapping/Remapping%20n2yo.com%20to%20match%20ucsusa%20dataset.xlsx)
+* [Remapping UCSUSA to match n2yo.com](https://github.com/datamesse/data-visualisation-datasets/blob/main/Satellite%20launch%20overview/Excel%20files%20for%20value%20remapping/Remapping%20ucsusa%20to%20match%20n2yo.com%20dataset.xlsx)
 
 
 ## POWER BI REPORT CODE
