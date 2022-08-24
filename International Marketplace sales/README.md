@@ -9,7 +9,7 @@ This merging involves changing the records across the data sources for consisten
 
 
 ## RESULTS
-Screenshot of completed SSIS project
+Screenshot of completed SSIS project (collapsed summary view, see details further below).
 
 ![Visual Studio of SSIS project](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/02.png?raw=true)
 
