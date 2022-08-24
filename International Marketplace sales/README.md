@@ -18,7 +18,7 @@ Screenshot of completed SSIS project (collapsed summary view, see details furthe
 ![My Power BI visualisation](https://datamesse.github.io/static/media/img-2022-04-power-bi-international-marketplace-python-deneb.bf709943.png)
 
 
-## Original Data Sources
+Original Data Sources
 * APAC Superstore dataset can be found and extracted from Tableau Desktop's *Saved Data Sources*.
 * [Contoso Data Warehouse](https://www.microsoft.com/en-us/download/details.aspx?id=18279)
 * [Wide World Importers](https://github.com/Microsoft/sql-server-samples/releases/tag/wide-world-importers-v1.0)
