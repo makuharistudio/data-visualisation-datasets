@@ -3,13 +3,19 @@
 
 **Goal:** Learn how to create a SQL Server Integration Services (SSIS) package by merging 3 completely different sales data sources into a single new fictional data warehouse.
 
-**Approach:** Identify the dataset with the smallest schema, and use it as the basis to create SQL queries align the other data sources into the same data structure.
+**Approach:** Identify the dataset with the smallest schema, and use it as the basis to create SQL queries align the other data sources into the same data structure, then build a Power BI report to summarise profits.
 
 This merging involves changing the records across the data sources for consistency, such as matching dates to cover specific years, remapping some United States sales to new countries, and renaming customers to more realistically reflect their country of origin using a **[name randomiser](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates)**.
 
+
+## RESULTS
+Screenshot of completed SSIS project
+
 ![Visual Studio of SSIS project](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/02.png?raw=true)
 
+**[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550)**
 
+![My Power BI visualisation](https://datamesse.github.io/static/media/img-2022-04-power-bi-international-marketplace-python-deneb.bf709943.png)
 
 
 ## Original Data Sources

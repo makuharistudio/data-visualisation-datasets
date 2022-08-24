@@ -3,7 +3,7 @@
 
 **Goal:** Help make Singapore rental price information more accessible to the global community by applying exchange rate calculations for major global currencies.
 
-**Approach:** Identify the lowest common date denominator between the native Singaporean rental price data and the exchange rate information available in OFX.com, then calculate based on that denominator.
+**Approach:** Identify the lowest common date denominator between the native Singaporean rental price data and the exchange rate information available in OFX.com, then calculate based on that denominator, then build a report that highlights the pricing trend in a report viewer's selected country.
 
 
 ## RESULT

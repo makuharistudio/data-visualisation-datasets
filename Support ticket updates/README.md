@@ -3,7 +3,7 @@
 
 **Goal:** Report on the performance of customer support/service agents across timezones, including the degree to which each global office provides follow-the-sun (FTS) support.
 
-**Approach:** Create a fictional dataset by using an Excel-based random person and support ticket generator, ensuring the data includes realistic patterns and outliers. Then build a Power BI report that summarises patterns and highlights outlers to prompt managerial review.
+**Approach:** Create a fictional dataset by using an Excel-based random person and support ticket generator, ensuring the data includes realistic patterns and outliers, then build a Power BI report that summarises patterns and highlights outlers to prompt managerial review.
 
 
 ## RESULT
