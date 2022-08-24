@@ -1,5 +1,6 @@
 # International Marketplace sales
 
+
 **Goal:** Learn how to create a SQL Server Integration Services (SSIS) package by merging 3 completely different sales data sources into a single new fictional data warehouse.
 
 **Approach:** Identify the dataset with the smallest schema, and use it as the basis to create SQL queries align the other data sources into the same data structure.
@@ -7,6 +8,8 @@
 This merging involves changing the records across the data sources for consistency, such as matching dates to cover specific years, remapping some United States sales to new countries, and renaming customers to more realistically reflect their country of origin using a **[name randomiser](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates)**.
 
 ![Visual Studio of SSIS project](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/02.png?raw=true)
+
+
 
 
 ## Original Data Sources
