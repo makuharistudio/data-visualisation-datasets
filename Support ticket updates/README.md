@@ -1,7 +1,7 @@
 # Support ticket updates (global / follow-the-sun customer service)
 
 
-**Goal:** Create a report on the performance of customer support/service agents across timezones, including the degree to which each global office provides follow-the-sun (FTS) support.
+**Goal:** Report on the performance of customer support/service agents across timezones, including the degree to which each global office provides follow-the-sun (FTS) support.
 
 **Approach:** Create a fictional dataset by using an Excel-based random person and support ticket generator, ensuring the data includes realistic patterns and outliers. Then build a Power BI report that summarises patterns and highlights outlers to prompt managerial review.
 
@@ -9,9 +9,10 @@
 ## RESULT
 **[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)**
 
-![My Power BI visualisation](https://datamesse.github.io/static/media/img-2021-11-power-bi-follow-the-sun-customer-support.04103ee9.png)]
+![My Power BI visualisation](https://datamesse.github.io/static/media/img-2021-11-power-bi-follow-the-sun-customer-support.04103ee9.png)
 
-Original Data Sources: see below.
+Original Data Sources: 
+* See below
 
 
 ## INSTRUCTIONS TO CREATE RANDOMISED DATASET

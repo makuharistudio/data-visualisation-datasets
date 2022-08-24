@@ -1,13 +1,24 @@
 # Singapore rental prices
 
+
+**Goal:** Help make Singapore rental price information more accessible to the global community by applying exchange rate calculations for major global currencies.
+
+**Approach:** Identify the lowest common date denominator between the native Singaporean rental price data and the exchange rate information available in OFX.com, then calculate based on that denominator.
+
+
+## RESULT
 **[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/Quarterly-Singapore-median-rental-prices-by-currency/m-p/2125424)**
+
+![My Power BI visualisation](https://datamesse.github.io/static/media/img-2021-10-power-bi-quarterly-singapore-rental-prices-by-currency.5e5019ff.png)
 
 * [Wrangled data sources](https://github.com/datamesse/data-visualisation-datasets/raw/main/Singapore%20rental%20prices/Singapore%20rental%20prices.xlsx)
 
 Original Data Sources
-* [Singapore rental prices](https://data.gov.sg/dataset/median-rent-by-town-and-flat-type)
-* [Exchange rates](https://www.ofx.com/en-us/forex-news/historical-exchange-rates/ )
+* [Singapore rental prices from data.gov.sg](https://data.gov.sg/dataset/median-rent-by-town-and-flat-type)
+* [Historical exchange rates from ofx.com](https://www.ofx.com/en-us/forex-news/historical-exchange-rates/ )
 
+
+## POWER BI REPORT CODE
 
 ### Power Query for Median Rent By Town & Flat Type data
 What makes this code interesting is the original data source has a "pre-pivoted" structure where there are columns for each exchange rate, the rent is calculated for each currency, then unpivoted using Table.UnpivotOtherColumns().
