@@ -8,9 +8,10 @@
 
 ## RESULT
 **[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)**
+
 ![My Power BI visualisation](https://datamesse.github.io/static/media/img-2021-11-power-bi-follow-the-sun-customer-support.04103ee9.png)]
 
-
+Original Data Sources: see below.
 
 
 ## INSTRUCTIONS TO CREATE RANDOMISED DATASET
