@@ -9,7 +9,7 @@
 ## RESULT
 **[My Power BI visualisation](?????)**
 
-![My Power BI visualisation](https://datamesse.github.io/static/media/img-2021-10-power-bi-quarterly-singapore-rental-prices-by-currency.5e5019ff.png)
+![My Power BI visualisation]()
 
 ### Original Data Sources
 * [Actively monitored satellites from ucsusa.org](https://www.ucsusa.org/resources/satellite-database)
