@@ -411,8 +411,6 @@ See my blog post on how I created the JSON code for this visual:
 
 * **[??????](https://datamesse.github.io/#/post/????????????)**
 
-https://www.browserling.com/tools/image-to-base64
-
 ```
 TBD
 ```
