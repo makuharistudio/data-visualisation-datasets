@@ -1,11 +1,14 @@
 ## International Marketplace
 **[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550#M7154)**
 
-This code was used for the Power BI report I created above.
+![My Power BI visualisation](https://datamesse.github.io/static/media/img-2022-04-power-bi-international-marketplace-python-deneb.bf709943.png)
+
+This code was used for this Power BI report.
 
 The dataset I used was the normalised version of the International Marketplace dataset, found here:
 
 **[https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx](https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx)**
+
 
 ### Python code for monthly predicted profit values
 

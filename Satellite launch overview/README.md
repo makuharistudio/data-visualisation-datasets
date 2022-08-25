@@ -1,12 +1,19 @@
 # Satellite launch overview
 
+
+**Goal:** Having read several online articles with varied numbers of satellites in orbit, I want to see how many were launched historically versus the number that are functional and actively monitored.
+
+**Approach:** Merge the UCSUSA dataset for actively monitored satellites (which has been referenced in several articles and Tableau Public dashboards), with a
+
+
+## RESULT
 **[My Power BI visualisation](?????)**
 
-Original Data Sources
-* [??????](https://github.com/datamesse/data-visualisation-datasets/tree/main/Satellite%20launch%20overview)
-* [??????](https://github.com/datamesse/data-visualisation-datasets/tree/main/Satellite%20launch%20overview)
+![My Power BI visualisation](https://datamesse.github.io/static/media/img-2021-10-power-bi-quarterly-singapore-rental-prices-by-currency.5e5019ff.png)
 
-https://www.browserling.com/tools/image-to-base64
+### Original Data Sources
+* [Actively monitored satellites from ucsusa.org](https://www.ucsusa.org/resources/satellite-database)
+* [Historical satellites n2yo.com webscraped dataset by Robin S. from kaggle.com](https://www.kaggle.com/datasets/heyrobin/satellite-data-19572022)
 
 **Note:** Data wrangling and cleaning takes place within the Power Query code below without reference to an external re-mapping data source, but summary Excel files for the remaps performed on each data source is available here:
 * [Remapping n2yo.com to match UCSUSA](https://github.com/datamesse/data-visualisation-datasets/blob/main/Satellite%20launch%20overview/Excel%20files%20for%20value%20remapping/Remapping%20n2yo.com%20to%20match%20ucsusa%20dataset.xlsx)
@@ -17,11 +24,11 @@ https://www.browserling.com/tools/image-to-base64
 
 ### Power Query to clean n2yo.com historic satellite data
 
-* [Satellite Data (1957-2022) by Robin (scraped from n2yo.com) via Kaggle](https://www.kaggle.com/datasets/heyrobin/satellite-data-19572022)
+* [Satellite Data (1957-2022) by Robin S. (scraped from n2yo.com) via Kaggle](https://www.kaggle.com/datasets/heyrobin/satellite-data-19572022)
 
 ```
 let
-    Source = Csv.Document(File.Contents("D:\Archive\Data Analysis\Dataset\Kaggle\Satellite Data (1957 - 2022)\satellite launches.csv"),[Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+    Source = Csv.Document(File.Contents("C:\satellites-n2yo.csv"),[Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
     #"promote headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
     #"change type 1" = Table.TransformColumnTypes(#"promote headers",{{"", Int64.Type}, {"norad_id", Int64.Type}, {"cospar_id", type text}, {"name", type text}, {"launch_date", type date}, {"flight_ended", type date}, {"status", type text}, {"destination", type text}, {"owner", type text}}),
     #"remove unneeded column" = Table.SelectColumns(#"change type 1",{"norad_id", "cospar_id", "name", "launch_date", "flight_ended", "status", "owner"}),
@@ -69,7 +76,7 @@ in
 
 ```
 let
-    Source = Csv.Document(File.Contents("D:\Archive\Data Analysis\Dataset\Union of Concerned Scientists\UCS-Satellite-Database-1-1-2022.txt"),[Delimiter="	", Columns=67, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+    Source = Csv.Document(File.Contents("C:\satellites-ucsusa.txt"),[Delimiter="	", Columns=67, Encoding=1252, QuoteStyle=QuoteStyle.None]),
     #"promote headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
     #"change type 1" = Table.TransformColumnTypes(#"promote headers",{{"Name of Satellite, Alternate Names", type text}, {"Current Official Name of Satellite", type text}, {"Country/Org of UN Registry", type text}, {"Country of Operator/Owner", type text}, {"Operator/Owner", type text}, {"Users", type text}, {"Purpose", type text}, {"Detailed Purpose", type text}, {"Class of Orbit", type text}, {"Type of Orbit", type text}, {"Longitude of GEO (degrees)", type number}, {"Perigee (km)", Int64.Type}, {"Apogee (km)", Int64.Type}, {"Eccentricity", type number}, {"Inclination (degrees)", type number}, {"Period (minutes)", type number}, {"Launch Mass (kg.)", Int64.Type}, {" Dry Mass (kg.) ", Int64.Type}, {"Power (watts)", type text}, {"Date of Launch", type text}, {"Expected Lifetime (yrs.)", type number}, {"Contractor", type text}, {"Country of Contractor", type text}, {"Launch Site", type text}, {"Launch Vehicle", type text}, {"COSPAR Number", type text}, {"NORAD Number", Int64.Type}, {"Comments", type text}, {"", type text}, {"Source Used for Orbital Data", type text}, {"Source", type text}, {"Source_1", type text}, {"Source_2", type text}, {"Source_3", type text}, {"Source_4", type text}, {"Source_5", type text}, {"Source_6", type text}, {"_7", type text}, {"_8", type text}, {"_9", type text}, {"_10", type text}, {"_11", type text}, {"_12", type text}, {"_13", type text}, {"_14", type text}, {"_15", type text}, {"_16", type text}, {"_17", type text}, {"_18", type text}, {"_19", type text}, {"_20", type text}, {"_21", type text}, {"_22", type text}, {"_23", type text}, {"_24", type text}, {"_25", type text}, {"_26", type text}, {"_27", type text}, {"_28", type text}, {"_29", type text}, {"_30", type text}, {"_31", type text}, {"_32", type text}, {"_33", type text}, {"_34", type text}, {"_35", type text}, {"_36", type text}}),
     #"replace errors" = Table.ReplaceErrorValues(#"change type 1", {{" Dry Mass (kg.) ", 1900}}),
@@ -396,4 +403,16 @@ else if [Launch site] = "Shahroud Missile Base" then 55.33477795
 else null, type number)
 in
     #"add Launch site longitude column"
+```
+
+### Deneb code for the zoomable scatterplot of actively monitored satellites in orbit
+
+See my blog post on how I created the JSON code for this visual:
+
+* **[??????](https://datamesse.github.io/#/post/????????????)**
+
+https://www.browserling.com/tools/image-to-base64
+
+```
+TBD
 ```
