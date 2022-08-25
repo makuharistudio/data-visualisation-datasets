@@ -1,12 +1,23 @@
 ## Motorola Twitter sentiment analysis overview
+
+
+**Goal:** ????
+
+**Approach:** ????
+
+## RESULT
 **[My Power BI visualisation](?????)**
 
-Original Data Sources
-* [??????](???????)
-* [??????](???????)
+![My Power BI visualisation]()
+
+### Original Data Sources
+* See below
+
 
 I set up a virtual machine EC2 instance on AWS, then setup a Python Virtual Environment
-* **[?????](https://datamesse.github.io/#/post/1650117600)**
+* **[?????](https://datamesse.github.io/#/post/???????)**
+
+https://datamesse.github.io/#/post/1659189600
 
 ```
 python -m venv C:\Project\twitter-sentiment-analysis\venv

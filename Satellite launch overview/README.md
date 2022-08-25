@@ -3,7 +3,7 @@
 
 **Goal:** Having read several online articles with varied numbers of satellites in orbit, I want to see how many were launched historically versus the number that are functional and actively monitored.
 
-**Approach:** Merge the UCSUSA dataset for actively monitored satellites (which has been referenced in several articles and Tableau Public dashboards), with a
+**Approach:** Merge the UCSUSA dataset for actively monitored satellites (which has been referenced in several articles and Tableau Public dashboards), with data webscraped from n2yo.com for all historical launches of satellites, the build a Power BI report that compares those numbers and overall launch trend.
 
 
 ## RESULT
