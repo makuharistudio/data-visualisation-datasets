@@ -9,7 +9,7 @@
 ## RESULT
 **[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)**
 
-![My Power BI visualisation](https://datamesse.github.io/static/media/img-2021-11-power-bi-follow-the-sun-customer-support.04103ee9.png)
+![My Power BI visualisation](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2021-11-power-bi-follow-the-sun-customer-support.gif?raw=true)
 
 ### Original Data Sources
 * See below

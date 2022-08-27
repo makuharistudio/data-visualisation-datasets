@@ -9,7 +9,7 @@
 ## RESULT
 **[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/Quarterly-Singapore-median-rental-prices-by-currency/m-p/2125424)**
 
-![My Power BI visualisation](https://datamesse.github.io/static/media/img-2021-10-power-bi-quarterly-singapore-rental-prices-by-currency.5e5019ff.png)
+![My Power BI visualisation](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2021-10-power-bi-quarterly-singapore-rental-prices-by-currency.gif?raw=true)
 
 * [Wrangled data sources](https://github.com/datamesse/data-visualisation-datasets/raw/main/Singapore%20rental%20prices/Singapore%20rental%20prices.xlsx)
 
