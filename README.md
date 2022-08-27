@@ -20,6 +20,14 @@ Original Data Sources
 * [Singapore rental prices](https://data.gov.sg/dataset/median-rent-by-town-and-flat-type)
 * [Exchange rates](https://www.ofx.com/en-us/forex-news/historical-exchange-rates/)
 
+## Satellite launch overview
+**[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077)**
+* [Power Query and Deneb code](https://github.com/datamesse/data-visualisation-datasets/tree/main/Satellite%20launch%20overview)
+
+Original Data Sources
+* [Actively monitored satellites from ucsusa.org](https://www.ucsusa.org/resources/satellite-database)
+* [Historical satellites n2yo.com webscraped dataset by Robin S. from kaggle.com](https://www.kaggle.com/datasets/heyrobin/satellite-data-19572022)
+
 ## Support ticket updates
 **[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)**
 **[My Excel dashboard](https://datamesse.github.io/#/project/ExcelCustomerSupportAgentPerformance)**

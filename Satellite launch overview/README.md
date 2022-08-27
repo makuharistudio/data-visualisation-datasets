@@ -7,7 +7,7 @@
 
 
 ## RESULT
-**[My Power BI visualisation](https://app.powerbi.com/view?r=eyJrIjoiYzI0OWMwNTUtYWY3ZS00Nzg3LThlYzUtN2NiOTNkYzQ3MTM0IiwidCI6IjM5MTA5NGVmLTAxN2YtNGUwMy1hM2NjLTQ1OGQ3N2I1YjBjZSJ9)**
+**[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077)**
 
 ![My Power BI visualisation](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2022-08-satellite-launch-overview.gif?raw=true)
 
