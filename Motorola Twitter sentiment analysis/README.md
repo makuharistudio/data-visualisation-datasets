@@ -1,5 +1,6 @@
 ## Motorola Twitter sentiment analysis overview
 
+Incomplete.
 
 **Goal:** ????
 
