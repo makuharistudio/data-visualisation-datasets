@@ -1,7 +1,7 @@
 ## International Marketplace
 **[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550#M7154)**
 
-![My Power BI visualisation](https://datamesse.github.io/static/media/img-2022-04-power-bi-international-marketplace-python-deneb.bf709943.png)
+![My Power BI visualisation](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2022-04-power-bi-international-marketplace-python-deneb.gif?raw=true)
 
 This code was used for this Power BI report.
 
