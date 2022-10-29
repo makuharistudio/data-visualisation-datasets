@@ -17,6 +17,11 @@ Screenshot of completed SSIS project (collapsed summary view, see details furthe
 
 ![My Power BI visualisation](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2022-04-power-bi-international-marketplace-python-deneb.gif?raw=true)
 
+**[My Excel visualisation](https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast)**
+
+![My Excel visualisation](https://datamesse.github.io/static/media/img-2022-10-excel-international-marketplace-profit-forecast.3adfbfda.gif?raw=true)
+
+
 
 ### Original Data Sources
 * APAC Superstore dataset can be found and extracted from Tableau Desktop's *Saved Data Sources*.
