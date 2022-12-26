@@ -3,21 +3,32 @@
 
 **Goal:** Summarise customer service staff performance across time zones, including much each company city provides follow-the-sun (FTS) support.
 
-**Approach:** Create a fictional dataset using Excel-based random person and support ticket generators, ensuring the data includes realistic patterns and outliers. Build a Power BI report that summarises that dataset, highlighting outliers to prompt managerial review.
+**Approach:** Create a fictional dataset using Excel-based random person and support ticket generators, ensuring the data includes realistic patterns and outliers. Build Power BI and Excel reports which summarise that dataset, highlighting outliers to prompt managerial review.
 
 
-## RESULT
+## RESULTS
 
-### My Power BI visualisation
+### My Power BI report
 * **[https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)**
 
-[![My Power BI visualisation](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2021-11-power-bi-follow-the-sun-customer-support.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)
+[![My Power BI report](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2021-11-power-bi-follow-the-sun-customer-support.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)
+
+### My Excel report
+* **[https://datamesse.github.io/#/project/ExcelCustomerSupportAgentPerformance](https://datamesse.github.io/#/project/ExcelCustomerSupportAgentPerformance)**
+
+[![My Excel report](https://github.com/datamesse/datamesse.github.io/raw/main/src/assets-portfolio/img-2022-06-excel-customer-support-agent-performance.gif?raw=true)](https://datamesse.github.io/#/project/ExcelCustomerSupportAgentPerformance)
+
 
 ### Original Data Sources
-* See below for random generator and sample dataset used.
+* See below for random generator and sample dataset used, followed by the complex Power Query code for the Power BI report, then by .
 
 
 ## INSTRUCTIONS TO CREATE RANDOMISED DATASET
+
+For a high-level overview of this Excel random data generator I created, see my blog post:
+* **[https://datamesse.github.io/#/post/1635598800](https://datamesse.github.io/#/post/1635598800)
+
+Otherwise, see details below:
 
 ### Random business and people's name generator
 
