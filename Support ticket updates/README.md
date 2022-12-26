@@ -3,7 +3,7 @@
 
 **Goal:** Summarise customer service staff performance across time zones, including much each company city provides follow-the-sun (FTS) support.
 
-**Approach:** Create a fictional dataset using Excel-based random person and support ticket generators, ensuring the data includes realistic patterns and outliers. Build a Power BI report that summarises the dataset and highlights outliers to prompt managerial review.
+**Approach:** Create a fictional dataset using Excel-based random person and support ticket generators, ensuring the data includes realistic patterns and outliers. Build a Power BI report that summarises that dataset, highlighting outliers to prompt managerial review.
 
 
 ## RESULT
