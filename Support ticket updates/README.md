@@ -1,18 +1,20 @@
-# Support ticket updates (global / follow-the-sun customer service)
+# Support ticket updates (Follow-The-Sun customer service)
 
 
-**Goal:** Report on the performance of customer support/service agents across timezones, including the degree to which each global office provides follow-the-sun (FTS) support.
+**Goal:** Summarise customer service staff performance across time zones, including much each company city provides follow-the-sun (FTS) support.
 
-**Approach:** Create a fictional dataset by using an Excel-based random person and support ticket generator, ensuring the data includes realistic patterns and outliers, then build a Power BI report that summarises patterns and highlights outlers to prompt managerial review.
+**Approach:** Create a fictional dataset using Excel-based random person and support ticket generators, ensuring the data includes realistic patterns and outliers. Build a Power BI report that summarises the dataset and highlights outliers to prompt managerial review.
 
 
 ## RESULT
-**[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)**
 
-![My Power BI visualisation](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2021-11-power-bi-follow-the-sun-customer-support.gif?raw=true)
+### My Power BI visualisation
+* **[https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)**
+
+[![My Power BI visualisation](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2021-11-power-bi-follow-the-sun-customer-support.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)
 
 ### Original Data Sources
-* See below
+* See below for random generator and sample dataset used.
 
 
 ## INSTRUCTIONS TO CREATE RANDOMISED DATASET
@@ -56,11 +58,11 @@ How *Ticket criticality ranges by country* works:
 **Note:** The current data in this worksheet is based on the randomised people I extracted using the first generator. If you have additional clients for other countries which are not provided here, you will need to add them in manually.
 
 
-After deciding on the names to be used for the support agents, populate the relevant columns under the **Staff** worksheet (indicated in red). The columns which are autopopulated using vlookups should be left alone (e.g. *Timezone* and *Randomiser helper*). 
+After deciding on the names to be used for the support agents, populate the relevant columns under the **Staff** worksheet (indicated in red). The columns which are auto-populated using VLOOKUPs should be left alone (e.g. *Timezone* and *Randomiser helper*). 
 
 ![Filling in support agent names in ticket update generator](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/04.png?raw=true)
 
-There are a number of columns representing the statistics for each agent that need to be manually defined  (indicated in blue).
+There are a number of columns representing the statistics for each agent that need to be manually defined (indicated in blue).
 
 ![Filling in support agent statistics](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/05.png?raw=true)
 
@@ -75,7 +77,7 @@ The *Assignment proportion* and *Assignment break* values need to be the same fo
 How it works: 
 
 **Updates 1** randomises between 1 and 100, and if the value is:
- - Less than or equal to the *Assignment propotion*, then randomise between 1 and *Assignment break*.
+ - Less than or equal to the *Assignment proportion*, then randomise between 1 and *Assignment break*.
  - More than *Assignment proportion*, randomise between *Assignment break* and *Number of agents in Office region*.
 The *Randomiser Helper* column uses the resulting value to specify the Agent for **Updates 1**.
 
@@ -121,7 +123,7 @@ Then manually define the response times for each client.
 
 3. Based on the previous point, copying data from the ticket updates generator to another open Excel workbook risks the **Updates** and **Assignment** worksheets re-randomising during that process, and causing discrepancies. To get around that, you can Save As each worksheet as a new tab delimited flat text file. Then copy-and-paste from those flat text files into the new Excel workbook, to avoid that problem.
 
-A third optional Excel dataset below was extracted from Wikipedia with relative data points on when Daylight Savings are applied for different timezones and the hour offsets, which I've referred to as "anchors".
+A third optional Excel dataset below was extracted from Wikipedia with relative data points on when Daylight Savings are applied for different time zones and the hour offsets, which I've referred to as "anchors".
 
 ### Standard and Daylight Saving Observations dataset
 * [https://github.com/datamesse/data-visualisation-datasets/blob/main/Support ticket updates/Time zone offsets and DST observations.xlsx](https://github.com/datamesse/data-visualisation-datasets/raw/main/Support%20ticket%20updates/Time%20zone%20offsets%20and%20DST%20observations.xlsx?raw=true)
@@ -193,7 +195,7 @@ in
   AnchorToDatetimezone
 ```
 
-* Since the previous function provided an actual anchor date/timezone that can be used to define if an offset is applicable to a date/time value, we then construct a function that checks for if and when offset should be applied by using the output of the previous function, then actually apply that offset.
+* Since the previous function provided an actual anchor date/time zone that can be used to define if an offset is applicable to a date/time value, we then construct a function that checks for if and when offset should be applied by using the output of the previous function, then actually apply that offset.
 
 ```
 let
