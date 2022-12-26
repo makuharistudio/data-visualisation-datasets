@@ -1,15 +1,17 @@
 # Singapore rental prices
 
 
-**Goal:** Help make Singapore rental price information more accessible to the global community by applying exchange rate calculations for major global currencies.
+**Goal:** Make Singapore rental prices more accessible to the global community by applying exchange rate calculations for major global currencies.
 
-**Approach:** Identify the lowest common date denominator between the native Singaporean rental price data and the exchange rate information available in OFX.com, then calculate based on that denominator, then build a report that highlights the pricing trend in a report viewer's selected country.
+**Approach:** Identify the lowest common date denominator (month-year or quarter-year) between the native Singaporean rental price data and the exchange rate data in OFX.com, calculate based on that denominator, then build a report that highlights the pricing trend in a report viewer's selected country.
 
 
 ## RESULT
-**[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/Quarterly-Singapore-median-rental-prices-by-currency/m-p/2125424)**
 
-![My Power BI visualisation](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2021-10-power-bi-quarterly-singapore-rental-prices-by-currency.gif?raw=true)
+**[My Power BI visualisation](My Power BI visualisation)**
+* **[https://community.powerbi.com/t5/Data-Stories-Gallery/Quarterly-Singapore-median-rental-prices-by-currency/m-p/2125424](https://community.powerbi.com/t5/Data-Stories-Gallery/Quarterly-Singapore-median-rental-prices-by-currency/m-p/2125424)**
+
+[![My Power BI visualisation](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2021-10-power-bi-quarterly-singapore-rental-prices-by-currency.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/Quarterly-Singapore-median-rental-prices-by-currency/m-p/2125424)
 
 * [Wrangled data sources](https://github.com/datamesse/data-visualisation-datasets/raw/main/Singapore%20rental%20prices/Singapore%20rental%20prices.xlsx)
 
