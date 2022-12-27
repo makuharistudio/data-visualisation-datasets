@@ -3,14 +3,14 @@
 
 **Goal:** Learn SQL Server Integration Services (SSIS) by merging 3 completely different sales data sources into a single new fictional data warehouse.
 
-**Approach:** Identify the dataset with the simplest schema as the basis to create SQL queries to align the other datasets into a cohesive structure. Build Power BI and Excel reports to summarise the merged dataset's profits.
+**Approach:** Identify the dataset with the simplest schema as the basis to create SQL queries to align the other datasets into a cohesive structure.
 
 This merging truncates and changes the records across the datasets for consistency, such as matching dates to cover specific years, remapping some United States sales to other countries, and renaming customers to better reflect their country of origin using a name randomiser used previously.
 
 * [https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates)
 
 
-## RESULTS
+## RESULT
 Screenshot of completed SSIS project (collapsed summary view), for expanded details and SQL code, see further below.
 
 ![Visual Studio of SSIS project](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/02.png?raw=true)
@@ -18,15 +18,9 @@ Screenshot of completed SSIS project (collapsed summary view), for expanded deta
 ### My SQL Server .bak file
 * **[https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/InternationalMarketplace.bak.zip](https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/InternationalMarketplace.bak.zip)**
 
-### My Power BI report
-* **[https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550)**
+**Important!** This page only shows the SQL code to make the SSIS package. For the Power BI and Excel report code, visit:
 
-[![My Power BI report](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2022-04-power-bi-international-marketplace-python-deneb.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550)
-
-### My Excel report
-* **[https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast](hhttps://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast)**
-
-[![My Excel report](https://datamesse.github.io/static/media/img-2022-10-excel-international-marketplace-profit-forecast.3adfbfda.gif?raw=true)](https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast)
+* **[https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/Power%20Query%20and%20Deneb%20code.md](https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/Power%20Query%20and%20Deneb%20code.md)**
 
 
 ### Original Data Sources

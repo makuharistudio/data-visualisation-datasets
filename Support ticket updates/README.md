@@ -531,7 +531,7 @@ in
 
 ## POWER BI REPORT MODEL
 
-The data model for the report appears as below. The reason why the Updates table is referenced as a separate Replies table is because the Replies table is catered specifically for public messages and replies, and involves a self-merge, whereas the Updates table is retained as-is for other potential analysis such as non-public internal updates. In a similar vein the Assignee table is referenced from the Agent table to allow filtering and visualisation of Assignee fields (e.g. country, city), and avoid the need to have non-performant merges with the Replies table.
+The Updates table is referenced as a separate Replies table because the Replies table is catered specifically for public messages and replies, and involves a self-merge, whereas the Updates table is retained as-is for other potential analysis such as non-public internal updates. In a similar vein the Assignee table is referenced from the Agent table to allow filtering and visualisation of Assignee fields (e.g. country, city), and avoid the need to have non-performant merges with the Replies table.
 
 ![Power BI report data model](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/08.png?raw=true)
 
