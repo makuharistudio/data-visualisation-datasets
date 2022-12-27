@@ -3,24 +3,28 @@
 
 **Goal:** Learn how to create a SQL Server Integration Services (SSIS) package by merging 3 completely different sales data sources into a single new fictional data warehouse.
 
-**Approach:** Identify the dataset with the smallest schema, and use it as the basis to create SQL queries align the other data sources into the same data structure, then build a Power BI report to summarise profits.
+**Approach:** Identify the dataset with the smallest schema as the basis to create SQL queries to align the other datasets into a cohesive structure. Build Power BI and Excel reports to summarise the merged dataset's profits.
 
 This merging involves changing the records across the data sources for consistency, such as matching dates to cover specific years, remapping some United States sales to new countries, and renaming customers to more realistically reflect their country of origin using a **[name randomiser](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates)**.
 
 
 ## RESULTS
-Screenshot of completed SSIS project (collapsed summary view, see details further below).
+Screenshot of completed SSIS project (collapsed summary view), for expanded details and SQL code, see further below.
 
 ![Visual Studio of SSIS project](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/02.png?raw=true)
 
-**[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550)**
+### My SQL Server .bak file
+* **[https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/InternationalMarketplace.bak.zip](https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/InternationalMarketplace.bak.zip)**
 
-![My Power BI visualisation](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2022-04-power-bi-international-marketplace-python-deneb.gif?raw=true)
+### My Power BI report
+* **[https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550)**
 
-**[My Excel visualisation](https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast)**
+[![My Power BI report](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2022-04-power-bi-international-marketplace-python-deneb.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550)
 
-![My Excel visualisation](https://datamesse.github.io/static/media/img-2022-10-excel-international-marketplace-profit-forecast.3adfbfda.gif?raw=true)
+### My Excel report
+* **[https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast](hhttps://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast)**
 
+[![My Excel report](https://datamesse.github.io/static/media/img-2022-10-excel-international-marketplace-profit-forecast.3adfbfda.gif?raw=true)](https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast)
 
 
 ### Original Data Sources
@@ -172,7 +176,7 @@ I used SQL Server 2019 Developer Edition with Visual Studio Community 2019 and t
 Only key information is outlined, not general SSIS steps. If you are unfamiliar with SSIS, I recommend the LinkedIn Learning course **["SQL Server Integration Services" by Adam Wilbert](https://www.linkedin.com/learning/sql-server-integration-services-2)**.
 
 
-**Step 1.** Copy the APAC Superstore data to a tabl delimited Unicode text file.
+**Step 1.** Copy the APAC Superstore data to a tab-delimited Unicode text file.
 
 From Tableau Desktop, open the APAC Superstore dataset, and in a new sheet, add all the fields from the Orders table, being mindful to convert all the date-related fields to Discrete and Exact Date formats to render them properly.
 
@@ -206,7 +210,7 @@ I named my project "International Marketplace", but you can name your project an
 
 ## Creating SSIS package and T-SQL
 
-Below are screenshots of expanded views of the package package with each element numbered, and T-SQL scripts used in each.
+Below are screenshots for expanded views of the package with each element numbered, and T-SQL scripts used in each.
 
 ### 1  Country using World Wide Importers as the base
 
@@ -417,7 +421,7 @@ group by
 update z_statecity set datasource = N'APAC Superstore' where datasource is null;
 ```
 
-**2-4  Update StateCity staging using the StateCity remappng table**
+**2-4  Update StateCity staging using the StateCity remapping table**
  - Connection: International Marketplace
 
 ```
@@ -2010,7 +2014,7 @@ end;
 
 ### 9 Re-apply Step 5-7 to realign the Orderline IDs (added 14/01/2022)
 
-The orderline ID assignment in an earlier Step 5-7 needs to be re-run as it had a depedency on the Customer ID, and Step 8 has shuffled them.
+The orderline ID assignment in an earlier Step 5-7 needs to be re-run as it had a dependency on the Customer ID, and Step 8 has shuffled them.
 
  - Connection: International Marketplace
 
@@ -2060,7 +2064,7 @@ end;
 
 With the extra steps of 8 and 9 added, the sales for United States become distributed out to other markets.
 
-![Sales records transfered to other states](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/18.png?raw=true)
+![Sales records transferred to other states](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/18.png?raw=true)
 
 
 ### Extra SQL queries for practice
