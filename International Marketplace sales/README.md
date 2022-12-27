@@ -5,7 +5,9 @@
 
 **Approach:** Identify the dataset with the simplest schema as the basis to create SQL queries to align the other datasets into a cohesive structure. Build Power BI and Excel reports to summarise the merged dataset's profits.
 
-This merging involves changing the records across the data sources for consistency, such as matching dates to cover specific years, remapping some United States sales to new countries, and renaming customers to more realistically reflect their country of origin using a **[name randomiser](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates)**.
+This merging truncates and changes the records across the datasets for consistency, such as matching dates to cover specific years, remapping some United States sales to other countries, and renaming customers to better reflect their country of origin using a name randomiser used previously.
+
+* [https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates)
 
 
 ## RESULTS
