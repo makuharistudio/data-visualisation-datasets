@@ -13,10 +13,7 @@ This merging truncates and changes the records across the datasets for consisten
 ## RESULT
 Screenshot of completed SSIS project (collapsed summary view), for expanded details and SQL code, see further below.
 
-![Visual Studio of SSIS project](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/02.png?raw=true)
-
-### My SQL Server .bak file
-* **[https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/InternationalMarketplace.bak.zip](https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/InternationalMarketplace.bak.zip)**
+[![Visual Studio of SSIS project](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/02.png?raw=true)](https://datamesse.github.io/#/post/1641906000)
 
 **Important!** This page only shows the SQL code to make the SSIS package. For the Power BI and Excel report code, visit:
 
