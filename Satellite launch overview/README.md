@@ -1,15 +1,15 @@
 # Satellite launch overview
 
 
-**Goal:** Having read several online articles with varied numbers of satellites in orbit, I want to see how many were launched historically versus the number that are functional and actively monitored.
+**Goal:** Compare how many satellites were launched historically versus the number that are functional and actively monitored.
 
-**Approach:** Merge the UCSUSA dataset for actively monitored satellites (which has been referenced in several articles and Tableau Public dashboards), with data webscraped from n2yo.com for all historical launches of satellites, the build a Power BI report that compares those numbers and overall launch trend.
+**Approach:** Merge the UCSUSA dataset for actively monitored satellites (which has been referenced in several articles and Tableau Public dashboards), with data webscraped from n2yo.com for all historical launches of satellites. Then build a Power BI report to compare those numbers and summarise overall trend.
 
 
 ## RESULT
 **[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077)**
 
-![My Power BI visualisation](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2022-08-satellite-launch-overview.gif?raw=true)
+[![My Power BI visualisation](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2022-08-satellite-launch-overview.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077)
 
 ### Original Data Sources
 * [Actively monitored satellites from ucsusa.org](https://www.ucsusa.org/resources/satellite-database)
