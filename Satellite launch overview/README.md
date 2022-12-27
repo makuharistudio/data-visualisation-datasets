@@ -7,9 +7,12 @@
 
 
 ## RESULT
-**[My Power BI visualisation](https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077)**
 
-[![My Power BI visualisation](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2022-08-satellite-launch-overview.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077)
+### My Power BI report
+* **[https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077](https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077)**
+
+[![My Power BI report](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2022-08-satellite-launch-overview.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077)
+
 
 ### Original Data Sources
 * [Actively monitored satellites from ucsusa.org](https://www.ucsusa.org/resources/satellite-database)
