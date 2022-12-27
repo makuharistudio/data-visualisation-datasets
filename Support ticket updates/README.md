@@ -26,7 +26,7 @@
 ## INSTRUCTIONS TO CREATE RANDOMISED DATASET
 
 For a high-level overview of this Excel random data generator I created, see my blog post:
-* **[https://datamesse.github.io/#/post/1635598800](https://datamesse.github.io/#/post/1635598800)
+* **[https://datamesse.github.io/#/post/1635598800](https://datamesse.github.io/#/post/1635598800)**
 
 Otherwise, see details below:
 
