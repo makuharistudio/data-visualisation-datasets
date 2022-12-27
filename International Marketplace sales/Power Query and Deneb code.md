@@ -12,7 +12,7 @@
 [![My Power BI report](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2022-04-power-bi-international-marketplace-python-deneb.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550)
 
 ### My Excel report
-* **[https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast](hhttps://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast)**
+* **[https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast](https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast)**
 
 [![My Excel report](https://datamesse.github.io/static/media/img-2022-10-excel-international-marketplace-profit-forecast.3adfbfda.gif?raw=true)](https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast)
 
