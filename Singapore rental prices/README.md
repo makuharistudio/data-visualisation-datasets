@@ -17,7 +17,7 @@
 
 ### Original Data Sources
 * [Singapore rental prices from data.gov.sg](https://data.gov.sg/dataset/median-rent-by-town-and-flat-type)
-* [Historical exchange rates from ofx.com](https://www.ofx.com/en-us/forex-news/historical-exchange-rates/ )
+* [Historical exchange rates from ofx.com](https://www.ofx.com/en-us/forex-news/historical-exchange-rates)
 
 
 ## POWER BI REPORT CODE
