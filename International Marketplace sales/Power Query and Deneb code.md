@@ -21,6 +21,7 @@
 * Customised International Marketplace sales SSIS package [https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales)
 * Actual dataset used is the normalised version of the International Marketplace sales dataset, downloadable here: [https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx](https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx)
 
+Listed below are the Power BI report's model and code followed by the Excel report's model and code.
 
 ## POWER BI REPORT MODEL
 
@@ -377,5 +378,257 @@ This is the code used for the custom Deneb visuals
 }
 ```
 
+## EXCEL REPORT MODEL
+
+At the time of writing, the OOTB forecasting function in Excel cannot be called from within the Power Pivot data model.
+
+![Excel report data model](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/20.png?raw=true)
+
+To work around this, a regular worksheet is used to calculate the profit forecasts. For more information on step-by-step implementation, see this blog post comparing manual forecasting vs FORECAST.ETS:
+
+* [https://datamesse.github.io/#/post/1666962000](https://datamesse.github.io/#/post/1666962000)
 
 ## EXCEL REPORT CODE
+
+### DAX for fundamental calculations
+
+Sales current year
+
+```
+=VAR currentyear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))
+RETURN CALCULATE( [Total sales], YEAR(FactSales[OrderDate]) = currentyear)
+```
+
+Average discount current year
+
+```
+=VAR currentyear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))
+RETURN CALCULATE(AVERAGE(FactSales[DiscountPercentage]), YEAR(FactSales[OrderDate]) = currentyear)
+```
+
+### DAX measures for sparkline chart labels
+
+Total Sales
+
+```
+=IF(ISBLANK(FactSales[Sales current year]) = TRUE, "N/A",
+ SWITCH (
+          TRUE (),
+          FactSales[Sales current year] >= 1000000, CONCATENATE ( "$", CONCATENATE ( ROUNDUP(DIVIDE(FactSales[Sales current year], 1000000,0),2), " M" )),
+          FactSales[Sales current year] >= 1000, CONCATENATE ( "$", CONCATENATE ( ROUNDUP(DIVIDE(FactSales[Sales current year], 1000, 0),2), " K" )),
+          FactSales[Sales current year] < 1000, CONCATENATE ( "$", FactSales[Sales current year])
+))
+```
+
+Total Profit
+
+```
+=IF(ISBLANK([Profit current year]) = TRUE, "N/A",
+ SWITCH (
+          TRUE (),
+          [Profit current year] >= 1000000, CONCATENATE ( "$", CONCATENATE ( ROUNDUP(DIVIDE([Profit current year], 1000000,0),2), " M" )),
+          [Profit current year] >= 1000, CONCATENATE ( "$", CONCATENATE ( ROUNDUP(DIVIDE([Profit current year], 1000, 0),2), " K" )),
+          [Profit current year] < 1000, CONCATENATE ( "$", [Profit current year])
+))
+```
+
+Total Orders
+ ```
+=IF(ISBLANK([Orders current year]) = TRUE, "N/A",
+SWITCH (
+          TRUE (),
+          [Orders current year] >= 1000000, CONCATENATE ( ROUNDUP(DIVIDE([Orders current year], 1000000,0),2), " M" ),
+          [Orders current year] >= 1000, CONCATENATE ( ROUNDUP(DIVIDE([Orders current year], 1000, 0),1), " K" ),
+          [Orders current year] < 1000, [Orders current year]
+))
+```
+
+Profit per order
+```
+ =IF(ISBLANK([Profit per order current year]) = TRUE, "N/A",
+  SWITCH (
+          TRUE (),
+          [Profit per order current year] >= 1000000, CONCATENATE ( "$", CONCATENATE ( ROUNDUP(DIVIDE([Profit per order current year], 1000000,0),2), " M" )),
+          [Profit per order current year] >= 1000, CONCATENATE ( "$", CONCATENATE ( ROUNDUP(DIVIDE([Profit per order current year], 1000, 0),2), " K" )),
+          [Profit per order current year] < 1000, CONCATENATE ( "$", ROUNDUP([Profit per order current year],0))
+ ))
+```
+
+Average Discount %
+
+```
+ =VAR currentyear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))
+RETURN CALCULATE(AVERAGE(FactSales[DiscountPercentage]), YEAR(FactSales[OrderDate]) = currentyear)
+```
+
+Year-on-Year change in Sales
+
+```
+=VAR prioryear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))-1
+VAR currentyear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))
+VAR prioryearsales = CALCULATE( [Total sales], YEAR(FactSales[OrderDate]) = prioryear)
+VAR CurrentSales =
+    CALCULATE(
+        [Total sales],
+        YEAR(FactSales[OrderDate]) = currentyear,
+        ALL(FactSales)
+    )
+VAR PriorSales =
+    CALCULATE(
+        [Total sales],
+        YEAR(FactSales[OrderDate]) = prioryear,
+        ALL(FactSales)
+    )
+RETURN
+DIVIDE(CurrentSales - PriorSales, PriorSales)
+```
+
+Year-on-Year change in Profit
+
+```
+=VAR prioryear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))-1
+VAR currentyear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))
+VAR prioryearprofit = CALCULATE( [Total profit], YEAR(FactSales[OrderDate]) = prioryear)
+VAR CurrentProfit =
+    CALCULATE(
+        [Total profit],
+        YEAR(FactSales[OrderDate]) = currentyear,
+        ALL(FactSales)
+    )
+VAR PriorProfit =
+    CALCULATE(
+        [Total profit],
+        YEAR(FactSales[OrderDate]) = prioryear,
+        ALL(FactSales)
+    )
+RETURN
+DIVIDE(CurrentProfit - PriorProfit, PriorProfit)
+```
+
+Year-on-Year change in Profit Margin
+
+```
+=VAR prioryear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))-1
+VAR currentyear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))
+VAR prioryearsales = CALCULATE( [Total sales], YEAR(FactSales[OrderDate]) = prioryear)
+VAR prioryearprofit = CALCULATE( [Total profit], YEAR(FactSales[OrderDate]) = prioryear)
+VAR CurrentSales =
+    CALCULATE(
+        [Total sales],
+        YEAR(FactSales[OrderDate]) = currentyear,
+        ALL(FactSales)
+    )
+VAR PriorSales =
+    CALCULATE(
+        [Total sales],
+        YEAR(FactSales[OrderDate]) = prioryear,
+        ALL(FactSales)
+    )
+VAR CurrentProfit =
+    CALCULATE(
+        [Total profit],
+        YEAR(FactSales[OrderDate]) = currentyear,
+        ALL(FactSales)
+    )
+VAR PriorProfit =
+    CALCULATE(
+        [Total profit],
+        YEAR(FactSales[OrderDate]) = prioryear,
+        ALL(FactSales)
+    )
+VAR PriorProfitMargin = DIVIDE(PriorProfit, PriorSales,0)
+VAR CurrentProfitMargin = DIVIDE(CurrentProfit, CurrentSales,0)
+RETURN
+CurrentProfitMargin - PriorProfitMargin
+```
+
+Year-on-Year change in Orders
+
+```
+=VAR prioryear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))-1
+VAR currentyear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))
+VAR prioryearorders = CALCULATE( [Total sales], YEAR(FactSales[OrderDate]) = prioryear)
+VAR CurrentOrders =
+    CALCULATE(
+        [Total orders],
+        YEAR(FactSales[OrderDate]) = currentyear,
+        ALL(FactSales)
+    )
+VAR PriorOrders =
+    CALCULATE(
+        [Total orders],
+        YEAR(FactSales[OrderDate]) = prioryear,
+        ALL(FactSales)
+    )
+RETURN
+DIVIDE(CurrentOrders - PriorOrders, PriorOrders)
+```
+
+Year-on-Year change in Profit per Order
+
+```
+=VAR prioryear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))-1
+VAR currentyear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))
+VAR prioryearprofit = CALCULATE( [Total profit], YEAR(FactSales[OrderDate]) = prioryear)
+VAR prioryearorders = CALCULATE( [Total orders], YEAR(FactSales[OrderDate]) = prioryear)
+VAR CurrentProfit =
+    CALCULATE(
+        [Total profit],
+        YEAR(FactSales[OrderDate]) = currentyear,
+        ALL(FactSales)
+    )
+VAR PriorProfit =
+    CALCULATE(
+        [Total profit],
+        YEAR(FactSales[OrderDate]) = prioryear,
+        ALL(FactSales)
+    )
+VAR CurrentOrders =
+    CALCULATE(
+        [Total orders],
+        YEAR(FactSales[OrderDate]) = currentyear,
+        ALL(FactSales)
+    )
+VAR PriorOrders =
+    CALCULATE(
+        [Total orders],
+        YEAR(FactSales[OrderDate]) = prioryear,
+        ALL(FactSales)
+    )
+VAR PriorProfitPerOrder = DIVIDE(PriorProfit, PriorOrders,0)
+VAR CurrentProfitPerOrder = DIVIDE(CurrentProfit, CurrentOrders,0)
+RETURN
+DIVIDE(CurrentProfitPerOrder - PriorProfitPerOrder, PriorProfitPerOrder, 0)
+```
+
+Year-on-Year change in Average Discount %
+
+```
+=VAR prioryear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))-1
+VAR currentyear = YEAR(CALCULATE(MAX(FactSales[OrderDate]), ALL(FactSales)))
+VAR prioryearAVGdiscount = CALCULATE(AVERAGE(FactSales[DiscountPercentage]), YEAR(FactSales[OrderDate]) = prioryear)
+VAR currentyearAVGdiscount = CALCULATE(AVERAGE(FactSales[DiscountPercentage]), YEAR(FactSales[OrderDate]) = currentyear)
+RETURN
+currentyearAVGdiscount - prioryearAVGdiscount
+```
+
+### Excel formulas
+
+Change in Year-on-Year Sales with up and down arrows
+
+```
+=CONCAT(IF($B$6>=0,UNICHAR(9650),UNICHAR(9660)),"  YoY")
+```
+
+Profit forecast
+
+In this example:
+N3 = Index for the year month
+L3:L26 = Range of actual profits across all year months
+I3:I26 = Range of indexes for actual profits
+12 = Seasonality across 12 months
+1 = Data completion
+
+```
+=IF(ISBLANK($N3),"",FORECAST.ETS($N3,$L$3:$L$26,$I$3:$I$26,12,1))
+```
