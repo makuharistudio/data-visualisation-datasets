@@ -1,3 +1,5 @@
+Click the :earth_asia: icon to visit relevant web pages, or the :inbox_tray: icon to download a file.
+
 Listed below are SQL scripts I created to normalise the [sample World Wide Importers database](https://github.com/Microsoft/sql-server-samples/releases/tag/wide-world-importers-v1.0), so it could be more easily used in star schema form when visualising in Power BI.
 - Wrangled data source [:inbox_tray:](/Wide%20World%20Importers/Wide%20World%20Importers%20normalised%20extracts.xlsx?raw=true)
 - SQL queries [:inbox_tray:](/Wide%20World%20Importers/SQL%20queries.sql)

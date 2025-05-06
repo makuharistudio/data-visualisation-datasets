@@ -2,6 +2,8 @@
 
 **Approach:** Create a fictional dataset using Excel-based random person and support ticket generators, ensuring the data includes realistic patterns and outliers. Build Power BI and Excel reports which summarise that dataset, highlighting outliers to prompt managerial review.
 
+Click the :earth_asia: icon to visit relevant web pages, or the :inbox_tray: icon to download a file.
+
 
 ### RESULTS
 
@@ -25,7 +27,7 @@ Otherwise, see details below:
 
 ### Random business and people's name generator
 
-- Download Excel random business and people generator [:inbox_try:](/Support%20ticket%20updates/Random%20name%20and%20business%20generator.xlsx?raw=true)
+- Download Excel random business and people generator [:inbox_tray:](/Support%20ticket%20updates/Random%20name%20and%20business%20generator.xlsx?raw=true)
 
 By default this creates 3000 random names across 500 random businesses.
 
@@ -38,9 +40,9 @@ Revise your output for duplicates or other such data. Once your output is cleane
 
 ### Random support ticket update generator
 
-- Download Excel support ticket updates generator [:inbox_try:](/Support%20ticket%20updates/Support%20ticket%20updates%20generator.xlsx?raw=true)
+- Download Excel support ticket updates generator [:inbox_tray:](/Support%20ticket%20updates/Support%20ticket%20updates%20generator.xlsx?raw=true)
 
-- Sample output can be downloaded here [:inbox_try:](/Support%20ticket%20updates/Support%20ticket%20updates.xlsx?raw=true)
+- Sample output can be downloaded here [:inbox_tray:](/Support%20ticket%20updates/Support%20ticket%20updates.xlsx?raw=true)
 
 Because Excel's randomisation appears to create a discrete uniform distribution, the **Main** worksheet is used to define deliberate trends.
 
