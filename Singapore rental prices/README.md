@@ -1,26 +1,24 @@
-# Singapore rental prices
-
-
 **Goal:** Make Singapore rental prices more accessible to the global community by applying exchange rate calculations for major global currencies.
 
 **Approach:** Identify the lowest common date denominator (month-year or quarter-year) between the native Singaporean rental price data and the exchange rate data in OFX.com, calculate based on that denominator, then build a report that highlights the pricing trend in a report viewer's selected country.
 
-
-## RESULT
-
-### My Power BI report
-* **[https://community.powerbi.com/t5/Data-Stories-Gallery/Quarterly-Singapore-median-rental-prices-by-currency/m-p/2125424](https://community.powerbi.com/t5/Data-Stories-Gallery/Quarterly-Singapore-median-rental-prices-by-currency/m-p/2125424)**
-
-[![My Power BI report](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2021-10-power-bi-quarterly-singapore-rental-prices-by-currency.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/Quarterly-Singapore-median-rental-prices-by-currency/m-p/2125424)
-
-* [Wrangled data sources](https://github.com/datamesse/data-visualisation-datasets/raw/main/Singapore%20rental%20prices/Singapore%20rental%20prices.xlsx)
-
-### Original Data Sources
-* [Singapore rental prices from data.gov.sg](https://data.gov.sg/dataset/median-rent-by-town-and-flat-type)
-* [Historical exchange rates from ofx.com](https://www.ofx.com/en-us/forex-news/historical-exchange-rates)
+Click the :earth_asia: icon to visit relevant web pages, or the :inbox_tray: icon to download a file.
 
 
-## POWER BI REPORT CODE
+### RESULT
+
+- **My Power BI report** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/Quarterly-Singapore-median-rental-prices-by-currency/m-p/2125424)
+
+[![My Power BI report](https://github.com/makuharistudio/makuharistudio.github.io/blob/main/src/assets/portfolio/img-2021-10-power-bi-quarterly-singapore-rental-prices-by-currency.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/Quarterly-Singapore-median-rental-prices-by-currency/m-p/2125424)
+
+- Original Data Sources
+  - Singapore rental prices from data.gov.sg [:earth_asia:](https://data.gov.sg/dataset/median-rent-by-town-and-flat-type)
+  - Historical exchange rates from ofx.com [:earth_asia:](https://www.ofx.com/en-us/forex-news/historical-exchange-rates)
+
+- Wrangled data sources [:inbox_tray:](/Singapore%20rental%20prices/Singapore%20rental%20prices.xlsx?raw=true)
+
+
+### POWER BI REPORT CODE
 
 ### Power Query for Median Rent By Town & Flat Type data
 What makes this code interesting is the original data source has a "pre-pivoted" structure where there are columns for each exchange rate, the rent is calculated for each currency, then unpivoted using Table.UnpivotOtherColumns().

@@ -5,7 +5,7 @@ Click the :earth_asia: icon to visit relevant web pages, or the :inbox_tray: ico
 ## AppSource Deneb maps
 
 - **My Power BI visualisation** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/AppSource-Deneb-Maps/m-p/2930366)
-  - Power Query and Deneb code [:earth_asia:](https://datamesse.github.io/#/post/1669381200)
+  - Power Query and Deneb code [:earth_asia:](https://makuharistudio.github.io/#/blog/how-to-use-geographic-maps-in-power-bi-with-appsource-deneb)
 
 - Original data sources
   - GeoJSON Maps of the globe by Ash Kyd [:earth_asia:](https://geojson-maps.ash.ms)
@@ -15,7 +15,7 @@ Click the :earth_asia: icon to visit relevant web pages, or the :inbox_tray: ico
 ## Satellite launch overview
 
 - **My Power BI visualisation** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077)
-  - Power Query and Deneb code [:earth_asia:](https://github.com/datamesse/data-visualisation-datasets/tree/main/Satellite%20launch%20overview)
+  - Power Query and Deneb code [:earth_asia:](https://github.com/makuharistudio/data-visualisation-datasets/tree/main/Satellite%20launch%20overview)
 
 - Original data sources
   - Actively monitored satellites from ucsusa.org [:earth_asia:](https://www.ucsusa.org/resources/satellite-database)
@@ -26,9 +26,9 @@ Click the :earth_asia: icon to visit relevant web pages, or the :inbox_tray: ico
 
 - **My Power BI visualisation** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550#M7154)
 
-- **My Excel dashboard** [:earth_asia:](https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast)
-  - Power Query and Deneb code [:earth_asia:](https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/Power%20Query%20and%20Deneb%20code.md)
-  - Data source files and description [:earth_asia:](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales)
+- **My Excel dashboard** [:earth_asia:](https://makuharistudio.github.io/#/portfolio/international-marketplace-profit-forecast)
+  - Power Query and Deneb code [:earth_asia:](https://github.com/makuharistudio/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/Power%20Query%20and%20Deneb%20code.md)
+  - Data source files and description [:earth_asia:](https://github.com/makuharistudio/data-visualisation-datasets/tree/main/International%20Marketplace%20sales)
 
 - Original data sources
   - APAC Superstore dataset can be extracted from Tableau Desktop's *Saved Data Sources*.
@@ -40,16 +40,16 @@ Click the :earth_asia: icon to visit relevant web pages, or the :inbox_tray: ico
 
 - **My Power BI visualisation** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)
 
-- **My Excel dashboard** [:earth_asia:](https://datamesse.github.io/#/project/ExcelCustomerSupportAgentPerformance)
+- **My Excel dashboard** [:earth_asia:](https://makuharistudio.github.io/#/portfolio/customer-support-agent-performance)
 
-- Data source files and description [:earth_asia:](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates)
+- Data source files and description [:earth_asia:](https://github.com/makuharistudio/data-visualisation-datasets/tree/main/Support%20ticket%20updates)
 
 
 ## Singapore rental prices
 
 - **My Power BI visualisation** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/Quarterly-Singapore-median-rental-prices-by-currency/m-p/2125424)
-  - Power Query code [:earth_asia:](https://github.com/datamesse/data-visualisation-datasets/tree/main/Singapore%20rental%20prices)
-  - Wrangled data sources [:inbox_tray:](https://github.com/datamesse/data-visualisation-datasets/raw/main/Singapore%20rental%20prices/Singapore%20rental%20prices.xlsx)
+  - Power Query code [:earth_asia:](https://github.com/makuharistudio/data-visualisation-datasets/tree/main/Singapore%20rental%20prices)
+  - Wrangled data sources [:inbox_tray:](https://github.com/makuharistudio/data-visualisation-datasets/raw/main/Singapore%20rental%20prices/Singapore%20rental%20prices.xlsx?raw=true)
 
 - Original data sources
   - Singapore rental prices [:earth_asia:](https://data.gov.sg/dataset/median-rent-by-town-and-flat-type)

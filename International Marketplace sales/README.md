@@ -25,13 +25,13 @@ Screenshot of completed SSIS project (collapsed summary view). For the expanded 
 
 
 **Download Options**
-- Database backup .bak file for SQL Server [:inbox_tray:](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/InternationalMarketplace.bak.zip)
+- Database backup .bak file for SQL Server [:inbox_tray:](https://github.com/makuharistudio/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/InternationalMarketplace.bak.zip)
 
 ![SQL Server of views to export dataset to Excel](/International%20Marketplace%20sales/screenshots/03.png?raw=true)
 
-- Normalised dataset for Power BI in Excel format [:inbox_tray:](/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx)
+- Normalised dataset for Power BI in Excel format [:inbox_tray:](/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx?raw=true)
 
-- Denormalised dataset for Tableau in Excel format [:inbox_tray:](/International%20Marketplace%20sales/International%20Marketplace%20Denormalised%20for%20Tableau.xlsx)
+- Denormalised dataset for Tableau in Excel format [:inbox_tray:](/International%20Marketplace%20sales/International%20Marketplace%20Denormalised%20for%20Tableau.xlsx?raw=true)
 
 The Excel file for Power BI is based on:
  - v_Dim_City
@@ -180,7 +180,7 @@ Open a new Excel worksheet, paste the data, then Save As a Unicode .txt file. Th
 **Step 4.** Download all the following data remapping files.
 
 Download all the Unicode files from this folder
-[:earth_asia:](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/Text%20files%20for%20value%20remapping%20in%20SSIS)
+[:earth_asia:](/International%20Marketplace%20sales/text%20files%20for%20value%20remapping%20in%20SSIS/)
 
 **Step 5.** Create a new SSIS project and connections.
 
@@ -190,7 +190,7 @@ I named my project "International Marketplace", but you can name your project an
 
 ![Connection Managers](/International%20Marketplace%20sales/screenshots/07.png?raw=true)
 
-## Creating SSIS package and T-SQL
+### Creating SSIS package and T-SQL
 
 Below are screenshots for expanded views of the package with each element numbered, and T-SQL scripts used in each.
 

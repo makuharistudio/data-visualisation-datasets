@@ -1,5 +1,3 @@
-## Motorola Twitter sentiment analysis overview
-
 Incomplete.
 
 **Goal:** ????
@@ -16,9 +14,8 @@ Incomplete.
 
 
 I set up a virtual machine EC2 instance on AWS, then setup a Python Virtual Environment
-* **[?????](https://datamesse.github.io/#/post/???????)**
+* **[?????](https://makuharistudio.github.io/#/blog/???????)**
 
-https://datamesse.github.io/#/post/1659189600
 
 ```
 python -m venv C:\Project\twitter-sentiment-analysis\venv
@@ -43,5 +40,3 @@ Other links to consider:
 ["Get TWEETS by User and Hashtag with Python | Twitter API 2022" by AI Spectrum](https://www.youtube.com/watch?v=FmbEhKSpR7M)
 
 ["how to automate search of trending hashtag and number of tweets from those hashtags" by iknowpython](https://www.youtube.com/watch?v=ywl--vO3oGs)
-Finding woeid country Where on earth ID for australia
-55949070

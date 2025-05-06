@@ -1,42 +1,37 @@
-# International Marketplace profit predictions
-
 **Goal:** Learn both code-based and out-of-the-box (OOTB) in-application methods for statistical predictions.
 
 **Approach:** Create profit prediction reports using Power BI with embedded Python code, and using Excel with its OOTB exponential smoothing algorithm.
 
-## RESULTS
 
-### My Power BI report
-* **[https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550)**
+### RESULTS
 
-[![My Power BI report](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2022-04-power-bi-international-marketplace-python-deneb.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550)
+- **My Power BI report** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550)
 
-### My Excel report
-* **[https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast](https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast)**
+[![My Power BI report](https://github.com/makuharistudio/makuharistudio.github.io/blob/main/src/assets/portfolio/img-2022-04-power-bi-international-marketplace-python-deneb.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550)
 
-[![My Excel report](https://datamesse.github.io/static/media/img-2022-10-excel-international-marketplace-profit-forecast.3adfbfda.gif?raw=true)](https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast)
+- **My Excel report** [:earth_asia:](https://makuharistudio.github.io/#/portfolio/international-marketplace-profit-forecast)
+
+[![My Excel report](https://github.com/makuharistudio/makuharistudio.github.io/blob/main/src/assets/portfolio/img-2022-10-excel-international-marketplace-profit-forecast.gif?raw=true?raw=true)](https://makuharistudio.github.io/#/portfolio/international-marketplace-profit-forecast)
 
 
-### Original Data Source
-* Customised International Marketplace sales SSIS package [https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales)
-* Actual dataset used is the normalised version of the International Marketplace sales dataset, downloadable here: [https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx](https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx)
+- Original data source
+  - Customised International Marketplace sales SSIS package [:earth_asia:](https://github.com/makuharistudio/data-visualisation-datasets/tree/main/International%20Marketplace%20sales)
+  - Actual dataset used is the normalised version of the International Marketplace sales dataset, downloadable here: [:inbox_tray:](/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx?raw=true)
 
 Listed below are the Power BI report's model and code followed by the Excel report's model and code.
 
-## POWER BI REPORT MODEL
+### POWER BI REPORT MODEL
 
 The profit predictions were aggregated in Python at the year-month level via the Prediction table, but that data is stored as the 1st day for each month, which allowed the relationship to the Calendar table.
 
-![Power BI report data model](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/19.png?raw=true)
+![Power BI report data model](/International%20Marketplace%20sales/screenshots/19.png)
 
 
 ## POWER BI REPORT CODE
 
 ### Python code for monthly predicted profit values
 
-See my blog post on how to set this up:
-
-* **[Add forecasts from Python using Visual Studio Code to Power BI](https://datamesse.github.io/#/post/1650117600)**
+See my blog post on how to set this up [:earth_asia:](https://makuharistudio.github.io/#/blog/add-forecasts-from-python-using-visual-studio-code-to-power-bi)
 
 ```
 import pandas as pd
@@ -378,17 +373,16 @@ This is the code used for the custom Deneb visuals
 }
 ```
 
-## EXCEL REPORT MODEL
+### EXCEL REPORT MODEL
 
 At the time of writing, the OOTB forecasting function in Excel cannot be called from within the Power Pivot data model.
 
-![Excel report data model](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/20.png?raw=true)
+![Excel report data model](/International%20Marketplace%20sales/screenshots/20.png?raw=true)
 
-To work around this, a regular worksheet is used to calculate the profit forecasts. For more information on step-by-step implementation, see this blog post comparing manual forecasting vs FORECAST.ETS:
+To work around this, a regular worksheet is used to calculate the profit forecasts. For more information on step-by-step implementation, see this blog post comparing manual forecasting vs FORECAST.ETS [:earth_asia:](https://makuharistudio.github.io/#/blog/comparing-manual-forecasting-with-excels-built-in-forecastets-function)
 
-* [https://datamesse.github.io/#/post/1666962000](https://datamesse.github.io/#/post/1666962000)
 
-## EXCEL REPORT CODE
+### EXCEL REPORT CODE
 
 ### DAX for fundamental calculations
 

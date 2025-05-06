@@ -1,33 +1,30 @@
-# Satellite launch overview
-
-
 **Goal:** Compare how many satellites were launched historically versus the number that are functional and actively monitored.
 
 **Approach:** Merge the UCSUSA dataset for actively monitored satellites (which has been referenced in several articles and Tableau Public dashboards), with data webscraped from n2yo.com for all historical launches of satellites. Then build a Power BI report to compare those numbers and summarise overall trend.
 
-
-## RESULT
-
-### My Power BI report
-* **[https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077](https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077)**
-
-[![My Power BI report](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2022-08-satellite-launch-overview.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077)
+Click the :earth_asia: icon to visit relevant web pages, or the :inbox_tray: icon to download a file.
 
 
-### Original Data Sources
-* [Actively monitored satellites from ucsusa.org](https://www.ucsusa.org/resources/satellite-database)
-* [Historical satellites n2yo.com webscraped dataset by Robin S. from kaggle.com](https://www.kaggle.com/datasets/heyrobin/satellite-data-19572022)
+### RESULT
+
+- **My Power BI report** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077)
+
+[![My Power BI report](https://github.com/makuharistudio/makuharistudio.github.io/blob/main/src/assets/portfolio/img-2022-08-satellite-launch-overview.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077)
+
+
+- Original data sources
+  - Actively monitored satellites from ucsusa.org [:earth_asia:](https://www.ucsusa.org/resources/satellite-database)
+  - Historical satellites n2yo.com webscraped dataset by Robin S. from kaggle.com [:earth_asia:](https://www.kaggle.com/datasets/heyrobin/satellite-data-19572022)
 
 **Note:** Data wrangling and cleaning takes place within the Power Query code below without reference to an external re-mapping data source, but summary Excel files for the remaps performed on each data source is available here:
-* [Remapping n2yo.com to match UCSUSA](https://github.com/datamesse/data-visualisation-datasets/blob/main/Satellite%20launch%20overview/Excel%20files%20for%20value%20remapping/Remapping%20n2yo.com%20to%20match%20ucsusa%20dataset.xlsx)
-* [Remapping UCSUSA to match n2yo.com](https://github.com/datamesse/data-visualisation-datasets/blob/main/Satellite%20launch%20overview/Excel%20files%20for%20value%20remapping/Remapping%20ucsusa%20to%20match%20n2yo.com%20dataset.xlsx)
+- Remapping n2yo.com to match UCSUSA [:inbox_tray:](/Satellite%20launch%20overview/Excel%20files%20for%20value%20remapping/Remapping%20n2yo.com%20to%20match%20ucsusa%20dataset.xlsx?raw=true)
+- Remapping UCSUSA to match n2yo.com [:inbox_tray:](/Satellite%20launch%20overview/Excel%20files%20for%20value%20remapping/Remapping%20ucsusa%20to%20match%20n2yo.com%20dataset.xlsx?raw=true)
 
-
-## POWER BI REPORT CODE
+### POWER BI REPORT CODE
 
 ### Power Query to clean n2yo.com historic satellite data
 
-* [Satellite Data (1957-2022) by Robin S. (scraped from n2yo.com) via Kaggle](https://www.kaggle.com/datasets/heyrobin/satellite-data-19572022)
+- Satellite Data (1957-2022) by Robin S. (scraped from n2yo.com) via Kaggle [:earth_asia:](https://www.kaggle.com/datasets/heyrobin/satellite-data-19572022)
 
 ```
 let
@@ -75,7 +72,7 @@ in
 
 ### Power Query to clean UCSUSA actively monitored satellite data
 
-* [Union of Concerned Scientists' (UCSUSA) satellite database](https://www.ucsusa.org/resources/satellite-database)
+- Union of Concerned Scientists' (UCSUSA) satellite database [:earth_asia:](https://www.ucsusa.org/resources/satellite-database)
 
 ```
 let
@@ -410,9 +407,8 @@ in
 
 ### Deneb code for the zoomable scatterplot of actively monitored satellites in orbit
 
-See my blog post on how I created the Vega-Lite code for this visual:
-
-* **[https://datamesse.github.io/#/post/1661522400](https://datamesse.github.io/#/post/1661522400)**
+See my blog post on how I created the Vega-Lite code for this visual
+: [:earth_asia:](https://makuharistudio.github.io/#/blog/creating-a-decorated-scatterplot-visual-using-deneb-and-power-bi)
 
 ```
 {"background": "null",

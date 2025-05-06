@@ -7,7 +7,7 @@ Click the :earth_asia: icon to visit relevant web pages, or the :inbox_tray: ico
 
 ### RESULT
 
-- **My Power BI report** [](https://community.powerbi.com/t5/Data-Stories-Gallery/AppSource-Deneb-Maps/m-p/2930366)**
+- **My Power BI report** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/AppSource-Deneb-Maps/m-p/2930366)
 
 [![My Power BI report](https://github.com/makuharistudio/makuharistudio.github.io/blob/main/src/assets/portfolio/img-2022-11-power-bi-appsource-deneb-maps.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/AppSource-Deneb-Maps/m-p/2930366)
 
@@ -21,7 +21,7 @@ Click the :earth_asia: icon to visit relevant web pages, or the :inbox_tray: ico
 
 ### POWER BI REPORT CODE
 
-For comprehensive step-by-step on how to implement the following Deneb visual specifications, see my blog post: **[https://makuharistudio.github.io/#/post/1669381200](https://makuharistudio.github.io/#/post/1669381200)**
+For comprehensive step-by-step on how to implement the following Deneb visual specifications, see my blog post: [:earth_asia:](https://makuharistudio.github.io/#/blog/how-to-use-geographic-maps-in-power-bi-with-appsource-deneb)
 
 
 ### FILLED AREA MAP

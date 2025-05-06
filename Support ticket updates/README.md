@@ -1,54 +1,46 @@
-# Support ticket updates (Follow-The-Sun customer service)
-
-
 **Goal:** Summarise customer service staff performance across time zones, including much each company city provides follow-the-sun (FTS) support.
 
 **Approach:** Create a fictional dataset using Excel-based random person and support ticket generators, ensuring the data includes realistic patterns and outliers. Build Power BI and Excel reports which summarise that dataset, highlighting outliers to prompt managerial review.
 
 
-## RESULTS
+### RESULTS
 
-### My Power BI report
-* **[https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)**
+- **My Power BI report** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)
 
-[![My Power BI report](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2021-11-power-bi-follow-the-sun-customer-support.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)
+[![My Power BI report](https://github.com/makuharistudio/makuharistudio.github.io/blob/main/src/assets/portfolio/img-2021-11-power-bi-follow-the-sun-customer-support.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)
 
-### My Excel report
-* **[https://datamesse.github.io/#/project/ExcelCustomerSupportAgentPerformance](https://datamesse.github.io/#/project/ExcelCustomerSupportAgentPerformance)**
+- **My Excel report** [:earth_asia:](https://makuharistudio.github.io/#/portfolio/customer-support-agent-performance)
 
-[![My Excel report](https://github.com/datamesse/datamesse.github.io/raw/main/src/assets-portfolio/img-2022-06-excel-customer-support-agent-performance.gif?raw=true)](https://datamesse.github.io/#/project/ExcelCustomerSupportAgentPerformance)
+[![My Excel report](https://github.com/makuharistudio/makuharistudio.github.io/raw/main/src/assets/portfolio/img-2022-06-excel-customer-support-agent-performance.gif?raw=true)](https://makuharistudio.github.io/#/portfolio/customer-support-agent-performance)
 
-
-### Original Data Sources
-* See below for the random generator and sample dataset used, followed by the Power BI report's M code, then by the Excel report's Power Query and DAX code.
+- Original data sources
+  - See below for the random generator and sample dataset used, followed by the Power BI report's M code, then by the Excel report's Power Query and DAX code.
 
 
-## INSTRUCTIONS TO CREATE RANDOMISED DATASET
+### INSTRUCTIONS TO CREATE RANDOMISED DATASET
 
-For a high-level overview of this Excel random data generator I created, see my blog post:
-* **[https://datamesse.github.io/#/post/1635598800](https://datamesse.github.io/#/post/1635598800)**
+For a high-level overview of this Excel random data generator I created, see my blog post [:earth_asia:](https://makuharistudio.github.io/#/blog/customer-support-ticket-update-generator-and-sample-dataset)
 
 Otherwise, see details below:
 
 ### Random business and people's name generator
 
-* [https://github.com/datamesse/data-visualisation-datasets/blob/main/Support ticket updates/Random name and business generator.xlsx](https://github.com/datamesse/data-visualisation-datasets/raw/main/Support%20ticket%20updates/Random%20name%20and%20business%20generator.xlsx?raw=true)
+- Download Excel random business and people generator [:inbox_try:](/Support%20ticket%20updates/Random%20name%20and%20business%20generator.xlsx?raw=true)
 
 By default this creates 3000 random names across 500 random businesses.
 
-![Random name generator](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/01.png?raw=true)
+![Random name generator](/Support%20ticket%20updates/screenshots/01.png?raw=true)
 
-![Random business generator](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/02.png?raw=true)
+![Random business generator](/Support%20ticket%20updates/screenshots/02.png?raw=true)
 
 Revise your output for duplicates or other such data. Once your output is cleaned up, use the Full Name and Location details to populate the Support Ticket Update Generator below.
 
 
 ### Random support ticket update generator
 
-* [https://github.com/datamesse/data-visualisation-datasets/blob/main/Support ticket updates/Support ticket updates generator.xlsx](https://github.com/datamesse/data-visualisation-datasets/raw/main/Support%20ticket%20updates/Support%20ticket%20updates%20generator.xlsx?raw=true)
+- Download Excel support ticket updates generator [:inbox_try:](/Support%20ticket%20updates/Support%20ticket%20updates%20generator.xlsx?raw=true)
 
-Sample output can be downloaded here:
-* [https://github.com/datamesse/data-visualisation-datasets/blob/main/Support ticket updates/Support ticket updates.xlsx](https://github.com/datamesse/data-visualisation-datasets/raw/main/Support%20ticket%20updates/Support%20ticket%20updates.xlsx?raw=true)
+- Sample output can be downloaded here [:inbox_try:](/Support%20ticket%20updates/Support%20ticket%20updates.xlsx?raw=true)
 
 Because Excel's randomisation appears to create a discrete uniform distribution, the **Main** worksheet is used to define deliberate trends.
 
@@ -64,18 +56,18 @@ How *Ticket criticality ranges by country* works:
  - Greater than or equal to *Low*, then the ticket is "Medium"
  - If it meets none of the conditions, it is "Low".
 
-![Main tab of ticket update generator](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/03.png?raw=true)
+![Main tab of ticket update generator](/Support%20ticket%20updates/screenshots/03.png?raw=true)
 
 **Note:** The current data in this worksheet is based on the randomised people I extracted using the first generator. If you have additional clients for other countries which are not provided here, you will need to add them in manually.
 
 
 After deciding on the names to be used for the support agents, populate the relevant columns under the **Staff** worksheet (indicated in red). The columns which are auto-populated using VLOOKUPs should be left alone (e.g. *Timezone* and *Randomiser helper*). 
 
-![Filling in support agent names in ticket update generator](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/04.png?raw=true)
+![Filling in support agent names in ticket update generator](/Support%20ticket%20updates/screenshots/04.png?raw=true)
 
 There are a number of columns representing the statistics for each agent that need to be manually defined (indicated in blue).
 
-![Filling in support agent statistics](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/05.png?raw=true)
+![Filling in support agent statistics](/Support%20ticket%20updates/screenshots/05.png?raw=true)
 
 The following 3 columns are used by the **Updates 1** worksheet's *Assignee name* column to distribute tickets among agents belonging to the same *Office region*.
 
@@ -111,16 +103,15 @@ These columns are specific to each agent.
 * *Photo ID*: Optional field.
 * *Photo URL*: Optional field.
 
-Agent photos for the sample dataset are here:
-* [https://github.com/datamesse/data-visualisation-datasets/tree/main/Support ticket updates/agents](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates/agents)
+Agent photos for the sample dataset are here [:earth_asia:](/Support%20ticket%20updates/agents)
 
-Photographs were taken from [Pixabay.com](https://pixabay.com/service/license/) and [Pexels.com](https://www.pexels.com/license/) for non-commercial use, edited to fit the appearance of an organisational profile photo, and direct URL attribution included in the dataset for each photo.
+Photographs were taken from [Pixabay.com](https://pixabay.com/service/license) and [Pexels.com](https://www.pexels.com/license) for non-commercial use, edited to fit the appearance of an organisational profile photo, and direct URL attribution included in the dataset for each photo.
 
-![Sample dataset agent photos](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/06.png?raw=true)
+![Sample dataset agent photos](/Support%20ticket%20updates/screenshots/06.png?raw=true)
 
 After deciding on the names to be used for the clients, populate the relevant columns under the **Client** worksheet (indicated in red).
 
-![Filling in client names in ticket update generator](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/07.png?raw=true)
+![Filling in client names in ticket update generator](/Support%20ticket%20updates/screenshots/07.png?raw=true)
 
 Then manually define the response times for each client.
 * *Minimum response time*: Earliest time in minutes for client to reply to agent.
@@ -137,19 +128,19 @@ Then manually define the response times for each client.
 A third optional Excel dataset below was extracted from Wikipedia with relative data points on when Daylight Savings are applied for different time zones and the hour offsets, which I've referred to as "anchors".
 
 ### Standard and Daylight Saving Observations dataset
-* [https://github.com/datamesse/data-visualisation-datasets/blob/main/Support ticket updates/Time zone offsets and DST observations.xlsx](https://github.com/datamesse/data-visualisation-datasets/raw/main/Support%20ticket%20updates/Time%20zone%20offsets%20and%20DST%20observations.xlsx?raw=true)
 
-You can find details on how this dataset was created using Power BI in this blog post:
-**[https://datamesse.github.io/#/post/1633183200](https://datamesse.github.io/#/post/1633183200)**
+- Download Excel dataset of timezone offsets [:inbox_tray:](/Support%20ticket%20updates/Time%20zone%20offsets%20and%20DST%20observations.xlsx?raw=true)
+
+You can find details on how this dataset was created using Power BI in this blog post [:earth_asia:](https://makuharistudio.github.io/#/blog/import-time-zone-offsets-and-observations-from-wikipedia-in-power-bi)
 
 
-## POWER BI REPORT CODE
+### POWER BI REPORT CODE
 
 Because agents and users are based in different time zones, and date/times cover different daylight saving offsets, the Power Query code below implements a combination of concepts from a couple of my blog posts:
 
-* [Find date for the nth day of a month in Power BI](https://datamesse.github.io/#/post/1632578400)
-* [Dynamically apply time zone and daylight savings on date/times in Power BI](https://datamesse.github.io/#/post/1633784400)
-* [Find aggregate value for grouped rows based on column value](https://datamesse.github.io/#/post/1634389200)
+- Find date for the nth day of a month in Power BI [:earth_asia:](https://makuharistudio.github.io/#/blog/find-date-for-the-nth-day-of-a-month-in-power-bi)
+- Dynamically apply time zone and daylight savings on date/times in Power BI [:earth_asia:](https://makuharistudio.github.io/#/blog/dynamically-apply-time-zone-and-daylight-savings-on-datetimes-in-power-bi)
+- Find aggregate value for grouped rows based on column value [:earth_asia:](https://makuharistudio.github.io/#/blog/find-aggregate-value-for-grouped-rows-based-on-column-value)
 
 ### Power Query for custom functions
 
@@ -529,11 +520,11 @@ in
     #"add column Ticket type"
 ```
 
-## POWER BI REPORT MODEL
+### POWER BI REPORT MODEL
 
 The Updates table is referenced as a separate Replies table because the Replies table is catered specifically for public messages and replies, and involves a self-merge, whereas the Updates table is retained as-is for other potential analysis such as non-public internal updates. In a similar vein the Assignee table is referenced from the Agent table to allow filtering and visualisation of Assignee fields (e.g. country, city), and avoid the need to have non-performant merges with the Replies table.
 
-![Power BI report data model](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/08.png?raw=true)
+![Power BI report data model](/Support%20ticket%20updates/screenshots/08.png?raw=true)
 
 
 
@@ -541,7 +532,7 @@ The Updates table is referenced as a separate Replies table because the Replies 
 
 By comparison, the Excel report model is much simpler, largely because it does not cover as many features as the Power BI report was designed to address.
 
-![Excel report data model](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/screenshots/09.png?raw=true)
+![Excel report data model](/Support%20ticket%20updates/screenshots/09.png?raw=true)
 
 ## EXCEL REPORT CODE
 
@@ -567,7 +558,7 @@ let
     Agents_Table = Source{[Item="Agents",Kind="Table"]}[Data],
     #"change type" = Table.TransformColumnTypes(Agents_Table,{{"Full Name", type text}, {"Region", type text}, {"Country", type text}, {"State", type text}, {"City", type text}, {"Timezone", type text}, {"Photo ID", Int64.Type}, {"Photo URL", type text}}),
     #"rename columns" = Table.RenameColumns(#"change type",{{"Photo URL", "Original Image URL"}}),
-    #"add column Photo URL" = Table.AddColumn(#"rename columns", "Photo URL", each "https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/Support%20ticket%20updates/agents/" & Text.From([Photo ID]) & ".png", type text),
+    #"add column Photo URL" = Table.AddColumn(#"rename columns", "Photo URL", each "https://raw.githubusercontent.com/makuharistudio/data-visualisation-datasets/refs/heads/main/Support%20ticket%20updates/agents/" & Text.From([Photo ID]) & ".png", type text),
     #"add column Photo code" = Table.AddColumn(#"add column Photo URL", "Photo code", each "photo_" & Text.From([Photo ID]), type text),
     #"remove other columns" = Table.SelectColumns(#"add column Photo code",{"Full Name", "Country", "Photo code"}),
     #"add column Role" = Table.AddColumn(#"remove other columns", "Role", each "Staff", type text),
