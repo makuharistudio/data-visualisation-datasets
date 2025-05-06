@@ -15,7 +15,7 @@ Click the :earth_asia: icon to visit relevant web pages.
 ## Satellite launch overview
 
 - **My Power BI visualisation** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/Satellite-launch-overview/m-p/2730077)
-  - [Power Query and Deneb code](https://github.com/datamesse/data-visualisation-datasets/tree/main/Satellite%20launch%20overview)
+  - Power Query and Deneb code [:earth_asia:](https://github.com/datamesse/data-visualisation-datasets/tree/main/Satellite%20launch%20overview)
 
 - Original data sources
   - Actively monitored satellites from ucsusa.org [:earth_asia:](https://www.ucsusa.org/resources/satellite-database)
@@ -24,9 +24,9 @@ Click the :earth_asia: icon to visit relevant web pages.
 
 ## International Marketplace sales
 
-- **My Power BI visualisation** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550#M7154)**
+- **My Power BI visualisation** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/International-Marketplace-profit-report-using-Python-and-Deneb/m-p/2480550#M7154)
 
-- **[My Excel dashboard]** [:earth_asia:](https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast)
+- **My Excel dashboard** [:earth_asia:](https://datamesse.github.io/#/project/ExcelInternationalMarketplaceProfitForecast)
   - Power Query and Deneb code [:earth_asia:](https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/Power%20Query%20and%20Deneb%20code.md)
   - Data source files and description [:earth_asia:](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales)
 
@@ -38,7 +38,7 @@ Click the :earth_asia: icon to visit relevant web pages.
 
 ## Support ticket updates
 
-- **My Power BI visualisation** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)**
+- **My Power BI visualisation** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/Follow-the-sun-customer-service-support/m-p/2168279)
 
 - **My Excel dashboard** [:earth_asia:](https://datamesse.github.io/#/project/ExcelCustomerSupportAgentPerformance)
 
