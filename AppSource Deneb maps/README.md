@@ -1,17 +1,13 @@
-# AppSource Deneb maps
-
-
 **Goal:** Validate the ability to use Vega or Vega-Lite custom mapping in Power BI using AppSource Deneb.
 
 **Approach:** Embed the geographic data within the Vega or Vega-Lite specification itself.
 
 
-## RESULT
+### RESULT
 
-### My Power BI report
-* **[https://community.powerbi.com/t5/Data-Stories-Gallery/AppSource-Deneb-Maps/m-p/2930366](https://community.powerbi.com/t5/Data-Stories-Gallery/AppSource-Deneb-Maps/m-p/2930366)**
+- **My Power BI report** [](https://community.powerbi.com/t5/Data-Stories-Gallery/AppSource-Deneb-Maps/m-p/2930366)**
 
-[![My Power BI report](https://github.com/datamesse/datamesse.github.io/blob/main/src/assets-portfolio/img-2022-11-power-bi-appsource-deneb-maps.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/AppSource-Deneb-Maps/m-p/2930366)
+[![My Power BI report](https://github.com/makuharistudio/makuharistudio.github.io/blob/main/src/assets/portfolio/img-2022-11-power-bi-appsource-deneb-maps.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/AppSource-Deneb-Maps/m-p/2930366)
 
 ### Original Data Sources
 * [GeoJSON Maps of the globe by Ash Kyd](https://geojson-maps.ash.ms)
@@ -28,7 +24,7 @@ For comprehensive step-by-step on how to implement the following Deneb visual sp
 
 ### FILLED AREA MAP
 
-![Deneb: Filled area map fixed (Vega-Lite)](https://github.com/datamesse/data-visualisation-datasets/blob/main/AppSource%20Deneb%20maps/Power%20BI%20gif%20preview/Filled%20area%20map%20fixed.gif?raw=true)
+![Deneb: Filled area map fixed (Vega-Lite)](/AppSource%20Deneb%20maps/Power%20BI%20gif%20preview/Filled%20area%20map%20fixed.gif?raw=true)
 
 **Deneb specification**
 
