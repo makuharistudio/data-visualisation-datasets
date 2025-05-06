@@ -1,46 +1,37 @@
-# International Marketplace sales
-
-
 **Goal:** Learn SQL Server Integration Services (SSIS) by merging 3 completely different sales data sources into a single new fictional data warehouse.
 
 **Approach:** Identify the dataset with the simplest schema as the basis to create SQL queries to align the other datasets into a cohesive structure.
 
 This merging truncates and changes the records across the datasets for consistency, such as matching dates to cover specific years, remapping some United States sales to other countries, and renaming customers to better reflect their country of origin using a name randomiser used previously.
 
-* [https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates](https://github.com/datamesse/data-visualisation-datasets/tree/main/Support%20ticket%20updates)
+Click the :earth_asia: icon to visit relevant web pages, or the :inbox_tray: icon to download a file.
 
 
-## RESULT
-Screenshot of completed SSIS project (collapsed summary view), for expanded details and SQL code, see further below.
+### RESULT
 
-[![Visual Studio of SSIS project](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/02.png?raw=true)](https://datamesse.github.io/#/post/1641906000)
+Screenshot of completed SSIS project (collapsed summary view). For the expanded details and SQL code, see further below.
 
-**Important!** This page only shows the SQL code to make the SSIS package. For the Power BI and Excel report code, visit:
+[![Visual Studio of SSIS project](/International%20Marketplace%20sales/screenshots/02.png?raw=true)](https://makuharistudio.github.io/#/post/1641906000)
 
-* **[https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/Power%20Query%20and%20Deneb%20code.md](https://github.com/datamesse/data-visualisation-datasets/blob/main/International%20Marketplace%20sales/Power%20Query%20and%20Deneb%20code.md)**
+**Important!** This page only shows the SQL code to make the SSIS package. For the Power BI and Excel report code visit here: [:earth_asia:](/International%20Marketplace%20sales/Power%20Query%20and%20Deneb%20code.md)
 
+- Original data sources
+  - APAC Superstore dataset can be found and extracted from Tableau Desktop's *Saved Data Sources*.
+  - Contoso Data Warehouse [:earth_asia:](https://www.microsoft.com/en-us/download/details.aspx?id=18279)
+  - Wide World Importers [:earth_asia:](https://github.com/Microsoft/sql-server-samples/releases/tag/wide-world-importers-v1.0)
 
-### Original Data Sources
-* APAC Superstore dataset can be found and extracted from Tableau Desktop's *Saved Data Sources*.
-* [Contoso Data Warehouse](https://www.microsoft.com/en-us/download/details.aspx?id=18279)
-* [Wide World Importers](https://github.com/Microsoft/sql-server-samples/releases/tag/wide-world-importers-v1.0)
-
-### Data remapping files used in SSIS ETL
-* [Unicode text files that remap original data source values to new values](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/text%20files%20for%20value%20remapping%20in%20SSIS/)
+- Data remapping files used in SSIS ETL
+  - Unicode text files that remap original data source values to new values [:earth_asia:](/International%20Marketplace%20sales/text%20files%20for%20value%20remapping%20in%20SSIS)
 
 
-## Download Options
-You can download the final merged output below:
+**Download Options**
+- Database backup .bak file for SQL Server [:inbox_tray:](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/InternationalMarketplace.bak.zip)
 
-* [Database backup .bak file for SQL Server](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/InternationalMarketplace.bak.zip)
+![SQL Server of views to export dataset to Excel](/International%20Marketplace%20sales/screenshots/03.png?raw=true)
 
-![SQL Server of views to export dataset to Excel](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/03.png?raw=true)
+- Normalised dataset for Power BI in Excel format [:inbox_tray:](/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx)
 
-
-* [Normalised dataset for Power BI in Excel format](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Normalised%20for%20Power%20BI.xlsx)
-
-* [Denormalised dataset for Tableau in Excel format](https://github.com/datamesse/data-visualisation-datasets/raw/main/International%20Marketplace%20sales/International%20Marketplace%20Denormalised%20for%20Tableau.xlsx)
-
+- Denormalised dataset for Tableau in Excel format [:inbox_tray:](/International%20Marketplace%20sales/International%20Marketplace%20Denormalised%20for%20Tableau.xlsx)
 
 The Excel file for Power BI is based on:
  - v_Dim_City
@@ -51,14 +42,15 @@ The Excel file for Power BI is based on:
 The Excel file for Tableau is based on:
  - v_Denormalised_Sales
 
-![Excel files](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/01.png?raw=true)
+![Excel files](/International%20Marketplace%20sales/screenshots/01.png?raw=true)
+
 
 
 # SQL Server Integration Services Project code
 
-## Scripts for initial comparison of datasets
+### Scripts for initial comparison of datasets
 
-Listed below are the 2 key scripts used to match as close as possible, the Microsoft Wide World Importers and Contoso DW datasets, with the Tableau APAC Superstore dataset's schema. If you would like to learn more details about the planning behind this SSIS project, visit this blog post.
+Listed below are the 2 key scripts used to match as close as possible, the Microsoft Wide World Importers and Contoso DW datasets, with the Tableau APAC Superstore dataset's schema.
 
 ### Wide World Importers (Database)
 
@@ -104,7 +96,7 @@ from   Sales.Customers c
 
 ### Contoso BI Demo Dataset for Retail Industry (Data Warehouse)
 
-**Important:** The max(SalesOrderNumber) inner join is used to significantly reduce the number of Contoso records that will be used, otherwise the final dataset may be too large to upload to Power BI or Tableau's community galleries.
+**Important:** The max(SalesOrderNumber) inner join significantly reduces the Contoso records that will be used, otherwise the final dataset is too large to upload to Power BI or Tableau's community galleries.
 
 ```
 select
@@ -160,29 +152,26 @@ group by
    c.CustomerType;
 ```
 
-## Preparation / Extract
+### Preparation / Extract
 
-I used SQL Server 2019 Developer Edition with Visual Studio Community 2019 and the SSIS Extension (all of which are free). I have Tableau Desktop Professional Edition, where I extracted their APAC Superstore data. I won't be providing that original dataset, but I believe it should be available in the free version, as there are thousands of dashboards in their community gallery using that dataset.
+I used SQL Server 2019 Developer Edition with Visual Studio Community 2019 and the SSIS Extension. I have Tableau Desktop Professional Edition, where I extracted their APAC Superstore data.
 
-![APAC Superstore in Tableau Public](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/04.png?raw=true)
+![APAC Superstore in Tableau Public](/International%20Marketplace%20sales/screenshots/04.png?raw=true)
 
-Only key information is outlined, not general SSIS steps. If you are unfamiliar with SSIS, I recommend the LinkedIn Learning course **["SQL Server Integration Services" by Adam Wilbert](https://www.linkedin.com/learning/sql-server-integration-services-2)**.
-
+Only key information is outlined, not general SSIS steps.
 
 **Step 1.** Copy the APAC Superstore data to a tab-delimited Unicode text file.
 
 From Tableau Desktop, open the APAC Superstore dataset, and in a new sheet, add all the fields from the Orders table, being mindful to convert all the date-related fields to Discrete and Exact Date formats to render them properly.
 
-![Tableau Desktop Saved Data Source Connect to Sample - APAC Superstore](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/05.png?raw=true)
+![Tableau Desktop Saved Data Source Connect to Sample - APAC Superstore](/International%20Marketplace%20sales/screenshots/05.png?raw=true)
 
 Then from the dropdown menu, select Worksheet > Copy > Crosstab
-![APAC Superstore Copy Crosstab data](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/06.png?raw=true)
+![APAC Superstore Copy Crosstab data](/International%20Marketplace%20sales/screenshots/06.png?raw=true)
 
 Open a new Excel worksheet, paste the data, then Save As a Unicode .txt file. The columns should end up delimited by tabs.
 
-**Note:** Tableau does contain a built-in export to Excel feature, but when testing this, I found that it stalls for this dataset, which is only 10k+ rows by 20 columns. However, copying the data to Excel is near instantaneous. This is a known performance issue.
-
-[https://kb.tableau.com/articles/issue/exporting-a-crosstab-to-excel-2016-takes-a-long-time](https://kb.tableau.com/articles/issue/exporting-a-crosstab-to-excel-2016-takes-a-long-time)
+**Note:** Tableau does contain a built-in export to Excel feature, but when testing this, I found that it stalls for this dataset, which is only 10k+ rows by 20 columns. However, copying the data to Excel is near instantaneous. This is a known performance issue: [:earth_asia:](https://kb.tableau.com/articles/issue/exporting-a-crosstab-to-excel-2016-takes-a-long-time)
 
 **Step 2.** Restore the Wide World Importers .bak file into your SQL Server instance.
 
@@ -191,7 +180,7 @@ Open a new Excel worksheet, paste the data, then Save As a Unicode .txt file. Th
 **Step 4.** Download all the following data remapping files.
 
 Download all the Unicode files from this folder
-[https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/Text%20files%20for%20value%20remapping%20in%20SSIS/](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/Text%20files%20for%20value%20remapping%20in%20SSIS/)
+[:earth_asia:](https://github.com/datamesse/data-visualisation-datasets/tree/main/International%20Marketplace%20sales/Text%20files%20for%20value%20remapping%20in%20SSIS)
 
 **Step 5.** Create a new SSIS project and connections.
 
@@ -199,7 +188,7 @@ Create OLE DB connections to both Contoso and Wide World Importers, and flat fil
 
 I named my project "International Marketplace", but you can name your project and solution however you like.
 
-![Connection Managers](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/07.png?raw=true)
+![Connection Managers](/International%20Marketplace%20sales/screenshots/07.png?raw=true)
 
 ## Creating SSIS package and T-SQL
 
@@ -207,7 +196,7 @@ Below are screenshots for expanded views of the package with each element number
 
 ### 1  Country using World Wide Importers as the base
 
-![Country using World Wide Importers as the base](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/08.png?raw=true)
+![Country using World Wide Importers as the base](/International%20Marketplace%20sales/screenshots/08.png?raw=true)
 
 **1-1  Create Country main & staging tables**
  - Connection: International Marketplace
@@ -281,7 +270,7 @@ values (N'Asia',N'Eastern Asia',N'Taiwan');
 
 ### 2  State and City combine and remap all 3 data sources
 
-![State and City combine and remap all 3 data sources](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/09.png?raw=true)
+![State and City combine and remap all 3 data sources](/International%20Marketplace%20sales/screenshots/09.png?raw=true)
 
 **2-1  Create State & City main and staging tables, and views**
  - Connection: International Marketplace
@@ -536,7 +525,7 @@ on zvsc.DataSource = zsc.DataSource and zvsc.FromCountry = zsc.FromCountry and z
 
 ### 3  Customer combine and remap all 3 sources
 
-![Customer combine and remap all 3 sources](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/10.png?raw=true)
+![Customer combine and remap all 3 sources](/International%20Marketplace%20sales/screenshots/10.png?raw=true)
 
 **3-1  Create Customer main and staging tables**
   - Connection: International Marketplace
@@ -769,7 +758,7 @@ group by
 
 ### 4  Supplier, Category and Product combine and remap all 3 sources**
 
-![Supplier, Category and Product combine and remap all 3 sources](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/11.png?raw=true)
+![Supplier, Category and Product combine and remap all 3 sources](/International%20Marketplace%20sales/screenshots/11.png?raw=true)
 
 **4-1  Create Supplier, Category, and Product main and staging tables**
   - Connection: International Marketplace
@@ -858,7 +847,7 @@ create table zx_product_remap (
 **4-2  Populate Supplier, Category, and Product staging and remapping tables**
 
 This data flow has the largest number of elements of the SSIS package. In hindsight, a lot of them may be unnecessary, such as the sorts, so feel free to exclude those.
-![Supplier, Category and Product combine and remap all 3 sources](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/12.png?raw=true)
+![Supplier, Category and Product combine and remap all 3 sources](/International%20Marketplace%20sales/screenshots/12.png?raw=true)
 
 * **4-2-1  Extract Category and Subcategory from Contoso**
   - Connection: Wide World Importers Database
@@ -1338,7 +1327,7 @@ from z_product zp
 
 ### 5  Create Sales fact table and combine all 3 sources
 
-![Create Sales fact table and combine all 3 sources](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/13.png?raw=true)
+![Create Sales fact table and combine all 3 sources](/International%20Marketplace%20sales/screenshots/13.png?raw=true)
 
 **5-1  Create Sales main and staging tables**
  - Connection: International Marketplace
@@ -1773,7 +1762,7 @@ insert into ShipMode (ShipMode)
 
 ### 7  Create denormalised view for Tableau and normalised views for Power BI
 
-![Create denormalised view for Tableau and normalised views for Power BI](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/14.png?raw=true)
+![Create denormalised view for Tableau and normalised views for Power BI](/International%20Marketplace%20sales/screenshots/14.png?raw=true)
 
 **7-1  Sales for Tableau**
  - Connection: International Marketplace
@@ -1921,17 +1910,17 @@ create view v_Fact_Sales as
 
 Despite the remapping of Contoso U.S.-based sales to other countries, there is still an enormous skew in sales toward the United States (due to the Wide World Importers data).
 
-![Too many sales records in United States](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/15.png?raw=true)
+![Too many sales records in United States](/International%20Marketplace%20sales/screenshots/15.png?raw=true)
 
 I have added optional Steps 8 and 9 which involve remapping some customer IDs for U.S. sales to other non-U.S. based customers.
 
-![Added Steps 8 and 9 to SSIS package](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/16.png?raw=true)
+![Added Steps 8 and 9 to SSIS package](/International%20Marketplace%20sales/screenshots/16.png?raw=true)
 
 **Note:** This is a very long running script, and can trigger the _"Arithmetic overflow error converting expression to data type int"_ error.
 
 This script retrieves about 70% of random sales by U.S.-based customers, then using a cross join assigns a random number from a range between 0 and the total number of non-U.S.-based customers. Then it assigns a new Customer ID from non U.S.-based customers by joining on the previous range, and a row_number surrogate ID.
 
-![Comparing new and old Customer IDs on sales records](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/17.png?raw=true)
+![Comparing new and old Customer IDs on sales records](/International%20Marketplace%20sales/screenshots/17.png?raw=true)
 
  - Connection: International Marketplace
 
@@ -2057,7 +2046,7 @@ end;
 
 With the extra steps of 8 and 9 added, the sales for United States become distributed out to other markets.
 
-![Sales records transferred to other states](https://raw.githubusercontent.com/datamesse/data-visualisation-datasets/main/International%20Marketplace%20sales/screenshots/18.png?raw=true)
+![Sales records transferred to other states](/International%20Marketplace%20sales/screenshots/18.png?raw=true)
 
 
 ### Extra SQL queries for practice

@@ -2,6 +2,8 @@
 
 **Approach:** Embed the geographic data within the Vega or Vega-Lite specification itself.
 
+Click the :earth_asia: icon to visit relevant web pages, or the :inbox_tray: icon to download a file.
+
 
 ### RESULT
 
@@ -9,17 +11,17 @@
 
 [![My Power BI report](https://github.com/makuharistudio/makuharistudio.github.io/blob/main/src/assets/portfolio/img-2022-11-power-bi-appsource-deneb-maps.gif?raw=true)](https://community.powerbi.com/t5/Data-Stories-Gallery/AppSource-Deneb-Maps/m-p/2930366)
 
-### Original Data Sources
-* [GeoJSON Maps of the globe by Ash Kyd](https://geojson-maps.ash.ms)
-* [World Cities Datasets" by Viswanathan C on Kaggle](https://www.kaggle.com/datasets/viswanathanc/world-cities-datasets)
+- Original data sources
+  - GeoJSON Maps of the globe by Ash Kyd [:earth_asia:](https://geojson-maps.ash.ms)
+  - World Cities Datasets" by Viswanathan C on Kaggle [:earth_asia:](https://www.kaggle.com/datasets/viswanathanc/world-cities-datasets)
 
-### Modified Data Source
-* [Trimmed version of GeoJSON map data](https://github.com/datamesse/data-visualisation-datasets/blob/main/AppSource%20Deneb%20maps/compressed.geo.json)
+- Modified data source
+  - Trimmed version of GeoJSON map data [:inbox_tray:](/AppSource%20Deneb%20maps/compressed.geo.json)
 
 
-## POWER BI REPORT CODE
+### POWER BI REPORT CODE
 
-For comprehensive step-by-step on how to implement the following Deneb visual specifications, see my blog post: **[https://datamesse.github.io/#/post/1669381200](https://datamesse.github.io/#/post/1669381200)**
+For comprehensive step-by-step on how to implement the following Deneb visual specifications, see my blog post: **[https://makuharistudio.github.io/#/post/1669381200](https://makuharistudio.github.io/#/post/1669381200)**
 
 
 ### FILLED AREA MAP
@@ -70,7 +72,7 @@ For comprehensive step-by-step on how to implement the following Deneb visual sp
 
 ### COORDINATE POINT MAP
 
-![Deneb: Coordinate point map fixed (Vega-Lite)](https://github.com/datamesse/data-visualisation-datasets/blob/main/AppSource%20Deneb%20maps/Power%20BI%20gif%20preview/Coordinate%20point%20map%20fixed.gif?raw=true)
+![Deneb: Coordinate point map fixed (Vega-Lite)](/AppSource%20Deneb%20maps/Power%20BI%20gif%20preview/Coordinate%20point%20map%20fixed.gif?raw=true)
 
 **Deneb specification**
 
@@ -125,7 +127,8 @@ For comprehensive step-by-step on how to implement the following Deneb visual sp
 
 ### FILLED AREA WITH COORDINATE POINT MAP
 
-![Deneb: Filled area with coordinate point map fixed (Vega-Lite)](https://github.com/datamesse/data-visualisation-datasets/blob/main/AppSource%20Deneb%20maps/Power%20BI%20gif%20preview/Filled%20area%20with%20coordinate%20point%20map%20fixed.gif?raw=true)
+![Deneb: Filled area with coordinate point map fixed (Vega-Lite)](/AppSource%20Deneb%20maps/Power%20BI%20gif%20preview/Filled%20area%20with%20coordinate%20point%20map%20fixed.gif?raw=true)
+
 
 **Deneb specification**
 
@@ -227,7 +230,7 @@ For comprehensive step-by-step on how to implement the following Deneb visual sp
 
 ### MAP PROJECTION EXPLORER
 
-![Deneb: Map projection explorer fixed (Vega-Lite)](https://github.com/datamesse/data-visualisation-datasets/blob/main/AppSource%20Deneb%20maps/Power%20BI%20gif%20preview/Map%20projection%20explorer%20fixed.gif?raw=true)
+![Deneb: Map projection explorer fixed (Vega-Lite)](/AppSource%20Deneb%20maps/Power%20BI%20gif%20preview/Map%20projection%20explorer%20fixed.gif?raw=true)
 
 **Deneb specification**
 
@@ -322,7 +325,8 @@ For comprehensive step-by-step on how to implement the following Deneb visual sp
 
 ### SLIDER INTERACTIVE GLOBE
 
-![Deneb: Slider interactive globe fixed (Vega-Lite)](https://github.com/datamesse/data-visualisation-datasets/blob/main/AppSource%20Deneb%20maps/Power%20BI%20gif%20preview/Slider%20interactive%20globe%20fixed.gif?raw=true)
+![Deneb: Slider interactive globe fixed (Vega-Lite)](/AppSource%20Deneb%20maps/Power%20BI%20gif%20preview/Slider%20interactive%20globe%20fixed.gif?raw=true)
+
 
 **Deneb specification**
 
@@ -434,7 +438,8 @@ For comprehensive step-by-step on how to implement the following Deneb visual sp
 
 ### INTERACTIVE MAP (PAN & ZOOM)
 
-![Deneb: Interactive map pan & zoom (Vega-Lite)](https://github.com/datamesse/data-visualisation-datasets/blob/main/AppSource%20Deneb%20maps/Power%20BI%20gif%20preview/Interactive%20map%20pan%20and%20zoom.gif?raw=true)
+![Deneb: Interactive map pan & zoom (Vega-Lite)](/AppSource%20Deneb%20maps/Power%20BI%20gif%20preview/Interactive%20map%20pan%20and%20zoom.gif?raw=true)
+
 
 **Deneb specification**
 
