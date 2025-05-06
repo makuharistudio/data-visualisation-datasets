@@ -5,10 +5,9 @@ Click the :earth_asia: icon to visit relevant web pages.
 ### AppSource Deneb maps
 - **My Power BI visualisation** [:earth_asia:](https://community.powerbi.com/t5/Data-Stories-Gallery/AppSource-Deneb-Maps/m-p/2930366)
   - Power Query and Deneb code [:earth_asia:](https://datamesse.github.io/#/post/1669381200)
-
 - Original Data Sources
   - GeoJSON Maps of the globe by Ash Kyd [:earth_asia:](https://geojson-maps.ash.ms)
-  - World Cities Datasets" by Viswanathan C on Kaggle [:earth_asia:](https://www.kaggle.com/datasets/viswanathanc/world-cities-datasets)
+  - "World Cities Datasets" by Viswanathan C on Kaggle [:earth_asia:](https://www.kaggle.com/datasets/viswanathanc/world-cities-datasets)
 
 
 ## Satellite launch overview
