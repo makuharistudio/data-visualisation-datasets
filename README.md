@@ -1,6 +1,6 @@
 A bucket repository for the datasets I use in data visualisations.
 
-Click the :earth_asia: icon to visit relevant web pages.
+Click the :earth_asia: icon to visit relevant web pages, or the :inbox_tray: icon to download a file.
 
 ## AppSource Deneb maps
 
